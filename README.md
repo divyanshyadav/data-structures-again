@@ -11,7 +11,7 @@ npm install data-structures-again
 
 ### Binary Search Tree:
 ```js
-const BST = require('data-structures-again').BST;
+const { BST } = require('data-structures-again');
 const bst = new BST();
 bst.insert(3);
 ```

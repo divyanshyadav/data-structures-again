@@ -8,7 +8,7 @@ class Node {
 
 class BST {
     constructor() {
-        this.root = null
+        this.root = null;
     }
 
     insert(data) {
@@ -17,15 +17,15 @@ class BST {
                 return new Node(data)
             }
             if (data < root.data) {
-                root.left = insertHelper(root.left, data)
+                root.left = insertHelper(root.left, data);
             }
             else if (data > root.data) {
-                root.right = insertHelper(root.right, data)
+                root.right = insertHelper(root.right, data);
             }
-            return root
+            return root;
         }
-        this.root = insertHelper(this.root, data)
-        return this
+        this.root = insertHelper(this.root, data);
+        return this;
     }
 
     search(data) {
@@ -209,14 +209,7 @@ class BST {
     }
 }
 
-const bst = new BST()
-bst
-    .insert(20)
-    .insert(10)
-    .insert(30)
-const dll = bst.toDLL()
-
 module.exports = {
     BST,
-    Node
+    Node,
 };
