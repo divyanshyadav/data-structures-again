@@ -1,4 +1,5 @@
 # Data Structures
+Light weight javascript data structures library
 
 + Binary Search Tree(BST)
 
@@ -8,9 +9,11 @@
 npm install data-structures-again
 ```
 
-### Binary Search Tree
+### Binary Search Tree:
 ```js
 const BST = require('data-structures-again').BST;
 const bst = new BST();
 bst.insert(3);
 ```
+## License
+MIT.
