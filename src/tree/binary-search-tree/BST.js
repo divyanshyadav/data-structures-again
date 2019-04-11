@@ -1,10 +1,4 @@
-class Node {
-    constructor(data = null, left = null, right = null) {
-        this.data = data;
-        this.left = left;
-        this.right = right;
-    }
-}
+const Node = require('../BinaryTreeNode');
 
 class BST {
     constructor() {
@@ -14,7 +8,7 @@ class BST {
     insert(data) {
         const insertHelper = (root, data) => {
             if (root === null) {
-                return new Node(data)
+                return new Node(data);
             }
             if (data < root.data) {
                 root.left = insertHelper(root.left, data);
@@ -209,7 +203,4 @@ class BST {
     }
 }
 
-module.exports = {
-    BST,
-    Node,
-};
+module.exports = BST;

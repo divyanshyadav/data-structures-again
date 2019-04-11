@@ -1,4 +1,4 @@
-const BST = require('./src/BST');
+const { BST } = require('./src/tree');
 
 module.exports = {
     BST,

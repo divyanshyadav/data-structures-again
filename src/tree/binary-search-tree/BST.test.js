@@ -1,4 +1,5 @@
-const { BST, Node } = require('./BST');
+const BST = require('./BST');
+const Node = require('../BinaryTreeNode');
 
 it('should work', () => {
     expect(1).toBe(1);
@@ -372,4 +373,22 @@ it.skip('should convert bst to dll Example 2', () => {
     expect(dll.right.data).toBe(20)
     expect(dll.right.right.data).toBe(25)
 
+})
+
+it('should insert alphabets correctly', () => {
+    const bst = new BST();
+    bst
+        .insert('B')
+        .insert('A')
+        .insert('C')
+        .insert('D');
+    /*
+            B
+        A       C
+                    D
+    */
+    expect(bst.root.data).toBe('B');
+    expect(bst.root.left.data).toBe('A');
+    expect(bst.root.right.data).toBe('C');
+    expect(bst.root.right.right.data).toBe('D');
 })

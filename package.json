@@ -11,5 +11,12 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "^24.5.0"
-  }
+  },
+  "keywords": [
+    "computer-science",
+    "cs",
+    "data-structures",
+    "javascript",
+    "tree"
+  ]
 }
