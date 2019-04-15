@@ -14,6 +14,10 @@ npm install data-structures-again
 const { BST } = require('data-structures-again');
 const bst = new BST();
 bst.insert(3);
+bst.insert(2);
+bst.insert(1);
+const node = bst.search(2)
+console.log(node.data)
 ```
 ## License
 MIT.
