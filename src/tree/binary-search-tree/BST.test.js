@@ -392,3 +392,48 @@ it('should insert alphabets correctly', () => {
     expect(bst.root.right.data).toBe('C');
     expect(bst.root.right.right.data).toBe('D');
 })
+
+it('should run in-order traverse correctly', () => {
+    const bst = new BST();
+    bst
+        .insert('B')
+        .insert('A')
+        .insert('C')
+        .insert('D');
+    /*
+            B
+        A       C
+                    D
+    */
+    expect(bst.traverse('inorder')).toBe('A B C D');
+})
+
+it('should run pre-order traverse correctly', () => {
+    const bst = new BST();
+    bst
+        .insert('B')
+        .insert('A')
+        .insert('C')
+        .insert('D');
+    /*
+            B
+        A       C
+                    D
+    */
+    expect(bst.traverse('preorder')).toBe('B A C D');
+})
+
+it('should run post-order traverse correctly', () => {
+    const bst = new BST();
+    bst
+        .insert('B')
+        .insert('A')
+        .insert('C')
+        .insert('D');
+    /*
+            B
+        A       C
+                    D
+    */
+    expect(bst.traverse('postorder')).toBe('A D C B');
+})

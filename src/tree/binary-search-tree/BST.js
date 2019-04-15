@@ -201,6 +201,46 @@ class BST {
         toDLLHelper(treeRoot)
         return head
     }
+
+    traverse(order = 'inorder') {
+        const items = [];
+
+        const preOrder = (root) => {
+            if (root === null) {
+                return;
+            }
+            items.push(root.data);
+            preOrder(root.left);
+            preOrder(root.right);
+        };
+        const inOrder = (root) => {
+            if (root === null) {
+                return;
+            }
+            inOrder(root.left);
+            items.push(root.data);
+            inOrder(root.right);
+        };
+
+        const postOrder = (root) => {
+            if (root === null) {
+                return;
+            }
+            postOrder(root.left);
+            postOrder(root.right);
+            items.push(root.data);
+        };
+
+        const orders = {
+            preorder: preOrder,
+            inorder: inOrder,
+            postorder: postOrder,
+        };
+
+        orders[order](this.root);
+
+        return items.join(' ');
+    }
 }
 
 module.exports = BST;
