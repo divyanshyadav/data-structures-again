@@ -1,5 +1,5 @@
 # Data Structures
-<p align="center">
+<p>
     <a href='https://coveralls.io/github/divyanshyadav/data-structures-again?branch=master'><img src='https://coveralls.io/repos/github/divyanshyadav/data-structures-again/badge.svg?branch=master' alt='Coverage Status' /></a>
 </p>
 
