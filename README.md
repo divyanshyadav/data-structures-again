@@ -18,15 +18,15 @@ npm install data-structures-again
 ```js
 const { BST } = require('data-structures-again');
 
-/*
-        2
-    1       3
-*/
-
 const bst = new BST();
 bst.insert(2);
 bst.insert(1);
 bst.insert(3);
+
+/*
+        2
+    1       3
+*/
 
 const node = bst.search(2);
 console.log(node.data);     // 2
