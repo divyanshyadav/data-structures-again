@@ -6,11 +6,13 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "watch": "jest --watch *.test.js"
+    "watch": "jest --watch *.test.js",
+    "coverage": "jest --coverage --coverageReporters=text-lcov | node ./node_modules/coveralls/bin/coveralls.js"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "coveralls": "^3.0.3",
     "jest": "^24.5.0"
   },
   "keywords": [

@@ -1,4 +1,8 @@
 # Data Structures
+<p align="center">
+    <a href='https://coveralls.io/github/divyanshyadav/data-structures-again?branch=master'><img src='https://coveralls.io/repos/github/divyanshyadav/data-structures-again/badge.svg?branch=master' alt='Coverage Status' /></a>
+</p>
+
 Light weight javascript data structures library
 
 + Binary Search Tree(BST)
@@ -16,8 +20,8 @@ const bst = new BST();
 bst.insert(3);
 bst.insert(2);
 bst.insert(1);
-const node = bst.search(2)
-console.log(node.data)
+const node = bst.search(2);
+console.log(node.data);
 ```
 ## License
 MIT.

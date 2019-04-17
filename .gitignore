@@ -8,3 +8,7 @@ node_modules
 
 ## VSCode ##
 .vscode
+
+## Coverage ##
+coverage
+.coveralls.yml
