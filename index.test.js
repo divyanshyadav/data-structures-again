@@ -10,3 +10,15 @@ it('Should check index', () => {
     expect(node.data).toBe(2);
     expect(bst.root.right).toBe(null);
 })
+
+it('should check stack example in readme.md', () => {
+    const { Stack } = require('./index');
+    const stack = new Stack();
+    stack.push(1);
+    stack.push(2);
+    const data = stack.pop();
+    const top = stack.peek();
+
+    expect(data).toEqual(2);
+    expect(top).toEqual(1);
+});
