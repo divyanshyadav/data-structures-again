@@ -25,22 +25,22 @@ class BST {
     search(data) {
         const searchHelper = (root, data) => {
             if (root === null) {
-                return null
+                return null;
             }
 
             if (root.data === data) {
-                return root
+                return root;
             }
 
             if (data < root.data) {
-                return searchHelper(root.left, data)
+                return searchHelper(root.left, data);
             }
 
             if (data > root.data) {
-                return searchHelper(root.right, data)
+                return searchHelper(root.right, data);
             }
         }
-        return searchHelper(this.root, data)
+        return searchHelper(this.root, data);
     }
 
     delete(data) {
@@ -95,14 +95,14 @@ class BST {
     max(root = this.root) {
         const finMinHelper = (root) => {
             if (root === null) {
-                return null
+                return null;
             }
             if (root.right === null) {
-                return root
+                return root;
             }
-            return finMinHelper(root.right)
+            return finMinHelper(root.right);
         }
-        return finMinHelper(root)
+        return finMinHelper(root);
     }
 
     isBST(root = this.root) {
@@ -129,78 +129,57 @@ class BST {
                 return null;
             }
             if (a <= root.data && b >= root.data) {
-                return root
+                return root;
             }
             if (a > root.data && b > root.data) {
-                return lcaHelper(root.right, a, b)
+                return lcaHelper(root.right, a, b);
             }
             if (a < root.data && a < root.data) {
-                return lcaHelper(root.left, a, b)
+                return lcaHelper(root.left, a, b);
             }
-        }
-        return lcaHelper(this.root, a, b)
+        };
+
+        return lcaHelper(this.root, a, b);
     }
 
     shortestPath(a, b) {
-        const lca = this.lca(a, b)
-        let nodes = []
+        const lca = this.lca(a, b);
+        const nodes = [];
         const getPath = (root, data, left = false) => {
             if (root === null) {
-                return
+                return;
             }
 
-            left ?
-                nodes.unshift(root.data) :
-                nodes.push(root.data)
+            if (left) {
+                nodes.unshift(root.data);
+            } else {
+                nodes.push(root.data);
+            }
 
             if (root.data === data) {
-                return
+                return;
             }
 
             if (data > root.data) {
-                getPath(root.right, data, left)
+                getPath(root.right, data, left);
             }
 
             if (data < root.data) {
-                getPath(root.left, data, left)
+                getPath(root.left, data, left);
             }
-        }
-        if (a < b) {
-            getPath(lca, a, true)
-            nodes.pop()
-            getPath(lca, b)
-        }
-        else {
-            getPath(lca, b, true)
-            nodes.pop()
-            getPath(lca, a)
-        }
-        return nodes
-    }
+        };
 
-    toDLL(treeRoot = this.root) {
-        let head = null
-        const toDLLHelper = (root) => {
-            if (root === null) {
-                return null
-            }
-            const left = toDLLHelper(root.left)
-            if (left) {
-                if (head) {
-                    head.right = left
-                } else {
-                    head = left
-                }
-                left.right = root
-            }
-            const right = toDLLHelper(root.right)
-            if (right) {
-                root.right = right
-            }
-            return root
+        if (a < b) {
+            getPath(lca, a, true);
+            nodes.pop();
+            getPath(lca, b);
+        } else {
+            getPath(lca, b, true);
+            nodes.pop();
+            getPath(lca, a);
         }
-        toDLLHelper(treeRoot)
-        return head
+
+        return nodes;
     }
 
     traverse(order = 'inorder') {

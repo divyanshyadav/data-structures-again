@@ -34,6 +34,14 @@ it('should search existing node', () => {
     expect(bst.search(20)).toBe(bst.root.right)
 })
 
+it('should search existing node in left sub tree', () => {
+    const bst = new BST();
+    bst.insert(10);
+    bst.insert(5);
+    bst.insert(20);
+    expect(bst.search(5)).toBe(bst.root.left);
+});
+
 it('should return null if searching nonexisting node', () => {
     const bst = new BST()
     bst.insert(10)
@@ -55,13 +63,14 @@ it('should delete element with not children', () => {
 })
 
 it('should delete element with 1 child(right)', () => {
-    const bst = new BST()
-    bst.insert(10)
-    bst.insert(5)
-    bst.insert(20)
-    bst.insert(30)
+    const bst = new BST();
+    bst.insert(10);
+    bst.insert(5);
+    bst.insert(20);
+    bst.insert(30);
 
-    bst.delete(20)
+    bst.delete(20);
+    bst.delete(100);
 
     /*
             10
@@ -72,6 +81,26 @@ it('should delete element with 1 child(right)', () => {
     expect(bst.root.data).toBe(10)
     expect(bst.root.left.data).toBe(5)
     expect(bst.root.right.data).toBe(30)
+})
+
+it('should delete element with 1 child(right)', () => {
+    const bst = new BST();
+    bst.insert(10);
+    bst.insert(5);
+    bst.insert(20);
+    bst.insert(30);
+
+    bst.delete(5);
+
+    /*
+            10
+        5       20
+                    30
+    */
+
+    expect(bst.root.data).toBe(10);
+    expect(bst.root.right.data).toBe(20);
+    expect(bst.root.right.right.data).toBe(30);
 })
 
 it('should delete element with 1 child(left)', () => {
@@ -180,12 +209,14 @@ it('should check isBST example 2', () => {
 })
 
 it('should check isBST example 3', () => {
-    const bst = new BST()
-    bst.root = new Node(4)
-    bst.root.left = new Node(2)
-    bst.root.right = new Node(5)
-    bst.root.left.left = new Node(1)
-    bst.root.left.right = new Node(3)
+    const bst = new BST();
+    bst.root = new Node(4);
+    bst.root.left = new Node(2);
+    bst.root.right = new Node(5);
+    bst.root.left.left = new Node(1);
+    const node = new Node();
+    node.data = 3;
+    bst.root.left.right = node;
 
     /*
                     4
@@ -230,6 +261,10 @@ it('should check isBST example 5', () => {
     expect(bst.isBST()).toBe(false)
 })
 
+test('min should return null in empty tree', () => {
+    const bst = new BST();
+    expect(bst.min()).toBe(null);
+});
 
 it('should get min node in BST', () => {
     const bst = new BST()
@@ -270,6 +305,11 @@ it('should get max node in BST', () => {
 
     expect(bst.max().data).toBe(50)
 })
+
+test('max should return null in empty tree', () => {
+    const bst = new BST();
+    expect(bst.max()).toBe(null);
+});
 
 it('should get correct LCA of existing two numbers', () => {
     const bst = new BST()
@@ -329,51 +369,6 @@ it('should get shortest path between two nodes', () => {
     expect(bst.shortestPath(5, 15)).toEqual([5, 10, 20, 15])
 })
 
-it('should convert bst to dll Example 1', () => {
-    const bst = new BST()
-    bst
-        .insert(20)
-        .insert(10)
-        .insert(30)
-        .insert(40)
-    /*
-            20
-        10      30
-                    40
-    */
-
-    expect(bst.root.data).toBe(20)
-    expect(bst.root.left.data).toBe(10)
-    expect(bst.root.right.data).toBe(30)
-
-    const dll = bst.toDLL()
-    expect(dll.data).toBe(10)
-    expect(dll.right.data).toBe(20)
-    expect(dll.right.left.data).toBe(10)
-    expect(dll.right.right.data).toBe(30)
-    expect(dll.right.right.right.data).toBe(40)
-})
-
-it.skip('should convert bst to dll Example 2', () => {
-    const bst = new BST()
-    bst
-        .insert(20)
-        .insert(10)
-        .insert(30)
-        .insert(40)
-        .insert(25)
-    /*
-            20
-        10      30
-            25      40
-    */
-
-    const dll = bst.toDLL()
-    expect(dll.data).toBe(10)
-    expect(dll.right.data).toBe(20)
-    expect(dll.right.right.data).toBe(25)
-
-})
 
 it('should insert alphabets correctly', () => {
     const bst = new BST();
