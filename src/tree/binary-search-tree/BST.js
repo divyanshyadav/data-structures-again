@@ -108,21 +108,24 @@ class BST {
     isBST(root = this.root) {
         const isBSTHelper = (root, min, max) => {
             if (root === null) {
-                return true
-            }
-            if (root.data < min || root.data > max) {
-                return false
+                return true;
             }
 
-            return isBSTHelper(root.left, min, root.data - 1) && isBSTHelper(root.right, root.data + 1, max)
-        }
-        return isBSTHelper(root, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY)
+            if (root.data < min || root.data > max) {
+                return false;
+            }
+
+            return isBSTHelper(root.left, min, root.data - 1)
+                && isBSTHelper(root.right, root.data + 1, max);
+        };
+
+        return isBSTHelper(root, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY);
     }
 
     lca(a, b) {
         // Least Common Ancestor
         if (a > b) {
-            [a, b] = [b, a]
+            [a, b] = [b, a];
         }
         const lcaHelper = (root, a, b) => {
             if (root === null) {
@@ -185,41 +188,46 @@ class BST {
     traverse(order = 'inorder') {
         const items = [];
 
-        const preOrder = (root) => {
-            if (root === null) {
-                return;
-            }
-            items.push(root.data);
-            preOrder(root.left);
-            preOrder(root.right);
-        };
-        const inOrder = (root) => {
-            if (root === null) {
-                return;
-            }
-            inOrder(root.left);
-            items.push(root.data);
-            inOrder(root.right);
-        };
-
-        const postOrder = (root) => {
-            if (root === null) {
-                return;
-            }
-            postOrder(root.left);
-            postOrder(root.right);
-            items.push(root.data);
-        };
-
         const orders = {
-            preorder: preOrder,
-            inorder: inOrder,
-            postorder: postOrder,
+            preorder: this.preOrder.bind(this),
+            inorder: this.inOrder.bind(this),
+            postorder: this.postOrder.bind(this),
         };
 
-        orders[order](this.root);
+        return orders[order](this.root, items).join(' ');
+    }
 
-        return items.join(' ');
+    preOrder(root = this.root, store) {
+        if (root === null) {
+            return store;
+        }
+        store.push(root.data);
+        this.preOrder(root.left, store);
+        this.preOrder(root.right, store);
+
+        return store;
+    }
+
+    inOrder(root = this.root, store) {
+        if (root === null) {
+            return store;
+        }
+        this.inOrder(root.left, store);
+        store.push(root.data);
+        this.inOrder(root.right, store);
+
+        return store;
+    }
+
+    postOrder(root = this.root, store) {
+        if (root === null) {
+            return store;
+        }
+        this.postOrder(root.left, store);
+        this.postOrder(root.right, store);
+        store.push(root.data);
+
+        return store;
     }
 }
 
