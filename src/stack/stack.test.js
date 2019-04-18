@@ -43,7 +43,8 @@ test('peek should return top element of a non-empty stack', () => {
     const stack = new Stack();
     stack.push(1);
     stack.push(2);
-    expect(stack.peek()).toBe(2);
+    const top = stack.peek();
+    expect(top).toBe(2);
 });
 
 test('empty', () => {
@@ -51,5 +52,6 @@ test('empty', () => {
     expect(stack.empty()).toBe(true);
     stack.push(1);
     stack.push(2);
-    expect(stack.empty()).toBe(false);
+    const empty = stack.empty();
+    expect(empty).toBe(false);
 });
