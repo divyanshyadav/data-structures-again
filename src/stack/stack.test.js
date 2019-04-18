@@ -35,7 +35,8 @@ test('size should return the length of a stack', () => {
 
 test('peek should return undefined if stack is empty', () => {
     const stack = new Stack();
-    expect(stack.peek()).toBe(undefined);
+    const top = stack.peek();
+    expect(top).toBe(undefined);
 });
 
 
