@@ -1,6 +1,6 @@
 {
   "name": "data-structures-again",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "A Javascript library for simple data structures",
   "homepage": "https://github.com/divyanshyadav/data-structures-again",
   "main": "index.js",
