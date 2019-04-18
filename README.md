@@ -2,6 +2,7 @@
 <p>
     <a href='https://coveralls.io/github/divyanshyadav/data-structures-again?branch=master'><img src='https://coveralls.io/repos/github/divyanshyadav/data-structures-again/badge.svg?branch=master' alt='Coverage Status' /></a>
     <a href="https://badge.fury.io/js/data-structures-again"><img src="https://badge.fury.io/js/data-structures-again.svg" alt="npm version" height="18"></a>
+    <a href="https://snyk.io/test/github/divyanshyadav/data-structures-again?targetFile=package.json"><img src="https://snyk.io/test/github/divyanshyadav/data-structures-again/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/divyanshyadav/data-structures-again?targetFile=package.json" style="max-width:100%;"></a>
 </p>
 
 Light weight javascript data structures library

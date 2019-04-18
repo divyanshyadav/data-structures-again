@@ -52,31 +52,32 @@ class BST {
             if (data === root.data) {
                 // Case 1: has no children
                 if (root.left === null && root.right === null) {
-                    root = null
+                    root = null;
                 }
 
                 // Case 2: has one child
                 else if (root.left === null) {
-                    root = root.right
+                    root = root.right;
                 }
                 else if (root.right === null) {
-                    root = root.left
+                    root = root.left;
                 }
 
                 // Case 3: have both children
                 else {
-                    const minRight = this.min(root.right)
-                    root.data = minRight.data
-                    root.right = deleteHelper(root.right, root.data)
+                    const minRight = this.min(root.right);
+                    root.data = minRight.data;
+                    root.right = deleteHelper(root.right, root.data);
                 }
             } else if (data < root.data) {
-                root.left = deleteHelper(root.left, data)
+                root.left = deleteHelper(root.left, data);
             } else if (data > root.data) {
-                root.right = deleteHelper(root.right, data)
+                root.right = deleteHelper(root.right, data);
             }
-            return root
-        }
-        this.root = deleteHelper(this.root, data)
+            return root;
+        };
+
+        this.root = deleteHelper(this.root, data);
     }
 
     min(root = this.root) {
