@@ -10,14 +10,16 @@ class BST {
             if (root === null) {
                 return new Node(data);
             }
+
             if (data < root.data) {
                 root.left = insertHelper(root.left, data);
-            }
-            else if (data > root.data) {
+            } else if (data > root.data) {
                 root.right = insertHelper(root.right, data);
             }
+
             return root;
-        }
+        };
+
         this.root = insertHelper(this.root, data);
         return this;
     }
@@ -39,7 +41,8 @@ class BST {
             if (data > root.data) {
                 return searchHelper(root.right, data);
             }
-        }
+        };
+
         return searchHelper(this.root, data);
     }
 
@@ -81,15 +84,16 @@ class BST {
     }
 
     min(root = this.root) {
-        if (root === null)
-            return null
-
-        let current = root
-        while (current.left !== null) {
-            current = current.left
+        if (root === null) {
+            return null;
         }
 
-        return current
+        let current = root;
+        while (current.left !== null) {
+            current = current.left;
+        }
+
+        return current;
     }
 
     max(root = this.root) {
@@ -101,7 +105,8 @@ class BST {
                 return root;
             }
             return finMinHelper(root.right);
-        }
+        };
+
         return finMinHelper(root);
     }
 
@@ -131,15 +136,20 @@ class BST {
             if (root === null) {
                 return null;
             }
+
             if (a <= root.data && b >= root.data) {
                 return root;
             }
+
             if (a > root.data && b > root.data) {
                 return lcaHelper(root.right, a, b);
             }
+
             if (a < root.data && a < root.data) {
                 return lcaHelper(root.left, a, b);
             }
+
+            return null;
         };
 
         return lcaHelper(this.root, a, b);

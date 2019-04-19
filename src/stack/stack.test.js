@@ -2,7 +2,7 @@ const Stack = require('./stack');
 
 test('new should initiate stack an empty stack', () => {
     const stack = new Stack();
-    expect(stack.container).toEqual([]);
+    expect(stack).not.toBeNull();
 });
 
 test('push should push the value at the top of stack', () => {

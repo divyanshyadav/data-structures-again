@@ -1,4 +1,4 @@
-it('Should check index', () => {
+test('BST example in readme.md', () => {
     const { BST } = require('./index');
     const bst = new BST();
     bst.insert(2);
@@ -9,9 +9,9 @@ it('Should check index', () => {
 
     expect(node.data).toBe(2);
     expect(bst.root.right).toBe(null);
-})
+});
 
-it('should check stack example in readme.md', () => {
+test('Stack example in readme.md', () => {
     const { Stack } = require('./index');
     const stack = new Stack();
     stack.push(1);
