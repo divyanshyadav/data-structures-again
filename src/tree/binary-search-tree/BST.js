@@ -101,9 +101,11 @@ class BST {
             if (root === null) {
                 return null;
             }
+
             if (root.right === null) {
                 return root;
             }
+
             return finMinHelper(root.right);
         };
 
@@ -132,6 +134,7 @@ class BST {
         if (a > b) {
             [a, b] = [b, a];
         }
+
         const lcaHelper = (root, a, b) => {
             if (root === null) {
                 return null;
@@ -211,6 +214,7 @@ class BST {
         if (root === null) {
             return store;
         }
+
         store.push(root.data);
         this.preOrder(root.left, store);
         this.preOrder(root.right, store);
@@ -222,6 +226,7 @@ class BST {
         if (root === null) {
             return store;
         }
+
         this.inOrder(root.left, store);
         store.push(root.data);
         this.inOrder(root.right, store);
@@ -233,6 +238,7 @@ class BST {
         if (root === null) {
             return store;
         }
+
         this.postOrder(root.left, store);
         this.postOrder(root.right, store);
         store.push(root.data);

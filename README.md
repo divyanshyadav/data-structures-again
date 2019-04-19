@@ -8,7 +8,8 @@
 
 Light weight javascript data structures library
 
-+ Stack(New!)
++ Stack
++ Queue(New!)
 + Binary Search Tree(BST)
 
 
@@ -25,7 +26,7 @@ const { BST } = require('data-structures-again');
 const bst = new BST();
 bst.insert(2);
 bst.insert(1);
-const node = bst.search(1);
+const node = bst.search(2);     // { data: 1, left: null, right: null }
 bst.delete(1)
 
 ```
@@ -37,8 +38,19 @@ const { Stack } = require('data-structures-again');
 const stack = new Stack();
 stack.push(1);
 stack.push(2);
-const data = stack.pop();
-const top = stack.peek();
+const data = stack.pop();   // 2
+const top = stack.peek();   // 1
+```
+
+### Stack:
+```js
+const { Queue } = require('data-structures-again');
+
+const queue = new Queue();
+queue.enqueue(1);
+queue.enqueue(2);
+const data = queue.dequeue();   // 1
+const top = queue.peek();       // 2
 ```
 
 ## License

@@ -1,13 +1,13 @@
-class Stack {
+class Queue {
     constructor() {
         this.container = [];
     }
 
-    push(data) {
-        this.container.unshift(data);
+    enqueue(data) {
+        this.container.push(data);
     }
 
-    pop() {
+    dequeue() {
         return this.container.shift();
     }
 
@@ -19,13 +19,13 @@ class Stack {
         return this.container.length;
     }
 
-    empty() {
-        return this.length === 0;
-    }
-
     toString() {
         return this.container.toString();
     }
+
+    isEmpty() {
+        return this.length === 0;
+    }
 }
 
-module.exports = Stack;
+module.exports = Queue;

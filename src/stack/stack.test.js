@@ -26,11 +26,11 @@ test('pop should return first element of an non empty stack', () => {
     expect(data).toBe(2);
 });
 
-test('size should return the length of a stack', () => {
+test('length should return the length of a stack', () => {
     const stack = new Stack();
     stack.push(1);
     stack.push(2);
-    expect(stack.size()).toBe(2);
+    expect(stack.length).toBe(2);
 });
 
 test('peek should return undefined if stack is empty', () => {
@@ -55,4 +55,11 @@ test('empty', () => {
     stack.push(2);
     const empty = stack.empty();
     expect(empty).toBe(false);
+});
+
+test('toString', () => {
+    const stack = new Stack();
+    stack.push(1);
+    stack.push(2);
+    expect(stack.toString()).toBe('2,1');
 });
