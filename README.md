@@ -8,9 +8,9 @@
 
 Light weight javascript data structures library
 
++ Binary Search Tree
 + Stack
-+ Queue(New!)
-+ Binary Search Tree(BST)
++ Queue (New!)
 
 
 ## Installation and Usage
