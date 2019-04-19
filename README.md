@@ -42,7 +42,7 @@ const data = stack.pop();   // 2
 const top = stack.peek();   // 1
 ```
 
-### Stack:
+### Queue:
 ```js
 const { Queue } = require('data-structures-again');
 
