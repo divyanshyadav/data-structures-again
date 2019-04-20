@@ -316,6 +316,7 @@ it('should get correct LCA of existing two numbers', () => {
     const bst = new BST()
     bst.insert(10)
     bst.insert(5)
+    bst.insert(2)
     bst.insert(20)
     bst.insert(15)
     bst.insert(30)
@@ -325,7 +326,7 @@ it('should get correct LCA of existing two numbers', () => {
     <- Before ->
             10
         5       20
-            15      30
+    2        15      30
                         50
     */
 
@@ -333,6 +334,8 @@ it('should get correct LCA of existing two numbers', () => {
     expect(bst.lca(15)).toBe(null)
     expect(bst.lca(15, undefined)).toBe(null)
 
+    expect(bst.lca(5, 2).data).toBe(5)
+    expect(bst.lca(15, 50).data).toBe(20)
     expect(bst.lca(15, 50).data).toBe(20)
     expect(bst.lca(50, 15).data).toBe(20)
     expect(bst.lca(5, 50).data).toBe(10)

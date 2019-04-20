@@ -141,7 +141,7 @@ class BST {
                 return lcaHelper(root.right, a, b)
             }
 
-            if (a < root.data && a < root.data) {
+            if (a < root.data && b < root.data) {
                 return lcaHelper(root.left, a, b)
             }
 
@@ -168,17 +168,17 @@ class BST {
     }
 
     shortestPath (a, b) {
-        const lca = this.lca(a, b)
+        const lcaNode = this.lca(a, b)
         const nodes = []
 
         if (a < b) {
-            this._getPath(lca, a, true, nodes)
+            this._getPath(lcaNode, a, true, nodes)
             nodes.pop()
-            this._getPath(lca, b, false, nodes)
+            this._getPath(lcaNode, b, false, nodes)
         } else {
-            this._getPath(lca, b, true, nodes)
+            this._getPath(lcaNode, b, true, nodes)
             nodes.pop()
-            this._getPath(lca, a, false, nodes)
+            this._getPath(lcaNode, a, false, nodes)
         }
 
         return nodes
