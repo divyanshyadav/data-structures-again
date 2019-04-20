@@ -6,10 +6,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "watch": "jest --coverage --watchAll",
+    "test:watch": "jest --coverage --watchAll",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | node ./node_modules/coveralls/bin/coveralls.js",
-    "publishminor": "npm version minor && git push && git push --tags",
-    "publishpatch": "npm version patch && git push && git push --tags"
+    "publish": "npm version minor && git push && git push --tags",
+    "publish:major": "npm version major && git push && git push --tags",
+    "publish:patch": "npm version patch && git push && git push --tags"
   },
   "author": "",
   "license": "MIT",
