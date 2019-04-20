@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --coverage --watchAll",
-    "coveralls": "jest --coverage --coverageReporters=text-lcov | node ./node_modules/coveralls/bin/coveralls.js",
+    "test:coveralls": "jest --coverage --coverageReporters=text-lcov | node ./node_modules/coveralls/bin/coveralls.js",
     "publish:minor": "npm version minor && git push && git push --tags",
     "publish:major": "npm version major && git push && git push --tags",
     "publish:patch": "npm version patch && git push && git push --tags"

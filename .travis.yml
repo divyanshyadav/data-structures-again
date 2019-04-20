@@ -1,9 +1,10 @@
 language: node_js
 node_js:
 - '11'
+install:
+- npm ci
 script:
-- npm test
-- npm run coveralls
+- npm run test:coveralls
 deploy:
   provider: npm
   email: divyansh.yadav@gmail.com

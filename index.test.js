@@ -34,5 +34,5 @@ test('Queue example in readme.md', () => {
     const top = queue.peek();
 
     expect(data).toEqual(1);
-    expect(top).toEqual(2);
+    expect(top).toEqual(3);
 });
