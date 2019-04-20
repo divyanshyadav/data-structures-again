@@ -1,6 +1,6 @@
-# Data Structures Again
-
-<p align="right">
+ <h1 align="center">Data Structures Again</h1>
+<hr>
+<p align="center">
     <a href="https://travis-ci.com/divyanshyadav/data-structures-again"><img src="https://travis-ci.com/divyanshyadav/data-structures-again.svg?branch=master"></a>
     <a href='https://coveralls.io/github/divyanshyadav/data-structures-again?branch=master'><img src='https://coveralls.io/repos/github/divyanshyadav/data-structures-again/badge.svg?branch=master' alt='Coverage Status' /></a>
     <a href="https://snyk.io/test/github/divyanshyadav/data-structures-again?targetFile=package.json"><img src="https://snyk.io/test/github/divyanshyadav/data-structures-again/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/divyanshyadav/data-structures-again?targetFile=package.json" style="max-width:100%;"></a>
