@@ -1,8 +1,6 @@
 language: node_js
 node_js:
-- '7'
-before_script:
-- npm install -g npm@'>=3'
+- '11'
 deploy:
   provider: npm
   email: divyansh.yadav@gmail.com
