@@ -1,15 +1,15 @@
 {
   "name": "data-structures-again",
-  "version": "1.17.4",
+  "version": "1.17.3",
   "description": "A Javascript library of simple data structures",
   "homepage": "https://github.com/divyanshyadav/data-structures-again",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "watch": "jest --coverage --watchAll",
-    "coverage": "jest --coverage --coverageReporters=text-lcov | node ./node_modules/coveralls/bin/coveralls.js",
-    "publishminor": "npm version minor && npm run coverage && git push && git push --tags",
-    "publishpatch": "npm version patch && npm run coverage && git push && git push --tags"
+    "coveralls": "jest --coverage --coverageReporters=text-lcov | node ./node_modules/coveralls/bin/coveralls.js",
+    "publishminor": "npm version minor && git push && git push --tags",
+    "publishpatch": "npm version patch && git push && git push --tags"
   },
   "author": "",
   "license": "MIT",

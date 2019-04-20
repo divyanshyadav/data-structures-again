@@ -10,3 +10,5 @@ deploy:
   on:
     tags: true
     repo: divyanshyadav/data-structures-again
+after_deploy:
+  script: npm run coveralls
