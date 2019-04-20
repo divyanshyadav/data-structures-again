@@ -1,3 +1,3 @@
-const Queue = require('./queue');
+const Queue = require('./queue')
 
-module.exports = Queue;
+module.exports = Queue

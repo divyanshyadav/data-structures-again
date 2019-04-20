@@ -1,3 +1,3 @@
-const BST = require('./BST');
+const BST = require('./BST')
 
-module.exports = BST;
+module.exports = BST

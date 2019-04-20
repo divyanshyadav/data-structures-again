@@ -1,3 +1,3 @@
-const Stack = require('./stack');
+const Stack = require('./stack')
 
-module.exports = Stack;
+module.exports = Stack

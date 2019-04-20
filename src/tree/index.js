@@ -1,5 +1,5 @@
-const BST = require('./binary-search-tree');
+const BST = require('./binary-search-tree')
 
 module.exports = {
-    BST,
+    BST
 }

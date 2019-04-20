@@ -1,31 +1,31 @@
 class Queue {
-    constructor() {
-        this.container = [];
+    constructor () {
+        this.container = []
     }
 
-    enqueue(data) {
-        this.container.push(data);
+    enqueue (data) {
+        this.container.push(data)
     }
 
-    dequeue() {
-        return this.container.shift();
+    dequeue () {
+        return this.container.shift()
     }
 
-    peek() {
-        return this.container[0];
+    peek () {
+        return this.container[0]
     }
 
-    get length() {
-        return this.container.length;
+    get length () {
+        return this.container.length
     }
 
-    toString() {
-        return this.container.toString();
+    toString () {
+        return this.container.toString()
     }
 
-    isEmpty() {
-        return this.length === 0;
+    isEmpty () {
+        return this.length === 0
     }
 }
 
-module.exports = Queue;
+module.exports = Queue

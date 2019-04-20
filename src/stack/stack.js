@@ -1,31 +1,31 @@
 class Stack {
-    constructor() {
-        this.container = [];
+    constructor () {
+        this.container = []
     }
 
-    push(data) {
-        this.container.unshift(data);
+    push (data) {
+        this.container.unshift(data)
     }
 
-    pop() {
-        return this.container.shift();
+    pop () {
+        return this.container.shift()
     }
 
-    peek() {
-        return this.container[0];
+    peek () {
+        return this.container[0]
     }
 
-    get length() {
-        return this.container.length;
+    get length () {
+        return this.container.length
     }
 
-    empty() {
-        return this.length === 0;
+    empty () {
+        return this.length === 0
     }
 
-    toString() {
-        return this.container.toString();
+    toString () {
+        return this.container.toString()
     }
 }
 
-module.exports = Stack;
+module.exports = Stack
