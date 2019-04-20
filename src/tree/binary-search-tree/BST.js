@@ -151,41 +151,34 @@ class BST {
         return lcaHelper(this.root, a, b)
     }
 
+    _getPath (root, data, left = false, nodes) {
+        if (root === null) {
+            return
+        }
+
+        left ? nodes.unshift(root.data) : nodes.push(root.data)
+
+        if (root.data === data) {
+            return
+        }
+
+        data > root.data
+            ? this._getPath(root.right, data, left, nodes)
+            : this._getPath(root.left, data, left, nodes)
+    }
+
     shortestPath (a, b) {
         const lca = this.lca(a, b)
         const nodes = []
-        const getPath = (root, data, left = false) => {
-            if (root === null) {
-                return
-            }
-
-            if (left) {
-                nodes.unshift(root.data)
-            } else {
-                nodes.push(root.data)
-            }
-
-            if (root.data === data) {
-                return
-            }
-
-            if (data > root.data) {
-                getPath(root.right, data, left)
-            }
-
-            if (data < root.data) {
-                getPath(root.left, data, left)
-            }
-        }
 
         if (a < b) {
-            getPath(lca, a, true)
+            this._getPath(lca, a, true, nodes)
             nodes.pop()
-            getPath(lca, b)
+            this._getPath(lca, b, false, nodes)
         } else {
-            getPath(lca, b, true)
+            this._getPath(lca, b, true, nodes)
             nodes.pop()
-            getPath(lca, a)
+            this._getPath(lca, a, false, nodes)
         }
 
         return nodes
