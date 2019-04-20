@@ -4,12 +4,11 @@ test('BST example in readme.md', () => {
     const bst = new BST();
     bst.insert(2);
     bst.insert(1);
-    bst.insert(3);
-    const node = bst.search(2);
-    bst.delete(3);
+    const node = bst.search(1);
+    bst.delete(1);
 
-    expect(node.data).toBe(2);
-    expect(bst.root.right).toBe(null);
+    expect(node).toEqual({ data: 1, left: null, right: null });
+    expect(bst.root.left).toBe(null);
 });
 
 test('Stack example in readme.md', () => {

@@ -26,7 +26,7 @@ const { BST } = require('data-structures-again');
 const bst = new BST();
 bst.insert(2);
 bst.insert(1);
-const node = bst.search(2);     // { data: 1, left: null, right: null }
+const node = bst.search(1);     // { data: 1, left: null, right: null }
 bst.delete(1)
 
 ```
