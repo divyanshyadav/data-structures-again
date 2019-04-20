@@ -24,22 +24,18 @@ class BST {
         return this
     }
 
-    search (data) {
-        const searchHelper = (root, data) => {
-            if (root === null) {
-                return null
-            }
-
-            if (root.data === data) {
-                return root
-            }
-
-            return data < root.data
-                ? searchHelper(root.left, data)
-                : searchHelper(root.right, data)
+    search (data, root = this.root) {
+        if (root === null) {
+            return null
         }
 
-        return searchHelper(this.root, data)
+        if (root.data === data) {
+            return root
+        }
+
+        return data < root.data
+            ? this.search(data, root.left)
+            : this.search(data, root.right)
     }
 
     delete (data) {
