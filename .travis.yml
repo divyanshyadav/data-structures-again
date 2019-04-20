@@ -1,3 +1,11 @@
 language: node_js
 node_js:
-  - "7"
+- '7'
+deploy:
+  provider: npm
+  email: divyansh.yadav@gmail.com
+  api_key:
+    secure: bHJHuDX8WXaM3+36UNLnOff+MszEhUjA6ofPSxwAA/an5VRbRWg93fEq+Y/hI3pZcsor0MiTbCvM1xjE0m8IPL1bHe6P2vkzHMb0gin136Dcg4ovKsHuePoJt9NbQgHfBygzSxaabgllP8RLg4i/SRP8+LUSGr1hdd6pUCU50g6Vq+eMcRJR+4iuKsDf9X+TsbVp/eLuTygUInoKgxDa8J1LiXQ403NIgz3pa4Ss4RqtHt2MMTu7sjlzB3Y43atOPFtna6TUCeKaETRO0rw/765ZQSnmsImh64mZwmh2cfYdDsD2mfigKx1nyEVKMLnIbN6DawPcCEJUSM3bTlnFU0wu67l6vSwuSVO7spzLHntq5EDJDTlMiUX7MK/z9v5ArN5nhhAPaw4nw2nL9G3mv0fAqOBFlq15dWCY/z/2kFZaNKu64jOY5UGcLS3iiQC9gCmm2PnQj0QQmUzJ0XomlPjzFxoMBnIY5/Bg+0ox7oeupjg4p0RU31dXxKehs9cytOlqHjIOZ1ZjMsK8moRoVW8bo2kLSmHhMXpzvMZHcvizu/9AsgTUEWZNVduU2oTVYOi8QNGOrkfQsgEN8yuCTDANeuS2Y4HpkrjtTZDBMoeoOC7PH4qOGeiJ85wbWICW5GGuj+uBvZk2GUs3BzHvzlBr8C/zDW/oXTZu7cKBSM4=
+  on:
+    tags: true
+    repo: divyanshyadav/data-structures-again
