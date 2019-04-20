@@ -13,7 +13,7 @@ class BST {
 
             if (data < root.data) {
                 root.left = insertHelper(root.left, data)
-            } else if (data > root.data) {
+            } else {
                 root.right = insertHelper(root.right, data)
             }
 
@@ -34,13 +34,9 @@ class BST {
                 return root
             }
 
-            if (data < root.data) {
-                return searchHelper(root.left, data)
-            }
-
-            if (data > root.data) {
-                return searchHelper(root.right, data)
-            }
+            return data < root.data
+                ? searchHelper(root.left, data)
+                : searchHelper(root.right, data)
         }
 
         return searchHelper(this.root, data)
@@ -69,7 +65,7 @@ class BST {
                 }
             } else if (data < root.data) {
                 root.left = deleteHelper(root.left, data)
-            } else if (data > root.data) {
+            } else {
                 root.right = deleteHelper(root.right, data)
             }
             return root
