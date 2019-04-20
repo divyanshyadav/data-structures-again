@@ -372,8 +372,7 @@ it('should get shortest path between two nodes', () => {
 
 it('should insert alphabets correctly', () => {
     const bst = new BST()
-    bst
-        .insert('B')
+    bst.insert('B')
         .insert('A')
         .insert('C')
         .insert('D')
@@ -390,8 +389,7 @@ it('should insert alphabets correctly', () => {
 
 it('should run in-order traverse correctly', () => {
     const bst = new BST()
-    bst
-        .insert('B')
+    bst.insert('B')
         .insert('A')
         .insert('C')
         .insert('D')
@@ -405,8 +403,7 @@ it('should run in-order traverse correctly', () => {
 
 it('should run pre-order traverse correctly', () => {
     const bst = new BST()
-    bst
-        .insert('B')
+    bst.insert('B')
         .insert('A')
         .insert('C')
         .insert('D')
@@ -420,8 +417,7 @@ it('should run pre-order traverse correctly', () => {
 
 it('should run post-order traverse correctly', () => {
     const bst = new BST()
-    bst
-        .insert('B')
+    bst.insert('B')
         .insert('A')
         .insert('C')
         .insert('D')
@@ -431,4 +427,18 @@ it('should run post-order traverse correctly', () => {
                     D
     */
     expect(bst.traverse('postorder')).toBe('A D C B')
+})
+
+it('should return in-order traverse on toString call', () => {
+    const bst = new BST()
+    bst.insert('B')
+        .insert('A')
+        .insert('C')
+        .insert('D')
+    /*
+            B
+        A       C
+                    D
+    */
+    expect(bst.toString()).toBe('A,B,C,D')
 })

@@ -200,18 +200,16 @@ class BST {
     }
 
     traverse (order = 'inorder') {
-        const items = []
-
         const orders = {
             preorder: this.preOrder.bind(this),
             inorder: this.inOrder.bind(this),
             postorder: this.postOrder.bind(this)
         }
 
-        return orders[order](this.root, items).join(' ')
+        return orders[order](this.root).join(' ')
     }
 
-    preOrder (root = this.root, store) {
+    preOrder (root = this.root, store = []) {
         if (root === null) {
             return store
         }
@@ -223,7 +221,7 @@ class BST {
         return store
     }
 
-    inOrder (root = this.root, store) {
+    inOrder (root = this.root, store = []) {
         if (root === null) {
             return store
         }
@@ -235,7 +233,7 @@ class BST {
         return store
     }
 
-    postOrder (root = this.root, store) {
+    postOrder (root = this.root, store = []) {
         if (root === null) {
             return store
         }
@@ -245,6 +243,10 @@ class BST {
         store.push(root.data)
 
         return store
+    }
+
+    toString () {
+        return this.inOrder().join(',')
     }
 }
 

@@ -1,4 +1,9 @@
 {
   "editor.formatOnSave": true,
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "eslint.enable": true,
+  "eslint.nodePath": "node_modules",
+  "eslint.options": {
+    "configFile": ".eslintrc.json"
+  }
 }

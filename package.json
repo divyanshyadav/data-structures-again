@@ -5,8 +5,8 @@
   "homepage": "https://github.com/divyanshyadav/data-structures-again",
   "main": "index.js",
   "scripts": {
-    "lint": "npx eslint src",
-    "lint:fix": "npx eslint src --fix",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "test": "jest",
     "test:watch": "jest --coverage --watchAll",
     "test:coveralls": "jest --coverage && cat coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js",
@@ -46,6 +46,6 @@
     "javascript",
     "tree",
     "stack",
-    "Queue"
+    "queue"
   ]
 }
