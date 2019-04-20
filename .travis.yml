@@ -1,11 +1,14 @@
 language: node_js
 node_js:
 - '7'
+before_script:
+- npm install -g npm@'>=3'
 deploy:
   provider: npm
   email: divyansh.yadav@gmail.com
   api_key:
     secure: CnFVZVoVqpirLvKwplFPRDh8HAnrwA6MDrAVazYo2paPosSl1Y+kI4VezKfZ65m9Sd6ZCUTtUDnnDXy6NdSIo2iQN6BPXMDWbdJUIpsGelRATbNaM++hXDwoP6DR0yB9r0NbOgp2NajCfRT+T0j3XSAsY9gOAGPWX+zRlfoAVER3lLFf+L4bRV5OBi5dOmoYX/ulMBKedLLajvSvZ+b2zumao3ez0CJ07hP7dmqGmgDWTtvlxKHnlfwJtuYwu9ZpDhpEuDK3YvSybbY4SI0YvGL3b2esEPumkUcJR08KwgiduoyGBdvB+K1lv9MOoRN7XCSo0103WkeWHMhm6hTSUgwg7kaMoJhV4T/8riBNMNBr/TPSLK6RNRTf5ijDlyT+eBzkAuTHxaI76Jy7nXCke6sslgY+VbVoE+8WRMUL2j4MwluSXEtjJRxY0hpjZ9KXL8sUAnYAe+rvNp1kEInSyu/HLF3nHcsyfWaQmar9H91A9L2gdJ42ewMugjotL67fABlkD6vWswBvTCleQ0h4G1VCeYzI4BuDhS+MDJa7Egzvf03CD41UYCrJ5kxZMqAHCcf5j4aY6Idi85QyeqZ0TkhV15RFSZwUgJoRL+sU0hdobmtiD8SuYgOxY7zUuF9xy4lJI7/95cdvWzJk8G0y6I9SaHvLH+gMF6FmQ7ezErs=
+  skip_cleanup: true
   on:
     tags: true
     repo: divyanshyadav/data-structures-again
