@@ -7,7 +7,7 @@
     <a href="https://codeclimate.com/github/divyanshyadav/data-structures-again/maintainability" target="_blank"><img src="https://api.codeclimate.com/v1/badges/33faeb47e1b3a9471e94/maintainability" /></a>
     <a href="https://david-dm.org/divyanshyadav/data-structures-again" title="dependencies status" target="_blank"><img src="https://david-dm.org/divyanshyadav/data-structures-again/status.svg"/></a>
     <a href="https://david-dm.org/divyanshyadav/data-structures-again?type=dev" title="devDependencies status" target="_blank"><img src="https://david-dm.org/divyanshyadav/data-structures-again/dev-status.svg"/></a>
-        <a href="https://badge.fury.io/js/data-structures-again" target="_blank"><img src="https://badge.fury.io/js/data-structures-again.svg" alt="npm version" height="18"></a>
+        <a href="https://badge.fury.io/js/data-structures-again" target="_blank"><img src="https://badge.fury.io/js/data-structures-again.svg" alt="npm version"></a>
 </p>
 
 
