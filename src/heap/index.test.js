@@ -31,7 +31,7 @@ test('pushing 4 elements', () => {
     expect(heap.array).toEqual([4, 5, 6, 7])
 })
 
-test('deleting data', () => {
+test('deleting specific data', () => {
     const heap = new Heap()
     heap.array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     heap.delete(2)
