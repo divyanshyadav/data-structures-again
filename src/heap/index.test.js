@@ -1,33 +1,33 @@
 const Heap = require('./index')
 
-test('inserting one element', () => {
+test('pushing one element', () => {
     const heap = new Heap()
-    heap.insert(7)
+    heap.push(7)
     expect(heap.array.length).toBe(1)
 })
 
-test('inserting 2 elements', () => {
+test('pushing 2 elements', () => {
     const heap = new Heap()
-    heap.insert(7)
-    heap.insert(6)
+    heap.push(7)
+    heap.push(6)
 
     expect(heap.array).toEqual([6, 7])
 })
 
-test('inserting 3 elements', () => {
+test('pushing 3 elements', () => {
     const heap = new Heap()
-    heap.insert(7)
-    heap.insert(6)
-    heap.insert(5)
+    heap.push(7)
+    heap.push(6)
+    heap.push(5)
     expect(heap.array).toEqual([5, 7, 6])
 })
 
-test('inserting 4 elements', () => {
+test('pushing 4 elements', () => {
     const heap = new Heap()
-    heap.insert(7)
-    heap.insert(6)
-    heap.insert(5)
-    heap.insert(4)
+    heap.push(7)
+    heap.push(6)
+    heap.push(5)
+    heap.push(4)
     expect(heap.array).toEqual([4, 5, 6, 7])
 })
 
@@ -40,8 +40,22 @@ test('deleting data', () => {
 
 test('custom test 1', () => {
     const heap = new Heap()
-    heap.insert(4)
-    heap.insert(9)
+    heap.push(4)
+    heap.push(9)
     heap.delete(4)
     expect(heap.array).toEqual([9])
+})
+
+test('pop operation', () => {
+    const heap = new Heap()
+    heap.push(7)
+    heap.push(6)
+    heap.push(5)
+    expect(heap.pop()).toEqual(5)
+    expect(heap.array).toEqual([6, 7])
+})
+
+test('peeking empty heap', () => {
+    const heap = new Heap()
+    expect(heap.peek()).toEqual(undefined)
 })

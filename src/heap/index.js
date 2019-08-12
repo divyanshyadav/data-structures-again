@@ -4,6 +4,61 @@ class Heap {
         this.comparator = comparator
     }
 
+    peek() {
+        return this.array[0]
+    }
+
+    push(data) {
+        this.array.push(data)
+        this.heapifyUp()
+
+    }
+
+    heapifyUp() {
+        let childIndex = this.array.length - 1
+        while (this.hasParent(childIndex) && this.comparator(this.parent(childIndex), this.array[childIndex])) {
+            swap(this.array, this.getParentIndex(childIndex), childIndex)
+            childIndex = this.getParentIndex(childIndex)
+        }
+    }
+
+    pop() {
+        swap(this.array, 0, this.array.length - 1)
+        const data = this.array.pop()
+        this.heapifyDown(0)
+        return data
+    }
+
+    delete(data) {
+        let index = 0
+
+        if (data) {
+            index = find(this.array, data)
+        }
+
+        if (index < 0) return
+
+        swap(this.array, index, this.array.length - 1)
+        this.array.pop()
+        this.heapifyDown(index)
+
+    }
+
+    heapifyDown(index) {
+        while (this.hasLeftChild(index)) {
+            let smallerChildIndex = this.getLeftChildIndex(index)
+            if (this.hasRightChild(index) && this.comparator(this.getRightChild(index), this.getLeftChild(index)) === -1) {
+                smallerChildIndex = this.getRightChildIndex(index)
+            }
+            if (this.array[index] < this.array[smallerChildIndex]) {
+                break
+            } else {
+                swap(this.array, index, smallerChildIndex)
+                index = smallerChildIndex
+            }
+        }
+    }
+
     getParentIndex(index) {
         return Math.floor((index - 1) / 2)
     }
@@ -38,52 +93,6 @@ class Heap {
 
     getLeftChild(index) {
         return this.array[this.getLeftChildIndex(index)]
-    }
-
-    push(data) {
-        this.array.push(data)
-        let childIndex = this.array.length - 1
-
-        while (this.hasParent(childIndex) && this.comparator(this.parent(childIndex), this.array[childIndex])) {
-            swap(this.array, this.getParentIndex(childIndex), childIndex)
-            childIndex = this.getParentIndex(childIndex)
-        }
-
-    }
-
-    pop() {
-
-    }
-
-    delete(data) {
-        let index = 0
-
-        if (data) {
-            index = find(this.array, data)
-        }
-
-        if (index < 0) return
-
-        swap(this.array, index, this.array.length - 1)
-        this.array.pop()
-
-        while (this.hasLeftChild(index)) {
-            let smallerChildIndex = this.getLeftChildIndex(index)
-            if (this.hasRightChild(index) && this.comparator(this.getRightChild(index), this.getLeftChild(index)) === -1) {
-                smallerChildIndex = this.getRightChildIndex(index)
-            }
-            if (this.array[index] < this.array[smallerChildIndex]) {
-                break
-            } else {
-                swap(this.array, index, smallerChildIndex)
-                index = smallerChildIndex
-            }
-        }
-
-    }
-
-    peek() {
-        return this.array[0]
     }
 
 }
