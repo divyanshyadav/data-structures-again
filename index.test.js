@@ -36,3 +36,12 @@ test('Queue example in readme.md', () => {
     expect(data).toEqual(1)
     expect(top).toEqual(2)
 })
+
+
+test('Heap example in readme.md', () => {
+    const { Heap } = require('./index')
+
+
+
+    // expect(data).toEqual(8)
+})
