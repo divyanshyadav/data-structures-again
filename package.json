@@ -46,6 +46,7 @@
     "javascript",
     "tree",
     "stack",
-    "queue"
+    "queue",
+    "heap"
   ]
 }
