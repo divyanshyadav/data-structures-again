@@ -38,14 +38,6 @@ test('deleting specific data', () => {
     expect(heap.array).toEqual([1, 4, 3, 8, 5, 6, 7, 9])
 })
 
-test('custom test 1', () => {
-    const heap = new Heap()
-    heap.push(4)
-    heap.push(9)
-    heap.delete(4)
-    expect(heap.array).toEqual([9])
-})
-
 test('pop operation', () => {
     const heap = new Heap()
     heap.push(7)
@@ -58,4 +50,21 @@ test('pop operation', () => {
 test('peeking empty heap', () => {
     const heap = new Heap()
     expect(heap.peek()).toEqual(undefined)
+})
+
+test('custom test 1', () => {
+    const heap = new Heap()
+    heap.push(4)
+    heap.push(9)
+    heap.delete(4)
+    expect(heap.array).toEqual([9])
+})
+
+test('custom test 2', () => {
+    const heap = new Heap()
+    "13 47 74 12 89 74 18 38".split(" ").forEach(data => {
+        heap.push(parseInt(data))
+    })
+
+    expect(heap.array).toEqual([12, 13, 18, 38, 89, 74, 74, 47])
 })

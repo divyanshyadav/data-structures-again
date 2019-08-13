@@ -4,6 +4,10 @@ class Heap {
         this.comparator = comparator
     }
 
+    get length() {
+        return this.array.length
+    }
+
     peek() {
         return this.array[0]
     }
@@ -129,11 +133,5 @@ const swap = (array, a, b) => {
     array[b] = temp
 }
 
-const heap = new Heap()
-"13 47 74 12 89 74 18 38".split(" ").forEach(data => {
-    heap.push(parseInt(data))
-})
-
-console.log(heap.array)
 
 module.exports = Heap
