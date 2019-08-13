@@ -1,5 +1,5 @@
 class Heap {
-    constructor(comparator = intComparator) {
+    constructor(comparator = numberComparator) {
         this.array = []
         this.comparator = comparator
     }
@@ -16,7 +16,7 @@ class Heap {
 
     heapifyUp() {
         let childIndex = this.array.length - 1
-        while (this.hasParent(childIndex) && this.comparator(this.parent(childIndex), this.array[childIndex])) {
+        while (this.hasParent(childIndex) && this.comparator(this.parent(childIndex), this.array[childIndex]) === 1) {
             swap(this.array, this.getParentIndex(childIndex), childIndex)
             childIndex = this.getParentIndex(childIndex)
         }
@@ -98,8 +98,9 @@ class Heap {
 }
 
 
+/** Utils */
 
-const intComparator = (a, b) => {
+const numberComparator = (a, b) => {
     if (a === b) {
         return 0
     }
@@ -128,5 +129,11 @@ const swap = (array, a, b) => {
     array[b] = temp
 }
 
+const heap = new Heap()
+"13 47 74 12 89 74 18 38".split(" ").forEach(data => {
+    heap.push(parseInt(data))
+})
+
+console.log(heap.array)
 
 module.exports = Heap
