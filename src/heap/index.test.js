@@ -60,6 +60,15 @@ test('custom test 1', () => {
     expect(heap.array).toEqual([9])
 })
 
+test('length method', () => {
+    const heap = new Heap()
+    heap.push(1)
+    heap.push(2)
+    heap.push(3)
+
+    expect(heap.length).toEqual(3)
+})
+
 test('custom test 2', () => {
     const heap = new Heap()
     "13 47 74 12 89 74 18 38".split(" ").forEach(data => {
