@@ -1,11 +1,5 @@
 const Heap = require('./index')
 
-const swap = (array, a, b) => {
-    const temp = array[a]
-    array[a] = array[b]
-    array[b] = temp
-}
-
 test('pushing one element', () => {
     const heap = new Heap()
     heap.push(7)
@@ -77,7 +71,7 @@ test('length method', () => {
 
 test('custom test 2', () => {
     const heap = new Heap()
-    "13 47 74 12 89 74 18 38".split(" ").forEach(data => {
+    '13 47 74 12 89 74 18 38'.split(' ').forEach(data => {
         heap.push(parseInt(data))
     })
 

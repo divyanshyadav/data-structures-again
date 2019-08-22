@@ -1,40 +1,39 @@
 class Heap {
-    constructor(comparator = minHeapComparator) {
+    constructor (comparator = minHeapComparator) {
         this.array = []
         this.comparator = comparator
     }
 
-    get length() {
+    get length () {
         return this.array.length
     }
 
-    peek() {
+    peek () {
         return this.array[0]
     }
 
-    push(data) {
+    push (data) {
         this.array.push(data)
         this.heapifyUp()
-
     }
 
-    heapifyUp() {
+    heapifyUp () {
         let childIndex = this.array.length - 1
-        while (this.hasParent(childIndex)
-            && this.comparator(this.parent(childIndex), this.array[childIndex]) > 0) {
+        while (this.hasParent(childIndex) &&
+            this.comparator(this.parent(childIndex), this.array[childIndex]) > 0) {
             swap(this.array, this.getParentIndex(childIndex), childIndex)
             childIndex = this.getParentIndex(childIndex)
         }
     }
 
-    pop() {
+    pop () {
         swap(this.array, 0, this.array.length - 1)
         const data = this.array.pop()
         this.heapifyDown(0)
         return data
     }
 
-    delete(data) {
+    delete (data) {
         let index = 0
 
         if (data) {
@@ -46,14 +45,13 @@ class Heap {
         swap(this.array, index, this.array.length - 1)
         this.array.pop()
         this.heapifyDown(index)
-
     }
 
-    heapifyDown(index) {
+    heapifyDown (index) {
         while (this.hasLeftChild(index)) {
             let smallerChildIndex = this.getLeftChildIndex(index)
-            if (this.hasRightChild(index)
-                && this.comparator(this.array[smallerChildIndex], this.getRightChild(index)) > 0) {
+            if (this.hasRightChild(index) &&
+                this.comparator(this.array[smallerChildIndex], this.getRightChild(index)) > 0) {
                 smallerChildIndex = this.getRightChildIndex(index)
             }
             if (this.comparator(this.array[index], this.array[smallerChildIndex]) > 0) {
@@ -66,44 +64,42 @@ class Heap {
         }
     }
 
-    getParentIndex(index) {
+    getParentIndex (index) {
         return Math.floor((index - 1) / 2)
     }
 
-    hasParent(index) {
+    hasParent (index) {
         return this.getParentIndex(index) >= 0
     }
 
-    parent(childIndex) {
+    parent (childIndex) {
         return this.array[this.getParentIndex(childIndex)]
     }
 
-    getLeftChildIndex(index) {
+    getLeftChildIndex (index) {
         return (2 * index) + 1
     }
 
-    getRightChildIndex(index) {
+    getRightChildIndex (index) {
         return (2 * index) + 2
     }
 
-    hasLeftChild(index) {
+    hasLeftChild (index) {
         return this.getLeftChildIndex(index) < this.array.length
     }
 
-    hasRightChild(index) {
+    hasRightChild (index) {
         return this.getRightChildIndex(index) < this.array.length
     }
 
-    getRightChild(index) {
+    getRightChild (index) {
         return this.array[this.getRightChildIndex(index)]
     }
 
-    getLeftChild(index) {
+    getLeftChild (index) {
         return this.array[this.getLeftChildIndex(index)]
     }
-
 }
-
 
 /** Utils */
 
@@ -123,6 +119,5 @@ const swap = (array, a, b) => {
     array[a] = array[b]
     array[b] = temp
 }
-
 
 module.exports = Heap
