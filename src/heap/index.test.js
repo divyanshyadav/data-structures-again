@@ -38,6 +38,13 @@ test('deleting specific data', () => {
     expect(heap.array).toEqual([1, 4, 3, 8, 5, 6, 7, 9])
 })
 
+test('deleting non-existing data', () => {
+    const heap = new Heap()
+    heap.array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    heap.delete(10)
+    expect(heap.array).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9])
+})
+
 test('pop operation', () => {
     const heap = new Heap()
     heap.push(7)
