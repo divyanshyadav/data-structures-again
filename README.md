@@ -16,7 +16,8 @@ Light weight javascript data structures library
 
 - Binary Search Tree
 - Stack
-- Queue (New!)
+- Queue
+- Heap (New!)
 
 ## Installation and Usage
 
@@ -58,6 +59,36 @@ queue.enqueue(1);
 queue.enqueue(2);
 const data = queue.dequeue(); // 1
 const top = queue.peek(); // 2
+```
+
+### Queue:
+
+```js
+const { Queue } = require("data-structures-again");
+
+const queue = new Queue();
+queue.enqueue(1);
+queue.enqueue(2);
+const data = queue.dequeue(); // 1
+const top = queue.peek(); // 2
+```
+
+### Heap:
+
+```js
+const { Heap } = require("data-structures-again");
+
+const minHeap = new Heap()
+minHeap.push(5)
+minHeap.push(2)
+let data = minHeap.peek()  // 2
+
+
+const maxHeap = new Heap((a, b) => b - a)
+maxHeap.push(4)
+maxHeap.push(10)
+data = maxHeap.peek() // 10
+
 ```
 
 ## License

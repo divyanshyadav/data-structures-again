@@ -36,3 +36,22 @@ test('Queue example in readme.md', () => {
     expect(data).toEqual(1)
     expect(top).toEqual(2)
 })
+
+
+test('Heap example in readme.md', () => {
+    const { Heap } = require(".");
+
+    const minHeap = new Heap()
+    minHeap.push(5)
+    minHeap.push(2)
+    let data = minHeap.peek()  // 2
+
+    expect(data).toEqual(2)
+
+    const maxHeap = new Heap((a, b) => b - a)
+    maxHeap.push(4)
+    maxHeap.push(10)
+    data = maxHeap.peek() // 10
+
+    expect(data).toEqual(10)
+})
