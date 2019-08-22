@@ -1,5 +1,5 @@
 class Heap {
-    constructor(comparator = numberComparator) {
+    constructor(comparator = minHeapComparator) {
         this.array = []
         this.comparator = comparator
     }
@@ -20,7 +20,8 @@ class Heap {
 
     heapifyUp() {
         let childIndex = this.array.length - 1
-        while (this.hasParent(childIndex) && this.comparator(this.parent(childIndex), this.array[childIndex]) === 1) {
+        while (this.hasParent(childIndex)
+            && this.comparator(this.parent(childIndex), this.array[childIndex]) > 0) {
             swap(this.array, this.getParentIndex(childIndex), childIndex)
             childIndex = this.getParentIndex(childIndex)
         }
@@ -51,15 +52,17 @@ class Heap {
     heapifyDown(index) {
         while (this.hasLeftChild(index)) {
             let smallerChildIndex = this.getLeftChildIndex(index)
-            if (this.hasRightChild(index) && this.comparator(this.getRightChild(index), this.getLeftChild(index)) === -1) {
+            if (this.hasRightChild(index)
+                && this.comparator(this.array[smallerChildIndex], this.getRightChild(index)) > 0) {
                 smallerChildIndex = this.getRightChildIndex(index)
             }
-            if (this.array[index] < this.array[smallerChildIndex]) {
-                break
-            } else {
+            if (this.comparator(this.array[index], this.array[smallerChildIndex]) > 0) {
                 swap(this.array, index, smallerChildIndex)
-                index = smallerChildIndex
+            } else {
+                break
             }
+
+            index = smallerChildIndex
         }
     }
 
@@ -104,19 +107,7 @@ class Heap {
 
 /** Utils */
 
-const numberComparator = (a, b) => {
-    if (a === b) {
-        return 0
-    }
-
-    if (a > b) {
-        return 1
-    }
-
-    if (a < b) {
-        return -1
-    }
-}
+const minHeapComparator = (a, b) => a - b
 
 const find = (array, data) => {
     for (let i = 0; i < array.length; i++) {
