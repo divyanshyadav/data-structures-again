@@ -67,6 +67,13 @@ test('custom test 1', () => {
     expect(heap.array).toEqual([9])
 })
 
+test('custom test 2', () => {
+    const heap = new Heap()
+    heap.array = [1, 3, 2, 4]
+    heap.pop()
+    expect(heap.array).toEqual([2, 3, 4])
+})
+
 test('length method', () => {
     const heap = new Heap()
     heap.push(1)
