@@ -61,18 +61,6 @@ const data = queue.dequeue(); // 1
 const top = queue.peek(); // 2
 ```
 
-### Queue:
-
-```js
-const { Queue } = require("data-structures-again");
-
-const queue = new Queue();
-queue.enqueue(1);
-queue.enqueue(2);
-const data = queue.dequeue(); // 1
-const top = queue.peek(); // 2
-```
-
 ### Heap:
 
 ```js
