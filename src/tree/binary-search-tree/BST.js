@@ -1,17 +1,20 @@
 const Node = require('../BinaryTreeNode')
 
+const asc = (a, b) => a - b
+
 class BST {
-    constructor () {
+    constructor(comparator = asc) {
         this.root = null
+        this.comparator = comparator
     }
 
-    insert (data) {
+    insert(data) {
         const insertHelper = (root, data) => {
             if (root === null) {
                 return new Node(data)
             }
 
-            if (data < root.data) {
+            if (this.comparator(data, root.data) < 0) {
                 root.left = insertHelper(root.left, data)
             } else {
                 root.right = insertHelper(root.right, data)
@@ -24,7 +27,7 @@ class BST {
         return this
     }
 
-    search (data, root = this.root) {
+    search(data, root = this.root) {
         if (root === null) {
             return null
         }
@@ -33,12 +36,12 @@ class BST {
             return root
         }
 
-        return data < root.data
+        return this.comparator(data, root.data) < 0
             ? this.search(data, root.left)
             : this.search(data, root.right)
     }
 
-    delete (data) {
+    delete(data) {
         const deleteHelper = (root, data) => {
             if (root === null) {
                 return null
@@ -59,7 +62,7 @@ class BST {
                     root.data = minRight.data
                     root.right = deleteHelper(root.right, root.data)
                 }
-            } else if (data < root.data) {
+            } else if (this.comparator(data, root.data) < 0) {
                 root.left = deleteHelper(root.left, data)
             } else {
                 root.right = deleteHelper(root.right, data)
@@ -70,7 +73,7 @@ class BST {
         this.root = deleteHelper(this.root, data)
     }
 
-    min (root = this.root) {
+    min(root = this.root) {
         if (root === null) {
             return null
         }
@@ -83,7 +86,7 @@ class BST {
         return current
     }
 
-    max (root = this.root) {
+    max(root = this.root) {
         const finMinHelper = root => {
             if (root === null) {
                 return null
@@ -99,7 +102,7 @@ class BST {
         return finMinHelper(root)
     }
 
-    isBST (root = this.root) {
+    isBST(root = this.root) {
         const isBSTHelper = (root, min, max) => {
             if (root === null) {
                 return true
@@ -122,7 +125,7 @@ class BST {
         )
     }
 
-    lca (a, b) {
+    lca(a, b) {
         // Least Common Ancestor
         if (a > b) {
             ;[a, b] = [b, a]
@@ -151,7 +154,7 @@ class BST {
         return lcaHelper(this.root, a, b)
     }
 
-    _getPath (root, data, left = false, nodes) {
+    _getPath(root, data, left = false, nodes) {
         if (root === null) {
             return
         }
@@ -167,7 +170,7 @@ class BST {
             : this._getPath(root.left, data, left, nodes)
     }
 
-    shortestPath (a, b) {
+    shortestPath(a, b) {
         const lcaNode = this.lca(a, b)
         const nodes = []
 
@@ -184,7 +187,7 @@ class BST {
         return nodes
     }
 
-    traverse (order = 'inorder') {
+    traverse(order = 'inorder') {
         const orders = {
             preorder: this.preOrder.bind(this),
             inorder: this.inOrder.bind(this),
@@ -194,7 +197,7 @@ class BST {
         return orders[order](this.root).join(' ')
     }
 
-    preOrder (root = this.root, store = []) {
+    preOrder(root = this.root, store = []) {
         if (root === null) {
             return store
         }
@@ -206,7 +209,7 @@ class BST {
         return store
     }
 
-    inOrder (root = this.root, store = []) {
+    inOrder(root = this.root, store = []) {
         if (root === null) {
             return store
         }
@@ -218,7 +221,7 @@ class BST {
         return store
     }
 
-    postOrder (root = this.root, store = []) {
+    postOrder(root = this.root, store = []) {
         if (root === null) {
             return store
         }
@@ -230,7 +233,7 @@ class BST {
         return store
     }
 
-    toString () {
+    toString() {
         return this.inOrder().join(',')
     }
 }

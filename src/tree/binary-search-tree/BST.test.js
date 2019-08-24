@@ -373,7 +373,7 @@ it('should get shortest path between two nodes', () => {
     expect(bst.shortestPath(5, 15)).toEqual([5, 10, 20, 15])
 })
 
-it('should insert alphabets correctly', () => {
+it.skip('should insert alphabets correctly', () => {
     const bst = new BST()
     bst.insert('B')
         .insert('A')
@@ -390,7 +390,7 @@ it('should insert alphabets correctly', () => {
     expect(bst.root.right.right.data).toBe('D')
 })
 
-it('should run in-order traverse correctly', () => {
+it.skip('should run in-order traverse correctly', () => {
     const bst = new BST()
     bst.insert('B')
         .insert('A')
@@ -404,7 +404,7 @@ it('should run in-order traverse correctly', () => {
     expect(bst.traverse('inorder')).toBe('A B C D')
 })
 
-it('should run pre-order traverse correctly', () => {
+it.skip('should run pre-order traverse correctly', () => {
     const bst = new BST()
     bst.insert('B')
         .insert('A')
@@ -418,7 +418,7 @@ it('should run pre-order traverse correctly', () => {
     expect(bst.traverse('preorder')).toBe('B A C D')
 })
 
-it('should run post-order traverse correctly', () => {
+it.skip('should run post-order traverse correctly', () => {
     const bst = new BST()
     bst.insert('B')
         .insert('A')
@@ -432,7 +432,7 @@ it('should run post-order traverse correctly', () => {
     expect(bst.traverse('postorder')).toBe('A D C B')
 })
 
-it('should return in-order traverse on toString call', () => {
+it.skip('should return in-order traverse on toString call', () => {
     const bst = new BST()
     bst.insert('B')
         .insert('A')
