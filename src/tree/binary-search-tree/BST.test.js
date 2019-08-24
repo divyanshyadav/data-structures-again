@@ -373,8 +373,10 @@ it('should get shortest path between two nodes', () => {
     expect(bst.shortestPath(5, 15)).toEqual([5, 10, 20, 15])
 })
 
-it.skip('should insert alphabets correctly', () => {
-    const bst = new BST()
+it('should insert alphabets correctly', () => {
+    const bst = new BST((a, b) => {
+        return a.charCodeAt() - b.charCodeAt()
+    })
     bst.insert('B')
         .insert('A')
         .insert('C')
@@ -390,8 +392,10 @@ it.skip('should insert alphabets correctly', () => {
     expect(bst.root.right.right.data).toBe('D')
 })
 
-it.skip('should run in-order traverse correctly', () => {
-    const bst = new BST()
+it('should run in-order traverse correctly', () => {
+    const bst = new BST((a, b) => {
+        return a.charCodeAt() - b.charCodeAt()
+    })
     bst.insert('B')
         .insert('A')
         .insert('C')
@@ -404,8 +408,10 @@ it.skip('should run in-order traverse correctly', () => {
     expect(bst.traverse('inorder')).toBe('A B C D')
 })
 
-it.skip('should run pre-order traverse correctly', () => {
-    const bst = new BST()
+it('should run pre-order traverse correctly', () => {
+    const bst = new BST((a, b) => {
+        return a.charCodeAt() - b.charCodeAt()
+    })
     bst.insert('B')
         .insert('A')
         .insert('C')
@@ -418,8 +424,10 @@ it.skip('should run pre-order traverse correctly', () => {
     expect(bst.traverse('preorder')).toBe('B A C D')
 })
 
-it.skip('should run post-order traverse correctly', () => {
-    const bst = new BST()
+it('should run post-order traverse correctly', () => {
+    const bst = new BST((a, b) => {
+        return a.charCodeAt() - b.charCodeAt()
+    })
     bst.insert('B')
         .insert('A')
         .insert('C')
@@ -432,8 +440,10 @@ it.skip('should run post-order traverse correctly', () => {
     expect(bst.traverse('postorder')).toBe('A D C B')
 })
 
-it.skip('should return in-order traverse on toString call', () => {
-    const bst = new BST()
+it('should return in-order traverse on toString call', () => {
+    const bst = new BST((a, b) => {
+        return a.charCodeAt() - b.charCodeAt()
+    })
     bst.insert('B')
         .insert('A')
         .insert('C')
