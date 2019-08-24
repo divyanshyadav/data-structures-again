@@ -69,13 +69,13 @@ const { Heap } = require("data-structures-again");
 const minHeap = new Heap()
 minHeap.push(5)
 minHeap.push(2)
-let data = minHeap.peek()  // 2
+minHeap.peek()  // 2
 
 
 const maxHeap = new Heap((a, b) => b - a)
 maxHeap.push(4)
 maxHeap.push(10)
-data = maxHeap.peek() // 10
+maxHeap.peek() // 10
 
 ```
 
