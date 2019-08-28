@@ -1,29 +1,28 @@
 /*
-    Symbol table BST implementation.
-    <key, value>
+    Symbol table implementation using binary-search-tree data-structure.
+    <key, value> : key should only be of single type(integer/string)
 
-    Note: key should be of one type only(integer/string)
+    Operations:
+        set/create : O(logn)
+        get/read   : O(logn)
+        set/update : O(logn)
+        delete     : O(logn)
+        min        : O(logn)
+        max        : O(logn)
+        ceil       : O(logn)
+        floor      : O(logn)
+        rank       : O(logn)
+        forEach    : O(n)
 
-    Time Complexity:
-        For balanced BST
-            set/create : O(logn)
-            get/read   : O(logn)
-            set/update : O(logn)
-            delete     : O(logn)
-            min        : O(logn)
-            max        : O(logn)
-            ceil       : O(logn)
-            floor      : O(logn)
-            rank       : O(logn)
-            forEach    : O(n)
+    * Time complexities given here are of balanced BST.
 
     Note 1: if N distinct keys are inserted into BST in RANDOM order
-        then expected number of compares for a search/insert is ~ 2logN.
+            then expected number of compares for a search/insert is ~ 2log(N).
 
     Note 2: If N distinct keys are inserted in random order then height
-        of the tree is 4.311 logN
+            of the tree is 4.311 log(N)
 
-    Note 3: InOrder traversal of BST will give keys in natural order
+    Note 3: InOrder traversal of BST will give keys in natural order.
 */
 
 class Node {
