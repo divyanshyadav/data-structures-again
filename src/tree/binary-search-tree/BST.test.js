@@ -314,6 +314,8 @@ test('max should return null in empty tree', () => {
 
 it('should get correct LCA of existing two numbers', () => {
     const bst = new BST()
+    expect(bst.lca()).toEqual(null)
+
     bst.insert(10)
     bst.insert(5)
     bst.insert(2)

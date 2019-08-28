@@ -9,6 +9,7 @@
     "lint:fix": "eslint src --fix",
     "test": "jest",
     "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage",
     "test:coveralls": "jest --coverage && cat coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js",
     "publish:minor": "npm version minor && git push && git push --tags",
     "publish:major": "npm version major && git push && git push --tags",
