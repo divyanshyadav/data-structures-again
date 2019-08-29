@@ -26,6 +26,10 @@ class Queue {
     isEmpty () {
         return this.length === 0
     }
+
+    values () {
+        return this.container.map(value => value)
+    }
 }
 
 module.exports = Queue
