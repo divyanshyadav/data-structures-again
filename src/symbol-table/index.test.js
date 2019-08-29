@@ -32,13 +32,13 @@ test('min operation', () => {
     expect(st.min()).toEqual(null)
 
     st.set('d', 1)
-    expect(st.min()).toEqual(1)
+    expect(st.min().value).toEqual(1)
 
     st.set('b', 4)
-    expect(st.min()).toEqual(4)
+    expect(st.min().value).toEqual(4)
 
     st.set('a', 10)
-    expect(st.min()).toEqual(10)
+    expect(st.min().value).toEqual(10)
 })
 
 test('max operation', () => {
@@ -141,4 +141,104 @@ test('rank, How many keys less then some unit', () => {
 
     expect(st.rank(30)).toEqual(0)
     expect(st.rank(60)).toEqual(2)
+})
+
+test('delete min operation', () => {
+    const st = new SymbolTable()
+    st.set(200, 1)
+    st.set(100, 2)
+    st.set(50, 10)
+
+    st.deleteMin()
+    expect(st.get(50)).toEqual(null)
+    expect(st.size()).toEqual(2)
+})
+
+test('delete max operation', () => {
+    const st = new SymbolTable()
+    st.set(50, 1)
+    st.set(100, 2)
+    st.set(200, 10)
+
+    st.deleteMax()
+    expect(st.get(200)).toEqual(null)
+    expect(st.size()).toEqual(2)
+})
+
+test('delete child with not children', () => {
+    const st = new SymbolTable()
+    st.set(50, 1)
+    st.set(100, 2)
+    st.set(200, 10)
+
+    expect(st.size()).toEqual(3)
+
+    st.delete(200)
+
+    expect(st.root.key).toEqual(50)
+    expect(st.root.right.key).toEqual(100)
+    expect(st.root.right.right).toEqual(null)
+    expect(st.size()).toEqual(2)
+})
+
+test('deleting node having right child only', () => {
+    const st = new SymbolTable()
+    st.set(100, 1)
+    st.set(50, 2)
+    st.set(200, 10)
+    st.set(300, 5)
+
+    /*
+                100
+             50     200
+                       300
+    */
+
+    st.delete(200)
+
+    expect(st.root.key).toEqual(100)
+    expect(st.root.right.key).toEqual(300)
+})
+
+test('deleting node having left child only', () => {
+    const st = new SymbolTable()
+    st.set(100, 1)
+    st.set(50, 2)
+    st.set(200, 10)
+    st.set(150, 5)
+
+    /*
+                100
+             50     200
+                 150
+    */
+
+    st.delete(200)
+
+    expect(st.root.key).toEqual(100)
+    expect(st.root.right.key).toEqual(150)
+})
+
+test('deleting node having both children', () => {
+    const st = new SymbolTable()
+    st.set(100, 1)
+    st.set(50, 2)
+    st.set(200, 10)
+    st.set(150, 5)
+    st.set(300, 5)
+    st.set(140, 5)
+    st.set(160, 5)
+    st.set(400, 10)
+    st.set(250, 10)
+
+    /*
+                100
+             50       200
+                 150      300
+              140  160  250  400
+    */
+
+    st.delete(200)
+
+    expect(st.root.right.key).toEqual(250)
 })

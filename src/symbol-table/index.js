@@ -6,7 +6,7 @@
         set/create : O(logn)
         get/read   : O(logn)
         set/update : O(logn)
-        delete     : O(logn)
+        delete : O(sqrt(n))
         min        : O(logn)
         max        : O(logn)
         ceil       : O(logn)
@@ -15,6 +15,7 @@
         forEach    : O(n)
 
     * Time complexities given here are of balanced BST.
+    * Deletion algorithm used is 'Hibbard deletion'
 
     Note 1: if N distinct keys are inserted into BST in RANDOM order
             then expected number of compares for a search/insert is ~ 2log(N).
@@ -80,13 +81,77 @@ class SymbolTable {
         return null
     }
 
-    delete (key) {}
+    delete (key) {
+        const helper = node => {
+            if (node === null) {
+                return null
+            }
+
+            if (key === node.key) {
+                // 0 children
+                if (!node.left && !node.right) {
+                    return null
+                } else if (!node.left) { // has 1 child
+                    return node.right
+                } else if (!node.right) {
+                    return node.left
+                } else { // have both children
+                    const temp = node
+                    node = this.min(temp.right)
+                    node.right = this._deleteMin(temp.right)
+                    node.left = temp.left
+                }
+            }
+
+            if (key < node.key) {
+                node.left = helper(node.left)
+            } else {
+                node.right = helper(node.right)
+            }
+
+            node.count = 1 + this.size(node.left) + this.size(node.right)
+
+            return node
+        }
+
+        this.root = helper(this.root)
+    }
 
     /* Secondary operations */
 
-    min () {
-        let current = this.root
+    deleteMin () {
+        if (this.root) {
+            this.root = this._deleteMin(this.root)
+        }
+    }
 
+    _deleteMin (node) {
+        if (node.left === null) {
+            return node.right
+        }
+
+        node.left = this._deleteMin(node.left)
+        node.count = 1 + this.size(node.left) + this.size(node.right)
+        return node
+    }
+
+    deleteMax () {
+        const helper = node => {
+            if (node.right === null) {
+                return node.left
+            }
+
+            node.right = helper(node.right)
+            node.count = 1 + this.size(node.left) + this.size(node.right)
+            return node
+        }
+
+        if (this.root) {
+            helper(this.root)
+        }
+    }
+
+    min (current = this.root) {
         if (!current) {
             return current
         }
@@ -95,12 +160,10 @@ class SymbolTable {
             current = current.left
         }
 
-        return current.value
+        return current
     }
 
-    max () {
-        let current = this.root
-
+    max (current = this.root) {
         if (!current) {
             return current
         }
@@ -199,4 +262,10 @@ class SymbolTable {
     }
 }
 
+const st = new SymbolTable()
+st.set(50, 1)
+st.set(100, 2)
+st.set(200, 10)
+
+st.delete(200)
 module.exports = SymbolTable
