@@ -60,4 +60,9 @@ describe('Queue', () => {
         queue.enqueue(2)
         expect(queue.values()).toEqual([1, 2])
     })
+
+    test('creating queue with initial values', () => {
+        queue = new Queue([1, 2])
+        expect(queue.values()).toEqual([1, 2])
+    })
 })
