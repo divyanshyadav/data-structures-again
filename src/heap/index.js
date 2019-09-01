@@ -4,6 +4,10 @@ class Heap {
         this.comparator = comparator
     }
 
+    forEach (fn) {
+        this.array.forEach((element, index) => fn(element, index))
+    }
+
     get length () {
         return this.array.length
     }
