@@ -1,6 +1,6 @@
 class Queue {
-    constructor (initialValues = []) {
-        this.container = initialValues
+    constructor () {
+        this.container = Array.from(arguments)
     }
 
     enqueue (data) {
