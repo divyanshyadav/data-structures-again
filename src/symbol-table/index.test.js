@@ -151,6 +151,13 @@ test('rank, How many keys less then some unit', () => {
     expect(st.rank(60)).toEqual(2)
 })
 
+test('delete in empty tree', () => {
+    const st = new SymbolTable()
+    st.delete()
+
+    expect(st.root).toEqual(null)
+})
+
 test('deleting node with no children', () => {
     const st = new SymbolTable()
 
@@ -172,6 +179,9 @@ test('deleting node with no children', () => {
     expect(st.get(60)).toEqual(3)
     expect(st.get(50)).toEqual(1)
     expect(st.get(40)).toEqual(null)
+
+    st.delete(60)
+    expect(st.get(60)).toEqual(null)
 })
 
 test('deleting node with one child', () => {
@@ -271,4 +281,11 @@ test('deleting node with two children | case 2', () => {
     expect(st.get(60)).toEqual(3)
     expect(st.get(40)).toEqual(2)
     expect(st.get(50)).toEqual(null)
+})
+
+test('deleteMax on empty tree', () => {
+    const st = new SymbolTable()
+    st.deleteMax()
+
+    expect(st.root).toEqual(null)
 })
