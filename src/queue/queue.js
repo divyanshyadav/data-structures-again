@@ -1,6 +1,6 @@
 class Queue {
     constructor () {
-        this.container = []
+        this.container = Array.from(arguments)
     }
 
     enqueue (data) {
@@ -25,6 +25,10 @@ class Queue {
 
     isEmpty () {
         return this.length === 0
+    }
+
+    values () {
+        return this.container.map(value => value)
     }
 }
 

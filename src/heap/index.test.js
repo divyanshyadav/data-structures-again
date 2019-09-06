@@ -91,3 +91,15 @@ test('custom test 2', () => {
 
     expect(heap.array).toEqual([12, 13, 18, 38, 89, 74, 74, 47])
 })
+
+test('forEach operation', () => {
+    const heap = new Heap()
+    '13 47 74 12 89 74 18 38'.split(' ').forEach(data => {
+        heap.push(parseInt(data))
+    })
+
+    const expectedResult = [12, 13, 18, 38, 89, 74, 74, 47]
+    heap.forEach((val, i) => {
+        expect(val).toEqual(expectedResult[i])
+    })
+})

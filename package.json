@@ -1,6 +1,6 @@
 {
   "name": "data-structures-again",
-  "version": "1.21.1",
+  "version": "1.26.0",
   "description": "A Javascript library of simple data structures",
   "homepage": "https://github.com/divyanshyadav/data-structures-again",
   "main": "index.js",
@@ -11,6 +11,7 @@
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
     "test:coveralls": "jest --coverage && cat coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js",
+    "build": "webpack",
     "publish:minor": "npm version minor && git push && git push --tags",
     "publish:major": "npm version major && git push && git push --tags",
     "publish:patch": "npm version patch && git push && git push --tags"
@@ -26,7 +27,9 @@
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.5.0",
-    "lint-staged": "^8.1.5"
+    "lint-staged": "^8.1.5",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
   },
   "keywords": [
     "computer-science",

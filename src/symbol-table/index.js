@@ -1,22 +1,21 @@
 /*
-    Symbol table implementation using binary-search-tree data-structure.
+    Symbol table implementation using Binary-Search-Tree data-structure.
     <key, value> : key should only be of single type(integer/string)
 
     Operations:
-        set/create : O(logn)
-        get/read   : O(logn)
-        set/update : O(logn)
-        delete : O(sqrt(n))
-        min        : O(logn)
-        max        : O(logn)
-        ceil       : O(logn)
-        floor      : O(logn)
-        rank       : O(logn)
+        set/create : O(n)
+        get/read   : O(n)
+        set/update : O(n)
+        delete     : O(sqrt(n)
+        min        : O(n)
+        max        : O(n)
+        ceil       : O(n)
+        floor      : O(n)
+        rank       : O(n)
         forEach    : O(n)
-
+    
     * Time complexities given here are of balanced BST.
     * Deletion algorithm used is 'Hibbard deletion'
-
     Note 1: if N distinct keys are inserted into BST in RANDOM order
             then expected number of compares for a search/insert is ~ 2log(N).
 
@@ -37,8 +36,9 @@ class Node {
 }
 
 class SymbolTable {
-    constructor () {
+    constructor (comparator = asc) {
         this.root = null
+        this.cmp = comparator
     }
 
     /* Primary operations */
@@ -49,11 +49,11 @@ class SymbolTable {
                 return new Node(key, value)
             }
 
-            if (key < root.key) {
+            if (this.cmp(key, root.key) < 0) {
                 root.left = setHelper(root.left, key, value)
             }
 
-            if (key > root.key) {
+            if (this.cmp(key, root.key) > 0) {
                 root.right = setHelper(root.right, key, value)
             }
 
@@ -69,9 +69,9 @@ class SymbolTable {
         let current = this.root
 
         while (current != null) {
-            if (current.key === key) {
+            if (this.cmp(current.key, key) === 0) {
                 return current.value
-            } else if (key < current.key) {
+            } else if (this.cmp(key, current.key) < 0) {
                 current = current.left
             } else {
                 current = current.right
@@ -81,32 +81,35 @@ class SymbolTable {
         return null
     }
 
+
+    /*
+        Hibbard Deletion
+    */
+
     delete (key) {
-        const helper = node => {
+        const deleteHelper = (node) => {
             if (node === null) {
                 return null
             }
 
-            if (key === node.key) {
-                // 0 children
+            if (this.cmp(key, node.key) < 0) {
+                node.left = deleteHelper(node.left)
+            } else if (this.cmp(key, node.key) > 0) {
+                node.right = deleteHelper(node.right)
+            } else {
+                // No children
                 if (!node.left && !node.right) {
                     return null
-                } else if (!node.left) { // has 1 child
-                    return node.right
-                } else if (!node.right) {
-                    return node.left
-                } else { // have both children
+                } else if (!node.left || !node.right) {
+                    // One child
+                    node = node.left || node.right
+                } else {
+                    // two children
                     const temp = node
-                    node = this.min(temp.right)
-                    node.right = this._deleteMin(temp.right)
-                    node.left = temp.left
+                    node = this.max(node.left)
+                    node.left = this.deleteMax(temp.left)
+                    node.right = temp.right
                 }
-            }
-
-            if (key < node.key) {
-                node.left = helper(node.left)
-            } else {
-                node.right = helper(node.right)
             }
 
             node.count = 1 + this.size(node.left) + this.size(node.right)
@@ -114,42 +117,11 @@ class SymbolTable {
             return node
         }
 
-        this.root = helper(this.root)
+        this.root = deleteHelper(this.root)
     }
 
     /* Secondary operations */
 
-    deleteMin () {
-        if (this.root) {
-            this.root = this._deleteMin(this.root)
-        }
-    }
-
-    _deleteMin (node) {
-        if (node.left === null) {
-            return node.right
-        }
-
-        node.left = this._deleteMin(node.left)
-        node.count = 1 + this.size(node.left) + this.size(node.right)
-        return node
-    }
-
-    deleteMax () {
-        const helper = node => {
-            if (node.right === null) {
-                return node.left
-            }
-
-            node.right = helper(node.right)
-            node.count = 1 + this.size(node.left) + this.size(node.right)
-            return node
-        }
-
-        if (this.root) {
-            helper(this.root)
-        }
-    }
 
     min (current = this.root) {
         if (!current) {
@@ -172,7 +144,27 @@ class SymbolTable {
             current = current.right
         }
 
-        return current.value
+        return current
+    }
+
+    deleteMax (current = this.root) {
+        const helper = (node) => {
+            if (node === null) {
+                return null
+            }
+
+            if (node.right === null) {
+                return node.left
+            }
+
+            node.right = helper(node.right)
+
+            node.count = 1 + this.size(node.left) + this.size(node.right)
+
+            return node
+        }
+
+        return helper(current)
     }
 
     floor (key) {
@@ -262,10 +254,4 @@ class SymbolTable {
     }
 }
 
-const st = new SymbolTable()
-st.set(50, 1)
-st.set(100, 2)
-st.set(200, 10)
-
-st.delete(200)
 module.exports = SymbolTable
