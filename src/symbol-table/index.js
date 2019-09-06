@@ -6,14 +6,16 @@
         set/create : O(n)
         get/read   : O(n)
         set/update : O(n)
-        delete     : O(n)
+        delete     : O(sqrt(n)
         min        : O(n)
         max        : O(n)
         ceil       : O(n)
         floor      : O(n)
         rank       : O(n)
         forEach    : O(n)
-
+    
+    * Time complexities given here are of balanced BST.
+    * Deletion algorithm used is 'Hibbard deletion'
     Note 1: if N distinct keys are inserted into BST in RANDOM order
             then expected number of compares for a search/insert is ~ 2log(N).
 
@@ -79,6 +81,7 @@ class SymbolTable {
         return null
     }
 
+
     /*
         Hibbard Deletion
     */
@@ -119,9 +122,8 @@ class SymbolTable {
 
     /* Secondary operations */
 
-    min () {
-        let current = this.root
 
+    min (current = this.root) {
         if (!current) {
             return current
         }
@@ -130,7 +132,7 @@ class SymbolTable {
             current = current.left
         }
 
-        return current.value
+        return current
     }
 
     max (current = this.root) {
@@ -251,7 +253,5 @@ class SymbolTable {
         inOrder(this.root)
     }
 }
-
-const asc = (a, b) => a - b
 
 module.exports = SymbolTable
