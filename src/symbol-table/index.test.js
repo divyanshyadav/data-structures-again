@@ -1,7 +1,9 @@
 const SymbolTable = require('.')
 
 test('get operation', () => {
-    const st = new SymbolTable()
+    const st = new SymbolTable((a, b) => {
+        return a.charCodeAt() - b.charCodeAt()
+    })
     expect(st.get('test')).toEqual(null)
 
     st.set('b', 3)
@@ -15,7 +17,9 @@ test('get operation', () => {
 })
 
 test('forEach should iterate in sorted order', () => {
-    const st = new SymbolTable()
+    const st = new SymbolTable((a, b) => {
+        return a.charCodeAt() - b.charCodeAt()
+    })
 
     st.set('a', 1)
     st.set('c', 2)
@@ -28,7 +32,9 @@ test('forEach should iterate in sorted order', () => {
 })
 
 test('min operation', () => {
-    const st = new SymbolTable()
+    const st = new SymbolTable((a, b) => {
+        return a.charCodeAt() - b.charCodeAt()
+    })
     expect(st.min()).toEqual(null)
 
     st.set('d', 1)
@@ -42,17 +48,19 @@ test('min operation', () => {
 })
 
 test('max operation', () => {
-    const st = new SymbolTable()
+    const st = new SymbolTable((a, b) => {
+        return a.charCodeAt() - b.charCodeAt()
+    })
     expect(st.max()).toEqual(null)
 
     st.set('d', 1)
-    expect(st.max()).toEqual(1)
+    expect(st.max().value).toEqual(1)
 
     st.set('e', 4)
-    expect(st.max()).toEqual(4)
+    expect(st.max().value).toEqual(4)
 
     st.set('x', 10)
-    expect(st.max()).toEqual(10)
+    expect(st.max().value).toEqual(10)
 })
 
 test('floor operation', () => {
@@ -141,4 +149,126 @@ test('rank, How many keys less then some unit', () => {
 
     expect(st.rank(30)).toEqual(0)
     expect(st.rank(60)).toEqual(2)
+})
+
+test('deleting node with no children', () => {
+    const st = new SymbolTable()
+
+    const array = [
+        { key: 50, value: 1 },
+        { key: 40, value: 2 },
+        { key: 60, value: 3 }
+    ]
+
+    /*
+            50
+        40      60
+    */
+
+    array.forEach(item => st.set(item.key, item.value))
+    st.delete(40)
+
+    expect(st.size()).toEqual(2)
+    expect(st.get(60)).toEqual(3)
+    expect(st.get(50)).toEqual(1)
+    expect(st.get(40)).toEqual(null)
+})
+
+test('deleting node with one child', () => {
+    const st = new SymbolTable()
+
+    const array = [
+        { key: 50, value: 1 },
+        { key: 40, value: 2 },
+        { key: 60, value: 3 },
+        { key: 20, value: 4 }
+    ]
+
+    /*
+                50
+            40      60
+        20
+    */
+
+    array.forEach(item => st.set(item.key, item.value))
+    st.delete(40)
+
+    /*
+                50
+            20      60
+    */
+
+    expect(st.size()).toEqual(3)
+    expect(st.get(50)).toEqual(1)
+    expect(st.get(20)).toEqual(4)
+    expect(st.get(60)).toEqual(3)
+    expect(st.get(40)).toEqual(null)
+})
+
+test('deleting node with two children', () => {
+    const st = new SymbolTable()
+
+    const array = [
+        { key: 50, value: 1 },
+        { key: 40, value: 2 },
+        { key: 60, value: 3 },
+        { key: 20, value: 4 },
+        { key: 45, value: 5 }
+    ]
+
+    /*
+                50
+            40      60
+        20     45
+    */
+
+    array.forEach(item => st.set(item.key, item.value))
+    st.delete(40)
+
+    /*
+                50
+            20      60
+               45
+    */
+
+    expect(st.size()).toEqual(4)
+    expect(st.get(50)).toEqual(1)
+    expect(st.get(20)).toEqual(4)
+    expect(st.get(60)).toEqual(3)
+    expect(st.get(45)).toEqual(5)
+    expect(st.get(40)).toEqual(null)
+})
+
+test('deleting node with two children | case 2', () => {
+    const st = new SymbolTable()
+
+    const array = [
+        { key: 50, value: 1 },
+        { key: 40, value: 2 },
+        { key: 60, value: 3 },
+        { key: 20, value: 4 },
+        { key: 45, value: 5 }
+    ]
+
+    /*
+                50
+            40      60
+        20     45
+    */
+
+    array.forEach(item => st.set(item.key, item.value))
+    st.delete(50)
+
+    /*
+                45
+            40      60
+        20
+    */
+
+    expect(st.size()).toEqual(4)
+    expect(st.get(45)).toEqual(5)
+    expect(st.get(20)).toEqual(4)
+    expect(st.get(60)).toEqual(3)
+    expect(st.get(40)).toEqual(2)
+    expect(st.get(50)).toEqual(null)
 })

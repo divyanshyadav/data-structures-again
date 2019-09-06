@@ -1,20 +1,18 @@
 /*
-    Symbol table implementation using binary-search-tree data-structure.
+    Symbol table implementation using Binary-Search-Tree data-structure.
     <key, value> : key should only be of single type(integer/string)
 
     Operations:
-        set/create : O(logn)
-        get/read   : O(logn)
-        set/update : O(logn)
-        delete     : O(logn)
-        min        : O(logn)
-        max        : O(logn)
-        ceil       : O(logn)
-        floor      : O(logn)
-        rank       : O(logn)
+        set/create : O(n)
+        get/read   : O(n)
+        set/update : O(n)
+        delete     : O(n)
+        min        : O(n)
+        max        : O(n)
+        ceil       : O(n)
+        floor      : O(n)
+        rank       : O(n)
         forEach    : O(n)
-
-    * Time complexities given here are of balanced BST.
 
     Note 1: if N distinct keys are inserted into BST in RANDOM order
             then expected number of compares for a search/insert is ~ 2log(N).
@@ -36,8 +34,9 @@ class Node {
 }
 
 class SymbolTable {
-    constructor () {
+    constructor (comparator = asc) {
         this.root = null
+        this.cmp = comparator
     }
 
     /* Primary operations */
@@ -48,11 +47,11 @@ class SymbolTable {
                 return new Node(key, value)
             }
 
-            if (key < root.key) {
+            if (this.cmp(key, root.key) < 0) {
                 root.left = setHelper(root.left, key, value)
             }
 
-            if (key > root.key) {
+            if (this.cmp(key, root.key) > 0) {
                 root.right = setHelper(root.right, key, value)
             }
 
@@ -68,9 +67,9 @@ class SymbolTable {
         let current = this.root
 
         while (current != null) {
-            if (current.key === key) {
+            if (this.cmp(current.key, key) === 0) {
                 return current.value
-            } else if (key < current.key) {
+            } else if (this.cmp(key, current.key) < 0) {
                 current = current.left
             } else {
                 current = current.right
@@ -80,7 +79,43 @@ class SymbolTable {
         return null
     }
 
-    delete (key) {}
+    /*
+        Hibbard Deletion
+    */
+
+    delete (key) {
+        const deleteHelper = (node) => {
+            if (node === null) {
+                return null
+            }
+
+            if (this.cmp(key, node.key) < 0) {
+                node.left = deleteHelper(node.left)
+            } else if (this.cmp(key, node.key) > 0) {
+                node.right = deleteHelper(node.right)
+            } else {
+                // No children
+                if (!node.left && !node.right) {
+                    return null
+                } else if (!node.left || !node.right) {
+                    // One child
+                    node = node.left || node.right
+                } else {
+                    // two children
+                    const temp = node
+                    node = this.max(node.left)
+                    node.left = this.deleteMax(temp.left)
+                    node.right = temp.right
+                }
+            }
+
+            node.count = 1 + this.size(node.left) + this.size(node.right)
+
+            return node
+        }
+
+        this.root = deleteHelper(this.root)
+    }
 
     /* Secondary operations */
 
@@ -98,9 +133,7 @@ class SymbolTable {
         return current.value
     }
 
-    max () {
-        let current = this.root
-
+    max (current = this.root) {
         if (!current) {
             return current
         }
@@ -109,7 +142,27 @@ class SymbolTable {
             current = current.right
         }
 
-        return current.value
+        return current
+    }
+
+    deleteMax (current = this.root) {
+        const helper = (node) => {
+            if (node === null) {
+                return null
+            }
+
+            if (node.right === null) {
+                return node.left
+            }
+
+            node.right = helper(node.right)
+
+            node.count = 1 + this.size(node.left) + this.size(node.right)
+
+            return node
+        }
+
+        return helper(current)
     }
 
     floor (key) {
@@ -198,5 +251,7 @@ class SymbolTable {
         inOrder(this.root)
     }
 }
+
+const asc = (a, b) => a - b
 
 module.exports = SymbolTable
