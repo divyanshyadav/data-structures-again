@@ -38,13 +38,13 @@ test('min operation', () => {
     expect(st.min()).toEqual(null)
 
     st.set('d', 1)
-    expect(st.min()).toEqual(1)
+    expect(st.min().value).toEqual(1)
 
     st.set('b', 4)
-    expect(st.min()).toEqual(4)
+    expect(st.min().value).toEqual(4)
 
     st.set('a', 10)
-    expect(st.min()).toEqual(10)
+    expect(st.min().value).toEqual(10)
 })
 
 test('max operation', () => {

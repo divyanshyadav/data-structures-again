@@ -13,7 +13,7 @@
         floor      : O(n)
         rank       : O(n)
         forEach    : O(n)
-    
+
     * Time complexities given here are of balanced BST.
     * Deletion algorithm used is 'Hibbard deletion'
     Note 1: if N distinct keys are inserted into BST in RANDOM order
@@ -81,7 +81,6 @@ class SymbolTable {
         return null
     }
 
-
     /*
         Hibbard Deletion
     */
@@ -121,7 +120,6 @@ class SymbolTable {
     }
 
     /* Secondary operations */
-
 
     min (current = this.root) {
         if (!current) {
@@ -253,5 +251,7 @@ class SymbolTable {
         inOrder(this.root)
     }
 }
+
+const asc = (a, b) => a - b
 
 module.exports = SymbolTable
