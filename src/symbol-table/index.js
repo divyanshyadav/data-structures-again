@@ -6,7 +6,7 @@
         set/create : O(n)
         get/read   : O(n)
         set/update : O(n)
-        delete     : O(sqrt(n)
+        delete     : O(sqrt(n))
         min        : O(n)
         max        : O(n)
         ceil       : O(n)
