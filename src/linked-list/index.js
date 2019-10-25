@@ -46,6 +46,15 @@ class LinkedList {
 
         return array
     }
+
+    forEach (fn) {
+        let current = this.head
+
+        while (current !== null) {
+            fn(current.data)
+            current = current.next
+        }
+    }
 }
 
 module.exports = LinkedList

@@ -27,4 +27,29 @@ describe('test graph DS', () => {
         expect(graph.getNeighbors('a').toArray()).toEqual(['b'])
         expect(graph.getNeighbors('c').toArray()).toEqual(['a', 'b'])
     })
+
+    it('should do bfs', () => {
+        const graph = new Graph()
+
+        /*
+            a ---> b
+            |     ^
+            |    /
+            >  c
+        */
+
+        graph.addVertex('a')
+        graph.addVertex('b')
+        graph.addVertex('c')
+
+        graph.addEdge('a', 'b')
+        graph.addEdge('a', 'c')
+        graph.addEdge('c', 'b')
+
+        const output = []
+        graph.bfs('a', vertex => output.push(vertex.name))
+        const expectOutput = ['a', 'b', 'c']
+
+        expect(output).toEqual(expectOutput)
+    })
 })
