@@ -52,4 +52,30 @@ describe('test graph DS', () => {
 
         expect(output).toEqual(expectOutput)
     })
+
+    it('should do dfs', () => {
+        const graph = new Graph()
+
+        /*
+            a ---> b
+            |     ^
+            |    /
+            >  c
+        */
+
+        graph.addVertex('a')
+        graph.addVertex('b')
+        graph.addVertex('c')
+
+        graph.addEdge('a', 'c')
+        graph.addEdge('c', 'b')
+        graph.addEdge('a', 'b')
+        
+
+        const output = []
+        graph.dfs('a', vertex => output.push(vertex.name))
+        const expectOutput = ['a', 'c', 'b']
+
+        expect(output).toEqual(expectOutput)
+    })
 })

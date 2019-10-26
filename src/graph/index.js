@@ -127,8 +127,31 @@ class Graph {
         }
     }
 
-    dfs () {
+    dfs (start, fn) {
+        if (!this.adjList.has(start)) {
+            throw new Error(`Vertex ${start} doesn't exist`)
+        }
 
+        this.adjList.forEach(value => { value.color = COLORS.white })
+
+        const startVertex = this.adjList.get(start)
+
+        const helper = (vertex) => {
+            if (vertex === null) {
+                return
+            }
+
+            vertex.color = COLORS.black
+            fn(vertex)
+            vertex.neighbors.forEach(v => {
+                const neighbor = this.adjList.get(v)
+                if (neighbor.color === COLORS.white) {
+                    helper(neighbor)
+                }
+            })
+        }
+
+        helper(startVertex)
     }
 }
 
