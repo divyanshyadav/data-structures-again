@@ -8,11 +8,9 @@ describe('test linked-list DS operations', () => {
 
     test('insert at start', () => {
         const list = new LinkedList()
-        list.insertAtStart(3)
-        list.insertAtStart(2)
         list.insertAtStart(1)
 
-        expect(list.toArray()).toEqual([1, 2, 3])
+        expect(list.toArray()).toEqual([1])
     })
 
     test('delete at start', () => {
@@ -41,6 +39,7 @@ describe('test linked-list DS operations', () => {
         const list = new LinkedList([1, 2, 3])
         list.delete(3)
 
+        expect(list.getElementAtEnd()).toBe(2)
         expect(list.toArray()).toEqual([1, 2])
     })
 
@@ -48,6 +47,7 @@ describe('test linked-list DS operations', () => {
         const list = new LinkedList([1, 1, 3])
         list.delete(1)
 
+        expect(list.getElementAtEnd()).toBe(3)
         expect(list.toArray()).toEqual([3])
     })
 
@@ -55,6 +55,7 @@ describe('test linked-list DS operations', () => {
         const list = new LinkedList([1, 1, 1])
         list.delete(1)
 
+        expect(list.getElementAtEnd()).toBe(null)
         expect(list.toArray()).toEqual([])
     })
 
@@ -62,6 +63,14 @@ describe('test linked-list DS operations', () => {
         const list = new LinkedList([1, 2, 2, 3])
         list.delete(2)
 
+        expect(list.getElementAtEnd()).toBe(3)
         expect(list.toArray()).toEqual([1, 3])
+    })
+
+    test('find', () => {
+        const list = new LinkedList([1, 2, 3])
+
+        expect(list.find(2)).toBe(2)
+        expect(list.find(4)).toBe(null)
     })
 })

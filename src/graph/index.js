@@ -20,8 +20,12 @@ class Vertex {
     addNeighbor (neighbor) {
         this.neighbors.insertAtEnd(neighbor)
     }
+
+    hasNeighbor (neighbor) {
+        return !!this.neighbors.find(neighbor)
+    }
 }
- 
+
 class Graph {
     constructor () {
         this.adjList = new Map()
@@ -58,7 +62,7 @@ class Graph {
 
     // TODO
     isAdjacent (v1, v2) {
-
+        return this.adjList.get(v1).hasNeighbor(v2)
     }
 
     removeVertex (vertex) {
@@ -85,7 +89,7 @@ class Graph {
 
     }
 
-    getVertex(vertex) {
+    getVertex (vertex) {
         if (!this.adjList.has(vertex)) {
             throw new Error(`Vertex ${vertex} doesn't exist`)
         }
@@ -102,7 +106,7 @@ class Graph {
 
         const queue = new Queue()
         const startVertex = this.adjList.get(start)
-        
+
         startVertex.distance = 0
         startVertex.predecessor = null
         startVertex.color = COLORS.grey

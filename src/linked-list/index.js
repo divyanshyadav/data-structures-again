@@ -8,10 +8,19 @@ class Node {
 class LinkedList {
     constructor (fromArray = []) {
         this.head = null
+        this.tail = null
 
         fromArray
             .reverse()
             .forEach(item => this.insertAtStart(item))
+    }
+
+    getElementAtEnd () {
+        return this.tail && this.tail.data
+    }
+
+    getElementAtStart () {
+        return this.head && this.head.data
     }
 
     insertAtStart (item) {
@@ -26,6 +35,18 @@ class LinkedList {
         }
     }
 
+    insertAtEnd (item) {
+        const newNode = new Node(item)
+
+        if (!this.head) {
+            this.head = newNode
+            this.tail = this.head
+        } else {
+            this.tail.next = newNode
+            this.tail = newNode
+        }
+    }
+
     deleteAtStart () {
         if (!this.head) {
             return
@@ -33,6 +54,10 @@ class LinkedList {
 
         const data = this.head.data
         this.head = this.head.next
+
+        if (this.head === null) {
+            this.tail = null
+        }
 
         return data
     }
@@ -53,6 +78,21 @@ class LinkedList {
             }
             cur = cur.next
         }
+
+        this.tail = prev
+    }
+
+    find (data) {
+        let cur = this.head
+
+        while (cur !== null) {
+            if (cur.data === data) {
+                return data
+            }
+            cur = cur.next
+        }
+
+        return null
     }
 
     toArray () {
