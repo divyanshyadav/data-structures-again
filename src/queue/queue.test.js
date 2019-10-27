@@ -14,7 +14,7 @@ describe('Queue', () => {
     test('enqueue', () => {
         queue.enqueue(1)
         queue.enqueue(2)
-        expect(queue.container).toEqual([1, 2])
+        expect(queue.toArray()).toEqual([1, 2])
     })
 
     test('dequeue', () => {
@@ -23,7 +23,7 @@ describe('Queue', () => {
         queue.enqueue(2)
         const data = queue.dequeue()
         expect(data).toBe(1)
-        expect(queue.container).toEqual([2])
+        expect(queue.toArray()).toEqual([2])
     })
 
     test('length', () => {
@@ -35,7 +35,7 @@ describe('Queue', () => {
     })
 
     test('peek', () => {
-        expect(queue.peek()).toBe(undefined)
+        expect(queue.peek()).toBe(null)
         queue.enqueue(1)
         queue.enqueue(2)
         expect(queue.peek()).toBe(1)
@@ -58,16 +58,16 @@ describe('Queue', () => {
     test('values operation', () => {
         queue.enqueue(1)
         queue.enqueue(2)
-        expect(queue.values()).toEqual([1, 2])
+        expect(queue.toArray()).toEqual([1, 2])
     })
 
     test('creating queue with initial values', () => {
         queue = new Queue(1, 2)
-        expect(queue.values()).toEqual([1, 2])
+        expect(queue.toArray()).toEqual([1, 2])
     })
 
     test('creating queue with initial values as args', () => {
         queue = new Queue(3, 1)
-        expect(queue.values()).toEqual([3, 1])
+        expect(queue.toArray()).toEqual([3, 1])
     })
 })

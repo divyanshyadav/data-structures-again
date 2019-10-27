@@ -1,18 +1,20 @@
+const LinkedList = require('../linked-list')
+
 class Queue {
     constructor () {
-        this.container = Array.from(arguments)
+        this.container = new LinkedList(Array.from(arguments))
     }
 
     enqueue (data) {
-        this.container.push(data)
+        this.container.insertAtEnd(data)
     }
 
     dequeue () {
-        return this.container.shift()
+        return this.container.deleteAtStart()
     }
 
     peek () {
-        return this.container[0]
+        return this.container.getElementAtStart()
     }
 
     get length () {
@@ -20,15 +22,15 @@ class Queue {
     }
 
     toString () {
-        return this.container.toString()
+        return this.container.toArray().toString()
     }
 
     isEmpty () {
         return this.length === 0
     }
 
-    values () {
-        return this.container.map(value => value)
+    toArray () {
+        return this.container.toArray()
     }
 }
 
