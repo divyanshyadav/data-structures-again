@@ -6,9 +6,12 @@ class Node {
 }
 
 class LinkedList {
-    constructor () {
+    constructor (fromArray = []) {
         this.head = null
-        this.tail = null
+
+        fromArray
+            .reverse()
+            .forEach(item => this.insertAtStart(item))
     }
 
     insertAtStart (item) {
@@ -23,15 +26,32 @@ class LinkedList {
         }
     }
 
-    insertAtEnd (item) {
-        const newNode = new Node(item)
-
+    deleteAtStart () {
         if (!this.head) {
-            this.head = newNode
-            this.tail = this.head
-        } else {
-            this.tail.next = newNode
-            this.tail = newNode
+            return
+        }
+
+        const data = this.head.data
+        this.head = this.head.next
+
+        return data
+    }
+
+    delete (data) {
+        let cur = this.head
+        let prev = null
+
+        while (cur !== null) {
+            if (cur.data === data) {
+                if (cur === this.head) {
+                    this.deleteAtStart()
+                } else {
+                    prev.next = cur.next
+                }
+            } else {
+                prev = cur
+            }
+            cur = cur.next
         }
     }
 
