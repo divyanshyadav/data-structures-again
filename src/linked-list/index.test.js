@@ -39,7 +39,6 @@ describe('test linked-list DS operations', () => {
 
     test('delete last item', () => {
         const list = new LinkedList([1, 2, 3])
-
         list.delete(3)
 
         expect(list.toArray()).toEqual([1, 2])
@@ -47,7 +46,6 @@ describe('test linked-list DS operations', () => {
 
     test('delete duplicates | case 1', () => {
         const list = new LinkedList([1, 1, 3])
-
         list.delete(1)
 
         expect(list.toArray()).toEqual([3])
@@ -55,7 +53,6 @@ describe('test linked-list DS operations', () => {
 
     test('delete duplicates | case 2', () => {
         const list = new LinkedList([1, 1, 1])
-
         list.delete(1)
 
         expect(list.toArray()).toEqual([])
@@ -63,7 +60,6 @@ describe('test linked-list DS operations', () => {
 
     test('delete duplicates | case 3', () => {
         const list = new LinkedList([1, 2, 2, 3])
-
         list.delete(2)
 
         expect(list.toArray()).toEqual([1, 3])
