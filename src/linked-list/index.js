@@ -9,10 +9,15 @@ class LinkedList {
     constructor (fromArray = []) {
         this.head = null
         this.tail = null
+        this.size = 0
 
         fromArray
             .reverse()
             .forEach(item => this.insertAtStart(item))
+    }
+
+    get length () {
+        return this.size
     }
 
     getElementAtEnd () {
@@ -33,6 +38,8 @@ class LinkedList {
             newNode.next = this.head
             this.head = newNode
         }
+
+        this.size += 1
     }
 
     insertAtEnd (item) {
@@ -45,6 +52,8 @@ class LinkedList {
             this.tail.next = newNode
             this.tail = newNode
         }
+
+        this.size += 1
     }
 
     deleteAtStart () {
@@ -58,6 +67,8 @@ class LinkedList {
         if (this.head === null) {
             this.tail = null
         }
+
+        this.size -= 1
 
         return data
     }
@@ -73,6 +84,7 @@ class LinkedList {
                 } else {
                     prev.next = cur.next
                 }
+                this.size -= 1
             } else {
                 prev = cur
             }

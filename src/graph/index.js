@@ -60,7 +60,6 @@ class Graph {
         return this.adjList.get(vertex).neighbors
     }
 
-    // TODO
     isAdjacent (v1, v2) {
         return this.adjList.get(v1).hasNeighbor(v2)
     }

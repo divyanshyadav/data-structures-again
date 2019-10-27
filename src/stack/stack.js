@@ -1,18 +1,20 @@
+const LinkedList = require('../linked-list')
+
 class Stack {
     constructor () {
-        this.container = []
+        this.container = new LinkedList()
     }
 
     push (data) {
-        this.container.unshift(data)
+        this.container.insertAtStart(data)
     }
 
     pop () {
-        return this.container.shift()
+        return this.container.deleteAtStart()
     }
 
     peek () {
-        return this.container[0]
+        return this.container.getElementAtStart()
     }
 
     get length () {
@@ -24,7 +26,7 @@ class Stack {
     }
 
     toString () {
-        return this.container.toString()
+        return this.container.toArray().toString()
     }
 }
 
