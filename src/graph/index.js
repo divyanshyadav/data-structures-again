@@ -21,7 +21,7 @@ class Vertex {
         this.neighbors.insertAtEnd(neighbor)
     }
 }
-
+ 
 class Graph {
     constructor () {
         this.adjList = new Map()
@@ -137,10 +137,6 @@ class Graph {
         const startVertex = this.adjList.get(start)
 
         const helper = (vertex) => {
-            if (vertex === null) {
-                return
-            }
-
             vertex.color = COLORS.black
             fn(vertex)
             vertex.neighbors.forEach(v => {
