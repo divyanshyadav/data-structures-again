@@ -55,12 +55,6 @@ describe('Queue', () => {
         expect(queue.isEmpty()).toBe(false)
     })
 
-    test('values operation', () => {
-        queue.enqueue(1)
-        queue.enqueue(2)
-        expect(queue.toArray()).toEqual([1, 2])
-    })
-
     test('creating queue with initial values', () => {
         queue = new Queue(1, 2)
         expect(queue.toArray()).toEqual([1, 2])
