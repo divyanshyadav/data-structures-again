@@ -101,4 +101,56 @@ describe('test graph DS', () => {
 
         expect(output).toEqual(expectOutput)
     })
+
+    it('should remove the given edge', () => {
+        const graph = new Graph()
+
+        /*
+            a ---> b
+            |     ^
+            |    /
+            >  c
+        */
+
+        graph.addVertex('a')
+        graph.addVertex('b')
+        graph.addVertex('c')
+
+        graph.addEdge('a', 'c')
+        graph.addEdge('c', 'b')
+        graph.addEdge('a', 'b')
+
+        graph.removeEdge('a', 'b')
+
+        const output = graph.isAdjacent('a', 'b')
+        const expectOutput = false
+
+        expect(output).toEqual(expectOutput)
+    })
+
+    it('should remove the given vertex', () => {
+        const graph = new Graph()
+
+        /*
+            a ---> b
+            |     ^
+            |    /
+            >  c
+        */
+
+        graph.addVertex('a')
+        graph.addVertex('b')
+        graph.addVertex('c')
+
+        graph.addEdge('a', 'c')
+        graph.addEdge('c', 'b')
+        graph.addEdge('a', 'b')
+
+        graph.removeVertex('a')
+
+        const output = graph.isAdjacent('a', 'b') || graph.isAdjacent('a', 'c')
+        const expectOutput = false
+
+        expect(output).toEqual(expectOutput)
+    })
 })

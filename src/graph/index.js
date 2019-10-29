@@ -24,6 +24,10 @@ class Vertex {
     hasNeighbor (neighbor) {
         return !!this.neighbors.find(neighbor)
     }
+
+    removeNeighbor (neighbor) {
+        this.neighbors.delete(neighbor)
+    }
 }
 
 class Graph {
@@ -61,15 +65,22 @@ class Graph {
     }
 
     isAdjacent (v1, v2) {
+        if (!this.adjList.has(v1) || !this.adjList.has(v1)) {
+            return false
+        }
+
         return this.adjList.get(v1).hasNeighbor(v2)
     }
 
     removeVertex (vertex) {
-
+        this.adjList.delete(vertex)
+        this.adjList.forEach(v => v.removeNeighbor(vertex))
     }
 
     removeEdge (v1, v2) {
-
+        this.adjList
+            .get(v1)
+            .removeNeighbor(v2)
     }
 
     setVertexValue (vertex) {
