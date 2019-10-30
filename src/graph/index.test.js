@@ -24,8 +24,8 @@ describe('test graph DS', () => {
         graph.addEdge('c', 'a')
         graph.addEdge('c', 'b')
 
-        expect(graph.getNeighbors('a').toArray()).toEqual(['b'])
-        expect(graph.getNeighbors('c').toArray()).toEqual(['a', 'b'])
+        expect(graph.getNeighbors('a').toArray().map(e => e.name)).toEqual(['b'])
+        expect(graph.getNeighbors('c').toArray().map(e => e.name)).toEqual(['a', 'b'])
     })
 
     it('should do bfs', () => {
@@ -152,5 +152,29 @@ describe('test graph DS', () => {
         const expectOutput = false
 
         expect(output).toEqual(expectOutput)
+    })
+
+    it('should able to add weights to edges', () => {
+        const graph = new Graph()
+
+        /*
+            a ---> b
+            |     ^
+            |    /
+            >  c
+        */
+
+        graph.addVertex('a')
+        graph.addVertex('b')
+        graph.addVertex('c')
+
+        graph.addEdge('a', 'c', 5)
+        graph.addEdge('c', 'b', 7)
+        graph.addEdge('a', 'b', 9)
+
+        graph.setEdgeValue('a', 'b', 10)
+
+        expect(graph.getEdgeValue('a', 'c')).toBe(5)
+        expect(graph.getEdgeValue('a', 'b')).toBe(10)
     })
 })

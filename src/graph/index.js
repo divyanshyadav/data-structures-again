@@ -8,7 +8,7 @@ const COLORS = {
 }
 
 class Vertex {
-    constructor (name, value, neighbors = new LinkedList()) {
+    constructor (name, value, neighbors = new LinkedList([], (a, b) => a.name.localeCompare(b))) {
         this.name = name
         this.value = value
         this.neighbors = neighbors
@@ -17,16 +17,31 @@ class Vertex {
         this.color = COLORS.white
     }
 
-    addNeighbor (neighbor) {
-        this.neighbors.insertAtEnd(neighbor)
+    addNeighbor (name, weight) {
+        this.neighbors.insertAtEnd({
+            name,
+            weight
+        })
     }
 
-    hasNeighbor (neighbor) {
-        return !!this.neighbors.find(neighbor)
+    getNeighbors () {
+        return this.neighbors.toArray().map(n => n.name)
     }
 
-    removeNeighbor (neighbor) {
-        this.neighbors.delete(neighbor)
+    hasNeighbor (name) {
+        return !!this.neighbors.find(name)
+    }
+
+    setNeighborWeight (name, weight) {
+        this.neighbors.find(name).weight = weight
+    }
+
+    getNeighborWeight (name) {
+        return this.neighbors.find(name).weight
+    }
+
+    removeNeighbor (name) {
+        this.neighbors.delete(name)
     }
 
     reset () {
@@ -50,7 +65,7 @@ class Graph {
         this.adjList.set(name, newVertex)
     }
 
-    addEdge (v1, v2) {
+    addEdge (v1, v2, weight = 0) {
         if (!this.adjList.has(v1)) {
             throw new Error(`Vertex ${v1} doesn't exist`)
         }
@@ -59,7 +74,7 @@ class Graph {
             throw new Error(`Vertex ${v2} doesn't exist`)
         }
 
-        this.adjList.get(v1).addNeighbor(v2)
+        this.adjList.get(v1).addNeighbor(v2, weight)
     }
 
     getNeighbors (vertex) {
@@ -89,20 +104,28 @@ class Graph {
             .removeNeighbor(v2)
     }
 
-    setVertexValue (vertex) {
+    setVertexValue (vertex, value) {
+        if (!this.adjList.has(vertex)) {
+            throw new Error(`Vertex ${vertex} doesn't exist`)
+        }
 
+        this.adjList.get(vertex).value = value
     }
 
     getVertexValue (vertex) {
+        if (!this.adjList.has(vertex)) {
+            throw new Error(`Vertex ${vertex} doesn't exist`)
+        }
 
+        return this.adjList.get(vertex).value
     }
 
-    setEdgeValue (v1, v2) {
-
+    setEdgeValue (v1, v2, value) {
+        this.adjList.get(v1).setNeighborWeight(v2, value)
     }
 
     getEdgeValue (v1, v2) {
-
+        return this.adjList.get(v1).getNeighborWeight(v2)
     }
 
     getVertex (vertex) {
@@ -131,7 +154,7 @@ class Graph {
         while (queue.length !== 0) {
             const current = queue.dequeue()
 
-            current.neighbors.forEach(v => {
+            current.getNeighbors().forEach(v => {
                 const neighbor = this.adjList.get(v)
 
                 if (neighbor.color === COLORS.white) {
@@ -160,11 +183,9 @@ class Graph {
             vertex.color = COLORS.grey
             fn(vertex)
 
-            vertex.neighbors.forEach(v => {
+            vertex.getNeighbors().forEach(v => {
                 const neighbor = this.adjList.get(v)
                 if (neighbor.color === COLORS.white) {
-                    neighbor.predecessor = vertex
-                    neighbor.distance = vertex.distance + 1
                     helper(neighbor)
                 }
             })

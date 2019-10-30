@@ -6,10 +6,11 @@ class Node {
 }
 
 class LinkedList {
-    constructor (fromArray = []) {
+    constructor (fromArray = [], comparator = (a, b) => a - b) {
         this.head = null
         this.tail = null
         this.size = 0
+        this.comparator = comparator
 
         fromArray
             .reverse()
@@ -78,7 +79,7 @@ class LinkedList {
         let prev = null
 
         while (cur !== null) {
-            if (cur.data === data) {
+            if (this.comparator(cur.data, data) === 0) {
                 if (cur === this.head) {
                     this.deleteAtStart()
                 } else {
@@ -98,8 +99,8 @@ class LinkedList {
         let cur = this.head
 
         while (cur !== null) {
-            if (cur.data === data) {
-                return data
+            if (this.comparator(cur.data, data) === 0) {
+                return cur.data
             }
             cur = cur.next
         }
