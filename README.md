@@ -17,7 +17,8 @@ Light weight javascript data structures library
 - Binary Search Tree
 - Stack
 - Queue
-- Heap (New!)
+- Heap
+- Graph (New!)
 
 ## Installation and Usage
 
@@ -76,6 +77,32 @@ const maxHeap = new Heap((a, b) => b - a)
 maxHeap.push(4)
 maxHeap.push(10)
 maxHeap.peek() // 10
+
+```
+
+### Graph
+
+```js
+
+const graph = new Graph()
+
+/*
+    a---b
+    |  /    
+    | /
+    c
+*/
+
+graph.addVertex('a')
+graph.addVertex('b')
+graph.addVertex('c')
+
+graph.addEdge('a', 'c') // add weight using graph.addEdge('a', 'c', 10)
+graph.addEdge('c', 'b')
+graph.addEdge('a', 'b')
+
+const output = []
+graph.dfs('a', vertex => output.push(vertex.name)) // ['a', 'c', 'b']
 
 ```
 
