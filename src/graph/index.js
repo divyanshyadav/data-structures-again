@@ -28,6 +28,12 @@ class Vertex {
     removeNeighbor (neighbor) {
         this.neighbors.delete(neighbor)
     }
+
+    reset () {
+        this.predecessor = null
+        this.distance = 0
+        this.color = COLORS.white
+    }
 }
 
 class Graph {
@@ -112,7 +118,7 @@ class Graph {
             throw new Error(`Vertex ${start} doesn't exist`)
         }
 
-        this.adjList.forEach(value => { value.color = COLORS.white })
+        this.adjList.forEach(v => v.reset())
 
         const queue = new Queue()
         const startVertex = this.adjList.get(start)
@@ -146,19 +152,24 @@ class Graph {
             throw new Error(`Vertex ${start} doesn't exist`)
         }
 
-        this.adjList.forEach(value => { value.color = COLORS.white })
+        this.adjList.forEach(v => v.reset())
 
         const startVertex = this.adjList.get(start)
 
         const helper = (vertex) => {
-            vertex.color = COLORS.black
+            vertex.color = COLORS.grey
             fn(vertex)
+
             vertex.neighbors.forEach(v => {
                 const neighbor = this.adjList.get(v)
                 if (neighbor.color === COLORS.white) {
+                    neighbor.predecessor = vertex
+                    neighbor.distance = vertex.distance + 1
                     helper(neighbor)
                 }
             })
+
+            vertex.color = COLORS.black
         }
 
         helper(startVertex)
