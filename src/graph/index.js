@@ -66,23 +66,12 @@ class Graph {
     }
 
     addEdge (v1, v2, weight = 0) {
-        if (!this.adjList.has(v1)) {
-            throw new Error(`Vertex ${v1} doesn't exist`)
-        }
-
-        if (!this.adjList.has(v2)) {
-            throw new Error(`Vertex ${v2} doesn't exist`)
-        }
-
-        this.adjList.get(v1).addNeighbor(v2, weight)
+        this.getVertex(v1)
+            .addNeighbor(this.getVertex(v2).name, weight)
     }
 
     getNeighbors (vertex) {
-        if (!this.adjList.has(vertex)) {
-            throw new Error(`Vertex ${vertex} doesn't exist`)
-        }
-
-        return this.adjList.get(vertex).neighbors
+        return this.getVertex(vertex).neighbors
     }
 
     isAdjacent (v1, v2) {
@@ -90,7 +79,7 @@ class Graph {
             return false
         }
 
-        return this.adjList.get(v1).hasNeighbor(v2)
+        return this.getVertex(v1).hasNeighbor(v2)
     }
 
     removeVertex (vertex) {
@@ -105,46 +94,34 @@ class Graph {
     }
 
     setVertexValue (vertex, value) {
-        if (!this.adjList.has(vertex)) {
-            throw new Error(`Vertex ${vertex} doesn't exist`)
-        }
-
-        this.adjList.get(vertex).value = value
+        this.getVertex(vertex).value = value
     }
 
     getVertexValue (vertex) {
-        if (!this.adjList.has(vertex)) {
-            throw new Error(`Vertex ${vertex} doesn't exist`)
-        }
-
-        return this.adjList.get(vertex).value
+        return this.getVertex(vertex).value
     }
 
     setEdgeValue (v1, v2, value) {
-        this.adjList.get(v1).setNeighborWeight(v2, value)
+        this.getVertex(v1).setNeighborWeight(v2, value)
     }
 
     getEdgeValue (v1, v2) {
-        return this.adjList.get(v1).getNeighborWeight(v2)
+        return this.getVertex(v1).getNeighborWeight(v2)
     }
 
-    getVertex (vertex) {
-        if (!this.adjList.has(vertex)) {
-            throw new Error(`Vertex ${vertex} doesn't exist`)
+    getVertex (name) {
+        if (!this.adjList.has(name)) {
+            throw new Error(`Vertex ${name} doesn't exist`)
         }
 
-        return this.adjList.get(vertex)
+        return this.adjList.get(name)
     }
 
     bfs (start, fn) {
-        if (!this.adjList.has(start)) {
-            throw new Error(`Vertex ${start} doesn't exist`)
-        }
-
         this.adjList.forEach(v => v.reset())
 
         const queue = new Queue()
-        const startVertex = this.adjList.get(start)
+        const startVertex = this.getVertex(start)
 
         startVertex.distance = 0
         startVertex.predecessor = null
@@ -155,7 +132,7 @@ class Graph {
             const current = queue.dequeue()
 
             current.getNeighbors().forEach(v => {
-                const neighbor = this.adjList.get(v)
+                const neighbor = this.getVertex(v)
 
                 if (neighbor.color === COLORS.white) {
                     neighbor.color = COLORS.grey
@@ -171,20 +148,16 @@ class Graph {
     }
 
     dfs (start, fn) {
-        if (!this.adjList.has(start)) {
-            throw new Error(`Vertex ${start} doesn't exist`)
-        }
-
         this.adjList.forEach(v => v.reset())
 
-        const startVertex = this.adjList.get(start)
+        const startVertex = this.getVertex(start)
 
         const helper = (vertex) => {
             vertex.color = COLORS.grey
             fn(vertex)
 
             vertex.getNeighbors().forEach(v => {
-                const neighbor = this.adjList.get(v)
+                const neighbor = this.getVertex(v)
                 if (neighbor.color === COLORS.white) {
                     helper(neighbor)
                 }

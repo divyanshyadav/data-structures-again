@@ -177,4 +177,47 @@ describe('test graph DS', () => {
         expect(graph.getEdgeValue('a', 'c')).toBe(5)
         expect(graph.getEdgeValue('a', 'b')).toBe(10)
     })
+
+    it('should do on adding existing vertex', () => {
+        const graph = new Graph()
+        graph.addVertex('a')
+        graph.addVertex('a')
+    })
+
+    it('should throw error on adding invalid edge', () => {
+        const graph = new Graph()
+        graph.addVertex('a')
+        expect(() => graph.addEdge('a', 'b')).toThrow()
+        expect(() => graph.addEdge('b', 'c')).toThrow()
+    })
+
+    it('should throw error on accessing neighbors of invalid vertex', () => {
+        const graph = new Graph()
+        expect(() => graph.getNeighbors('a')).toThrow()
+    })
+
+    it('should throw error on setting value of invalid vertex', () => {
+        const graph = new Graph()
+        expect(() => graph.setVertexValue('a', 1)).toThrow()
+    })
+
+    it('should throw error on accessing value of invalid vertex', () => {
+        const graph = new Graph()
+        expect(() => graph.getVertexValue('a')).toThrow()
+    })
+
+    it('should throw error on accessing invalid vertex', () => {
+        const graph = new Graph()
+        expect(() => graph.getVertex('a')).toThrow()
+    })
+
+    it('bfs should throw error on invalid vertex start node', () => {
+        const graph = new Graph()
+        expect(() => graph.bfs('a')).toThrow()
+    })
+
+    it('dfs should throw error on invalid vertex start node', () => {
+        const graph = new Graph()
+        expect(() => graph.dfs('a')).toThrow()
+    })
 })

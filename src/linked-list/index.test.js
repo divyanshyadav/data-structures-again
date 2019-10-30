@@ -73,4 +73,13 @@ describe('test linked-list DS operations', () => {
         expect(list.find(2)).toBe(2)
         expect(list.find(4)).toBe(null)
     })
+
+    test('forEach', () => {
+        const list = new LinkedList([1, 2, 3])
+
+        const output = []
+        list.forEach(i => output.push(i))
+
+        expect(output).toEqual([1, 2, 3])
+    })
 })
