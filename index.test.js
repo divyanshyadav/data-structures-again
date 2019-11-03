@@ -54,3 +54,8 @@ test('Heap example in readme.md', () => {
 
     expect(data).toEqual(10)
 })
+
+it('should construct an empty graph', () => {
+    const { Graph } = require('.')
+    expect(new Graph()).toBeDefined()
+})
