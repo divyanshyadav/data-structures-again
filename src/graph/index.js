@@ -8,40 +8,40 @@ const COLORS = {
 }
 
 class Vertex {
-    constructor (name, value, neighbors = new LinkedList([], (a, b) => a.name.localeCompare(b))) {
+    constructor (name, value, adjVertices = new LinkedList([], (a, b) => a.name.localeCompare(b))) {
         this.name = name
         this.value = value
-        this.neighbors = neighbors
+        this.adjVertices = adjVertices
         this.distance = 0
         this.predecessor = null
         this.color = COLORS.white
     }
 
     addNeighbor (name, weight) {
-        this.neighbors.insertAtEnd({
+        this.adjVertices.insertAtEnd({
             name,
             weight
         })
     }
 
-    getNeighbors () {
-        return this.neighbors.toArray().map(n => n.name)
+    getAdjVertices () {
+        return this.adjVertices.toArray().map(n => n.name)
     }
 
-    hasNeighbor (name) {
-        return !!this.neighbors.find(name)
+    hasAdjVertex (name) {
+        return !!this.adjVertices.find(name)
     }
 
-    setNeighborWeight (name, weight) {
-        this.neighbors.find(name).weight = weight
+    setAdjVertexWeight (name, weight) {
+        this.adjVertices.find(name).weight = weight
     }
 
-    getNeighborWeight (name) {
-        return this.neighbors.find(name).weight
+    getAdjVertexWeight (name) {
+        return this.adjVertices.find(name).weight
     }
 
-    removeNeighbor (name) {
-        this.neighbors.delete(name)
+    removeAdjVertex (name) {
+        this.adjVertices.delete(name)
     }
 
     reset () {
@@ -70,8 +70,8 @@ class Graph {
             .addNeighbor(this.getVertex(v2).name, weight)
     }
 
-    getNeighbors (vertex) {
-        return this.getVertex(vertex).neighbors
+    getAdjVertices (vertex) {
+        return this.getVertex(vertex).adjVertices
     }
 
     isAdjacent (v1, v2) {
@@ -79,18 +79,18 @@ class Graph {
             return false
         }
 
-        return this.getVertex(v1).hasNeighbor(v2)
+        return this.getVertex(v1).hasAdjVertex(v2)
     }
 
     removeVertex (vertex) {
         this.adjList.delete(vertex)
-        this.adjList.forEach(v => v.removeNeighbor(vertex))
+        this.adjList.forEach(v => v.removeAdjVertex(vertex))
     }
 
     removeEdge (v1, v2) {
         this.adjList
             .get(v1)
-            .removeNeighbor(v2)
+            .removeAdjVertex(v2)
     }
 
     setVertexValue (vertex, value) {
@@ -102,11 +102,11 @@ class Graph {
     }
 
     setEdgeValue (v1, v2, value) {
-        this.getVertex(v1).setNeighborWeight(v2, value)
+        this.getVertex(v1).setAdjVertexWeight(v2, value)
     }
 
     getEdgeValue (v1, v2) {
-        return this.getVertex(v1).getNeighborWeight(v2)
+        return this.getVertex(v1).getAdjVertexWeight(v2)
     }
 
     getVertex (name) {
@@ -131,7 +131,7 @@ class Graph {
         while (queue.length !== 0) {
             const current = queue.dequeue()
 
-            current.getNeighbors().forEach(v => {
+            current.getAdjVertices().forEach(v => {
                 const neighbor = this.getVertex(v)
 
                 if (neighbor.color === COLORS.white) {
@@ -156,7 +156,7 @@ class Graph {
             vertex.color = COLORS.grey
             fn(vertex)
 
-            vertex.getNeighbors().forEach(v => {
+            vertex.getAdjVertices().forEach(v => {
                 const neighbor = this.getVertex(v)
                 if (neighbor.color === COLORS.white) {
                     helper(neighbor)

@@ -24,8 +24,8 @@ describe('test graph DS', () => {
         graph.addEdge('c', 'a')
         graph.addEdge('c', 'b')
 
-        expect(graph.getNeighbors('a').toArray().map(e => e.name)).toEqual(['b'])
-        expect(graph.getNeighbors('c').toArray().map(e => e.name)).toEqual(['a', 'b'])
+        expect(graph.getAdjVertices('a').toArray().map(e => e.name)).toEqual(['b'])
+        expect(graph.getAdjVertices('c').toArray().map(e => e.name)).toEqual(['a', 'b'])
     })
 
     it('should do bfs', () => {
@@ -193,7 +193,7 @@ describe('test graph DS', () => {
 
     it('should throw error on accessing neighbors of invalid vertex', () => {
         const graph = new Graph()
-        expect(() => graph.getNeighbors('a')).toThrow()
+        expect(() => graph.getAdjVertices('a')).toThrow()
     })
 
     it('should throw error on setting value of invalid vertex', () => {
