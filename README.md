@@ -18,7 +18,8 @@ Light weight javascript data structures library
 - Stack
 - Queue
 - Heap
-- Graph (New!)
+- Graph
+- Disjoint-set (New!)
 
 ## Installation and Usage
 
