@@ -28,6 +28,7 @@ describe('Testing disjoint-set', () => {
 
         expect(ds.isConnected('a', 'd')).toBe(false)
         expect(ds.isConnected('b', 'c')).toBe(true)
+        expect(ds.isConnected('e', 'a')).toBe(false)
     })
 
     test('case 1', () => {
