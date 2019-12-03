@@ -83,6 +83,7 @@ maxHeap.peek() // 10
 ### Graph
 
 ```js
+const { Graph } = require("data-structures-again");
 
 const graph = new Graph()
 
@@ -103,6 +104,21 @@ graph.addEdge('a', 'b')
 
 const output = []
 graph.dfs('a', vertex => output.push(vertex.name)) // ['a', 'c', 'b']
+
+```
+
+### Disjoint Set(Union-find)
+
+```js
+const { DisjointSet } = require("data-structures-again");
+
+const ds = new DisjointSet()
+ds.union('a', 'b')
+ds.union('b', 'c')
+ds.union('d', 'c')
+
+ds.find('d') // 'a'
+ds.isConnected('a', 'd') // true
 
 ```
 
