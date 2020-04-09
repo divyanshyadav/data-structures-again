@@ -59,3 +59,15 @@ it('should construct an empty graph', () => {
     const { Graph } = require('.')
     expect(new Graph()).toBeDefined()
 })
+
+test('disjoint-set example', () => {
+    const { DisjointSet } = require('./index')
+
+    const ds = new DisjointSet()
+    ds.union('a', 'b')
+    ds.union('b', 'c')
+    ds.union('d', 'c')
+
+    expect(ds.find('d')).toBe('a')
+    expect(ds.isConnected('a', 'd')).toBeTruthy()
+})
