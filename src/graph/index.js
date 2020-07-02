@@ -1,7 +1,6 @@
-const LinkedList = require('../linked-list')
 const Queue = require('../queue')
-const COLORS = require('./constants')
 const Vertex = require('./Vertex')
+const COLORS = require('./constants')
 
 class Graph {
     constructor () {
