@@ -15,11 +15,12 @@
 Light weight javascript data structures library
 
 - Binary Search Tree
+- AVL Tree (New!)
 - Stack
 - Queue
 - Heap
 - Graph
-- Disjoint-set (New!)
+- Disjoint-set 
 
 ## Installation and Usage
 
@@ -120,6 +121,24 @@ ds.union('d', 'c')
 
 ds.find('d') // 'a'
 ds.isConnected('a', 'd') // true
+
+```
+
+### AVL tree
+
+```js
+const { AVL } = require("data-structures-again");
+
+const tree = new AVL()
+
+tree.set(5, 'five')
+tree.set(8, 'eight')
+tree.set(2, 'two)
+
+/*
+        5
+    2       8
+*/
 
 ```
 

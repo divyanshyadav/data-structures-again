@@ -1,4 +1,4 @@
-const { BST } = require('./src/tree')
+const { BST, AVL } = require('./src/tree')
 const Stack = require('./src/stack')
 const Queue = require('./src/queue')
 const Heap = require('./src/heap')
@@ -11,5 +11,6 @@ module.exports = {
     Queue,
     Heap,
     Graph,
-    DisjointSet
+    DisjointSet,
+    AVL
 }
