@@ -1,4 +1,4 @@
-const LRUCache = require('.')
+const LRUCache = require('./LRUCacheHH')
 
 test('get existing key', () => {
     const lru = new LRUCache(1)
