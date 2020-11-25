@@ -1,55 +1,6 @@
-const LinkedList = require('../linked-list')
 const Queue = require('../queue')
-
-const COLORS = {
-    grey: 'grey',
-    white: 'white',
-    black: 'black'
-}
-
-class Vertex {
-    constructor (name, value, adjVertices = new LinkedList([], (a, b) => a.name.localeCompare(b))) {
-        this.name = name
-        this.value = value
-        this.adjVertices = adjVertices
-        this.distance = 0
-        this.predecessor = null
-        this.color = COLORS.white
-    }
-
-    addNeighbor (name, weight) {
-        this.adjVertices.insertAtEnd({
-            name,
-            weight
-        })
-    }
-
-    getAdjVertices () {
-        return this.adjVertices.toArray().map(n => n.name)
-    }
-
-    hasAdjVertex (name) {
-        return !!this.adjVertices.find(name)
-    }
-
-    setAdjVertexWeight (name, weight) {
-        this.adjVertices.find(name).weight = weight
-    }
-
-    getAdjVertexWeight (name) {
-        return this.adjVertices.find(name).weight
-    }
-
-    removeAdjVertex (name) {
-        this.adjVertices.delete(name)
-    }
-
-    reset () {
-        this.predecessor = null
-        this.distance = 0
-        this.color = COLORS.white
-    }
-}
+const Vertex = require('./Vertex')
+const COLORS = require('./constants')
 
 class Graph {
     constructor () {
@@ -67,7 +18,7 @@ class Graph {
 
     addEdge (v1, v2, weight = 0) {
         this.getVertex(v1)
-            .addNeighbor(this.getVertex(v2).name, weight)
+            .addAdjVertex(this.getVertex(v2).name, weight)
     }
 
     getAdjVertices (vertex) {

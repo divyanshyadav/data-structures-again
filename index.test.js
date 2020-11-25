@@ -71,3 +71,8 @@ test('disjoint-set example', () => {
     expect(ds.find('d')).toBe('a')
     expect(ds.isConnected('a', 'd')).toBeTruthy()
 })
+
+it('should construct an empty AVL tree', () => {
+    const { AVL } = require('.')
+    expect(new AVL()).toBeDefined()
+})
