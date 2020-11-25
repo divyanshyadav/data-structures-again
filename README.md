@@ -19,7 +19,8 @@ Light weight javascript data structures library
 - Queue
 - Heap
 - Graph
-- Disjoint-set (New!)
+- Disjoint-set
+- LRU Cache (New!)
 
 ## Installation and Usage
 
@@ -120,6 +121,25 @@ ds.union('d', 'c')
 
 ds.find('d') // 'a'
 ds.isConnected('a', 'd') // true
+
+```
+
+### LRUCache
+
+```js
+const { LRUCache } = require("data-structures-again");
+
+const lru = new LRUCache(2)
+
+lru.put(1, 1)
+lru.put(2, 2)
+lru.get(1)    // 1
+lru.put(3, 3)
+lru.get(2)   // -1
+lru.put(4, 4)
+lru.get(1)   // -1
+lru.get(3)   // 3
+lru.get(4)   // 4
 
 ```
 
