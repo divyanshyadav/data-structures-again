@@ -1,17 +1,12 @@
-class HashTable {
-    constructor (size) {
+const { hashCodePoly } = require('../utils/hash')
+
+class HashMap {
+    constructor (size, hashFn = hashCodePoly) {
         this.array = new Array(size).fill(null)
         this.size = size
         this.total = 0
         this.X = [-Infinity, -Infinity]
-        this.hashCode = (key) => {
-            const x = 31
-
-            return key.split('').reduce((acc, cur, index) => {
-                acc += cur.charCodeAt() * Math.pow(x, index)
-                return acc
-            }, 0)
-        }
+        this.hashCode = hashFn
     }
 
     searchEmptyIndex (key) {
@@ -76,4 +71,4 @@ class HashTable {
     }
 }
 
-module.exports = HashTable
+module.exports = HashMap
