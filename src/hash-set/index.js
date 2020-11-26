@@ -64,10 +64,6 @@ class HashSet {
         const newArray = new Array(this.array.length * 2)
 
         this.array.forEach(item => {
-            if (item === undefined) {
-                return
-            }
-
             item.forEach(value => {
                 this._add(newArray, value)
             })

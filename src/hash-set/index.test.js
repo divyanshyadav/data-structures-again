@@ -28,6 +28,14 @@ test('add string', () => {
     expect(set.has('hello')).toBe(true)
 })
 
+test('adding duplicate', () => {
+    const set = new HashSet()
+    set.add('hello')
+    set.add('hello')
+
+    expect(set.has('hello')).toBe(true)
+})
+
 test('remove string', () => {
     const set = new HashSet()
     set.add('hello')

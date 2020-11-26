@@ -11,19 +11,6 @@ function hashCode (string) {
     return hash
 }
 
-function hashStringToInt (string) {
-    string = string.toString()
-
-    let hash = 17
-
-    for (let i = 0; i < string.length; i++) {
-        hash = (13 * hash * string.charCodeAt(i))
-    }
-
-    return hash
-}
-
 module.exports = {
-    hashCode,
-    hashStringToInt
+    hashCode
 }
