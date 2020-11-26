@@ -40,7 +40,7 @@ class Heap {
     delete (data) {
         let index = 0
 
-        if (data) {
+        if (data !== undefined) {
             index = find(this.array, data)
         }
 
@@ -51,7 +51,8 @@ class Heap {
         this.heapifyDown(index)
     }
 
-    heapifyDown (index) {
+    heapifyDown (i) {
+        let index = i
         while (this.hasLeftChild(index)) {
             let smallerChildIndex = this.getLeftChildIndex(index)
             if (this.hasRightChild(index) &&
