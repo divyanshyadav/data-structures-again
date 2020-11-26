@@ -71,3 +71,15 @@ test('disjoint-set example', () => {
     expect(ds.find('d')).toBe('a')
     expect(ds.isConnected('a', 'd')).toBeTruthy()
 })
+
+test('hash-set example', () => {
+    const { HashSet } = require('./index')
+
+    const set = new HashSet()
+    set.add(1)
+    set.add(2)
+
+    expect(set.has(1)).toBeTruthy() // true
+    expect(set.has(2)).toBeTruthy()
+    expect(set.has(3)).toBeFalsy()
+})

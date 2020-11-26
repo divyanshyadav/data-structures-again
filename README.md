@@ -19,7 +19,8 @@ Light weight javascript data structures library
 - Queue
 - Heap
 - Graph
-- Disjoint-set (New!)
+- Disjoint-set
+- HashSet
 
 ## Installation and Usage
 
@@ -122,6 +123,23 @@ ds.find('d') // 'a'
 ds.isConnected('a', 'd') // true
 
 ```
+
+### Hash-set
+
+```js
+const { HashSet } = require("data-structures-again");
+
+const set = new HashSet()
+set.add(1)
+set.add(2)
+
+set.has(1) // true
+set.has(2) // true
+set.has(3)) // false
+
+```
+
+
 
 ## License
 
