@@ -14,12 +14,13 @@
 
 Light weight javascript data structures library
 
+- HashMap (New!)
 - Binary Search Tree
 - Stack
 - Queue
 - Heap
 - Graph
-- Disjoint-set (New!)
+- Disjoint-set
 
 ## Installation and Usage
 
@@ -120,6 +121,18 @@ ds.union('d', 'c')
 
 ds.find('d') // 'a'
 ds.isConnected('a', 'd') // true
+
+```
+
+### HashMap
+
+```js
+const { HashMap } = require("data-structures-again");
+
+const map = new HashMap()
+
+map.set('name', 'john')
+map.get('name') // john
 
 ```
 

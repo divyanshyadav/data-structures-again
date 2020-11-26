@@ -71,3 +71,12 @@ test('disjoint-set example', () => {
     expect(ds.find('d')).toBe('a')
     expect(ds.isConnected('a', 'd')).toBeTruthy()
 })
+
+test('hash-map example', () => {
+    const { HashMap } = require('data-structures-again')
+
+    const map = new HashMap()
+
+    map.set('name', 'john')
+    expect(map.get('name')).toBe('john')
+})
