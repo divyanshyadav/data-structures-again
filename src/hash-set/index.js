@@ -20,7 +20,7 @@ class HashSet {
     add (value) {
         const key = this.hash(value)
 
-        if (this._has(key, value)) {
+        if (this.has(value)) {
             return
         }
 
@@ -30,7 +30,7 @@ class HashSet {
     delete (value) {
         const key = this.hash(value)
 
-        if (!this._has(key, value)) {
+        if (!this.has(value)) {
             return
         }
 
@@ -40,14 +40,6 @@ class HashSet {
     has (value) {
         const key = this.hash(value)
 
-        if (this.array[key].find(v => v === value) === undefined) {
-            return false
-        }
-
-        return true
-    }
-
-    _has (key, value) {
         if (this.array[key].find(v => v === value) === undefined) {
             return false
         }
