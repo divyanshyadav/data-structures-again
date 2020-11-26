@@ -1,17 +1,29 @@
+const { hashCode } = require('../utils/hash')
+
 class HashSet {
     constructor (hashFn = hashCode) {
-        this.size = 10000
-        this.array = new Array(this.size).fill(null).map(_ => [])
+        this.array = new Array(1)
         this.hashCode = hashFn
+        this.length = 0
+    }
+
+    size () {
+        return this.length
     }
 
     add (value) {
+        const loadFactor = this.length / this.array.length
+
+        if (loadFactor > 0.8) {
+            this._resize()
+        }
+
         if (this.has(value)) {
             return
         }
 
-        const key = this.hashCode(value) % this.size
-        this.array[key].push(value)
+        this._add(this.array, value)
+        this.length++
     }
 
     delete (value) {
@@ -19,12 +31,17 @@ class HashSet {
             return
         }
 
-        const key = this.hashCode(value) % this.size
+        const key = this.hashCode(value) % this.array.length
         this.array[key] = this.array[key].filter(v => v !== value)
+        this.length--
     }
 
     has (value) {
-        const key = this.hashCode(value) % this.size
+        const key = this.hashCode(value) % this.array.length
+
+        if (this.array[key] === undefined) {
+            return false
+        }
 
         if (this.array[key].find(v => v === value) === undefined) {
             return false
@@ -32,19 +49,32 @@ class HashSet {
 
         return true
     }
-}
 
-function hashCode (value) {
-    value = value.toString()
+    _add (array, value) {
+        const key = this.hashCode(value) % array.length
 
-    let hash = 0
-    for (let i = 0; i < value.length; i++) {
-        let chr = value.charCodeAt(i)
-        hash = ((hash << 5) - hash) + chr
-        hash |= 0 // Convert to 32bit integer
+        if (array[key] === undefined) {
+            array[key] = []
+        }
+
+        array[key].push(value)
     }
 
-    return hash
+    _resize () {
+        const newArray = new Array(this.array.length * 2)
+
+        this.array.forEach(item => {
+            if (item === undefined) {
+                return
+            }
+
+            item.forEach(value => {
+                this._add(newArray, value)
+            })
+        })
+
+        this.array = newArray
+    }
 }
 
 module.exports = HashSet

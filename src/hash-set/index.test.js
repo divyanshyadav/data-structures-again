@@ -34,3 +34,14 @@ test('remove string', () => {
     set.delete('hello')
     expect(set.has('hello')).toBe(false)
 })
+
+test('resize', () => {
+    const set = new HashSet()
+
+    for (let i = 0; i < 1000; i++) {
+        set.add(i)
+    }
+
+    expect(set.array.length).toBe(2048)
+    expect(set.size()).toBe(1000)
+})
