@@ -1,6 +1,6 @@
 class HashSet {
     constructor () {
-        this.size = 10000
+        this.size = 1000
         this.array = new Array(this.size).fill(null).map(_ => [])
     }
 
@@ -18,22 +18,20 @@ class HashSet {
     }
 
     add (value) {
-        const key = this.hash(value)
-
         if (this.has(value)) {
             return
         }
 
+        const key = this.hash(value)
         this.array[key].push(value)
     }
 
     delete (value) {
-        const key = this.hash(value)
-
         if (!this.has(value)) {
             return
         }
 
+        const key = this.hash(value)
         this.array[key] = this.array[key].filter(v => v !== value)
     }
 
