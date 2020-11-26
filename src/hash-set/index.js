@@ -1,20 +1,8 @@
 class HashSet {
-    constructor () {
+    constructor (hashFn = hashCode) {
         this.size = 1000
         this.array = new Array(this.size).fill(null).map(_ => [])
-    }
-
-    hash (value) {
-        value = value.toString()
-
-        let hash = 0
-        for (let i = 0; i < value.length; i++) {
-            let chr = value.charCodeAt(i)
-            hash = ((hash << 5) - hash) + chr
-            hash |= 0 // Convert to 32bit integer
-        }
-
-        return hash % this.size
+        this.hash = hashFn
     }
 
     add (value) {
@@ -44,6 +32,19 @@ class HashSet {
 
         return true
     }
+}
+
+function hashCode (value) {
+    value = value.toString()
+
+    let hash = 0
+    for (let i = 0; i < value.length; i++) {
+        let chr = value.charCodeAt(i)
+        hash = ((hash << 5) - hash) + chr
+        hash |= 0 // Convert to 32bit integer
+    }
+
+    return hash % this.size
 }
 
 module.exports = HashSet
