@@ -1,7 +1,7 @@
 class DisjointSet {
     constructor () {
         this.container = {}
-        this.size = {}
+        this.rank = {}
     }
 
     find (element) {
@@ -30,18 +30,19 @@ class DisjointSet {
         const parentOfA = this.find(elementA)
         const parentOfB = this.find(elementB)
 
-        if (this.size[parentOfB] > this.size[parentOfA]) {
+        if (this.rank[parentOfB] > this.rank[parentOfA]) {
             this.container[parentOfA] = parentOfB
-            this.size[parentOfB] += 1
+        } else if (this.rank[parentOfA] > this.rank[parentOfB]) {
+            this.container[parentOfB] = parentOfA
         } else {
             this.container[parentOfB] = parentOfA
-            this.size[parentOfA] += 1
+            this.rank[parentOfA] += 1
         }
     }
 
     add (element) {
         this.container[element] = element
-        this.size[element] = 1
+        this.rank[element] = 1
     }
 
     has (element) {
