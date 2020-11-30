@@ -65,9 +65,14 @@ class Graph {
         this.adjList.set(name, newVertex)
     }
 
-    addEdge (v1, v2, weight = 0) {
+    addEdge (v1, v2, weight = 0, undirected = false) {
         this.getVertex(v1)
             .addNeighbor(this.getVertex(v2).name, weight)
+
+        if (undirected) {
+            this.getVertex(v2)
+                .addNeighbor(this.getVertex(v1).name, weight)
+        }
     }
 
     getAdjVertices (vertex) {
