@@ -24,8 +24,8 @@ describe('test graph DS', () => {
         graph.addEdge('c', 'a')
         graph.addEdge('c', 'b')
 
-        expect(graph.getAdjVertices('a').toArray().map(e => e.name)).toEqual(['b'])
-        expect(graph.getAdjVertices('c').toArray().map(e => e.name)).toEqual(['a', 'b'])
+        expect(graph.getAdjVertices('a').map(e => e.name)).toEqual(['b'])
+        expect(graph.getAdjVertices('c').map(e => e.name)).toEqual(['a', 'b'])
     })
 
     it('should do bfs', () => {
@@ -242,5 +242,22 @@ describe('test graph DS', () => {
         expect(graph.getEdges()).toEqual(
             [['a', 'b', 0], ['c', 'a', 0], ['c', 'b', 0]]
         )
+    })
+
+    it('should return all vertices', () => {
+        const graph = new Graph()
+
+        /*
+            a---> b
+            ^    /
+            |   /
+              c
+        */
+
+        graph.addVertex('a')
+        graph.addVertex('b')
+        graph.addVertex('c')
+
+        expect(graph.getVertices().map(v => v.name)).toEqual(['a', 'b', 'c'])
     })
 })

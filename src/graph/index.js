@@ -25,7 +25,7 @@ class Vertex {
     }
 
     getAdjVertices () {
-        return this.adjVertices.toArray().map(n => n.name)
+        return this.adjVertices.toArray()
     }
 
     hasAdjVertex (name) {
@@ -71,7 +71,7 @@ class Graph {
     }
 
     getAdjVertices (vertex) {
-        return this.getVertex(vertex).adjVertices
+        return this.getVertex(vertex).getAdjVertices()
     }
 
     isAdjacent (v1, v2) {
@@ -132,7 +132,7 @@ class Graph {
             const current = queue.dequeue()
 
             current.getAdjVertices().forEach(v => {
-                const neighbor = this.getVertex(v)
+                const neighbor = this.getVertex(v.name)
 
                 if (neighbor.color === COLORS.white) {
                     neighbor.color = COLORS.grey
@@ -157,7 +157,7 @@ class Graph {
             fn(vertex)
 
             vertex.getAdjVertices().forEach(v => {
-                const neighbor = this.getVertex(v)
+                const neighbor = this.getVertex(v.name)
                 if (neighbor.color === COLORS.white) {
                     helper(neighbor)
                 }
@@ -176,11 +176,20 @@ class Graph {
         for (const [vertex, value] of this.adjList) {
             const neighbors = value.getAdjVertices()
             neighbors.forEach(n => {
-                edges.push([vertex, n, this.getEdgeValue(vertex, n)])
+                edges.push([vertex, n.name, this.getEdgeValue(vertex, n.name)])
             })
         };
 
         return edges
+    }
+
+    getVertices () {
+        const vertices = []
+        for (const [key, value] of this.adjList) {
+            vertices.push(value)
+        }
+
+        return vertices
     }
 }
 
