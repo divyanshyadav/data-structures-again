@@ -46,6 +46,16 @@ class LRUCacheHDLL {
         }
     }
 
+    get (key) {
+        if (this.map.has(key)) {
+            const node = this.map.get(key)
+            this._moveToTail(node)
+            return node.value
+        }
+
+        return -1
+    }
+
     _insertNodeAtTail (node) {
         if (this.head === null) {
             this.head = node
@@ -56,16 +66,6 @@ class LRUCacheHDLL {
             node.prev = this.tail
             this.tail = node
         }
-    }
-
-    get (key) {
-        if (this.map.has(key)) {
-            const node = this.map.get(key)
-            this._moveToTail(node)
-            return node.value
-        }
-
-        return -1
     }
 
     _moveToTail (node) {
