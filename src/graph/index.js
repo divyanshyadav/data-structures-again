@@ -185,7 +185,8 @@ class Graph {
 
     getVertices () {
         const vertices = []
-        for (const [key, value] of this.adjList) {
+        // eslint-disable-next-line no-unused-vars
+        for (const [_, value] of this.adjList) {
             vertices.push(value)
         }
 
