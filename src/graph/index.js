@@ -168,6 +168,20 @@ class Graph {
 
         helper(startVertex)
     }
+    /**
+     * @returns {[[String, String, Number]]}
+     */
+    getEdges () {
+        const edges = []
+        for (const [vertex, value] of this.adjList) {
+            const neighbors = value.getAdjVertices()
+            neighbors.forEach(n => {
+                edges.push([vertex, n, this.getEdgeValue(vertex, n)])
+            })
+        };
+
+        return edges
+    }
 }
 
 module.exports = Graph

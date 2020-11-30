@@ -220,4 +220,27 @@ describe('test graph DS', () => {
         const graph = new Graph()
         expect(() => graph.dfs('a')).toThrow()
     })
+
+    it('should return all edges', () => {
+        const graph = new Graph()
+
+        /*
+            a---> b
+            ^    /
+            |   /
+              c
+        */
+
+        graph.addVertex('a')
+        graph.addVertex('b')
+        graph.addVertex('c')
+
+        graph.addEdge('a', 'b')
+        graph.addEdge('c', 'a')
+        graph.addEdge('c', 'b')
+
+        expect(graph.getEdges()).toEqual(
+            [['a', 'b', 0], ['c', 'a', 0], ['c', 'b', 0]]
+        )
+    })
 })
