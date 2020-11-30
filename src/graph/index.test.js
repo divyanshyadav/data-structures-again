@@ -275,9 +275,9 @@ describe('test graph DS', () => {
         graph.addVertex('b')
         graph.addVertex('c')
 
-        graph.addEdge('a', 'b', 0, true)
-        graph.addEdge('c', 'a', 0, true)
-        graph.addEdge('c', 'b', 0, true)
+        graph.addUndirectedEdge('a', 'b')
+        graph.addUndirectedEdge('c', 'a')
+        graph.addUndirectedEdge('c', 'b')
 
         expect(graph.getAdjVertices('a').map(e => e.name)).toEqual(['b', 'c'])
         expect(graph.getAdjVertices('b').map(e => e.name)).toEqual(['a', 'c'])
