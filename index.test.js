@@ -72,6 +72,23 @@ test('disjoint-set example', () => {
     expect(ds.isConnected('a', 'd')).toBeTruthy()
 })
 
+
+test('LRU Cache example', () => {
+    const { LRUCache } = require('./index')
+
+    const lru = new LRUCache(2)
+
+    lru.put(1, 1)
+    lru.put(2, 2)
+    lru.get(1) // 1
+    lru.put(3, 3)
+    lru.get(2) // -1
+    lru.put(4, 4)
+    lru.get(1) // -1
+    lru.get(3) // 3
+    lru.get(4) // 4
+})
+  
 test('hash-set example', () => {
     const { HashSet } = require('./index')
 
@@ -82,4 +99,5 @@ test('hash-set example', () => {
     expect(set.has(1)).toBeTruthy() // true
     expect(set.has(2)).toBeTruthy()
     expect(set.has(3)).toBeFalsy()
+
 })
