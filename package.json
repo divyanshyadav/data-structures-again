@@ -1,6 +1,6 @@
 {
   "name": "data-structures-again",
-  "version": "2.1.2",
+  "version": "2.1.10",
   "description": "A Javascript library of simple data structures",
   "homepage": "https://github.com/divyanshyadav/data-structures-again",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "test": "jest",
-    "test:watch": "jest --watchAll",
+    "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:coveralls": "jest --coverage && cat coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js",
     "build": "webpack",

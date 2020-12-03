@@ -32,7 +32,8 @@ class DisjointSet {
 
         if (this.rank[parentOfB] > this.rank[parentOfA]) {
             this.container[parentOfA] = parentOfB
-            this.rank[parentOfB] += 1
+        } else if (this.rank[parentOfA] > this.rank[parentOfB]) {
+            this.container[parentOfB] = parentOfA
         } else {
             this.container[parentOfB] = parentOfA
             this.rank[parentOfA] += 1

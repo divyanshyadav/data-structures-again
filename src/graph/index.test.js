@@ -24,8 +24,8 @@ describe('test graph DS', () => {
         graph.addEdge('c', 'a')
         graph.addEdge('c', 'b')
 
-        expect(graph.getAdjVertices('a').toArray().map(e => e.name)).toEqual(['b'])
-        expect(graph.getAdjVertices('c').toArray().map(e => e.name)).toEqual(['a', 'b'])
+        expect(graph.getAdjVertices('a').map(e => e.name)).toEqual(['b'])
+        expect(graph.getAdjVertices('c').map(e => e.name)).toEqual(['a', 'b'])
     })
 
     it('should do bfs', () => {
@@ -219,5 +219,68 @@ describe('test graph DS', () => {
     it('dfs should throw error on invalid vertex start node', () => {
         const graph = new Graph()
         expect(() => graph.dfs('a')).toThrow()
+    })
+
+    it('should return all edges', () => {
+        const graph = new Graph()
+
+        /*
+            a---> b
+            ^    /
+            |   /
+              c
+        */
+
+        graph.addVertex('a')
+        graph.addVertex('b')
+        graph.addVertex('c')
+
+        graph.addEdge('a', 'b')
+        graph.addEdge('c', 'a')
+        graph.addEdge('c', 'b')
+
+        expect(graph.getEdges()).toEqual(
+            [['a', 'b', 0], ['c', 'a', 0], ['c', 'b', 0]]
+        )
+    })
+
+    it('should return all vertices', () => {
+        const graph = new Graph()
+
+        /*
+            a---> b
+            ^    /
+            |   /
+              c
+        */
+
+        graph.addVertex('a')
+        graph.addVertex('b')
+        graph.addVertex('c')
+
+        expect(graph.getVertices().map(v => v.name)).toEqual(['a', 'b', 'c'])
+    })
+
+    it('should construct a undirected graph', () => {
+        const graph = new Graph()
+
+        /*
+            a--- b
+            |    /
+            |   /
+            c /
+        */
+
+        graph.addVertex('a')
+        graph.addVertex('b')
+        graph.addVertex('c')
+
+        graph.addUndirectedEdge('a', 'b')
+        graph.addUndirectedEdge('c', 'a')
+        graph.addUndirectedEdge('c', 'b')
+
+        expect(graph.getAdjVertices('a').map(e => e.name)).toEqual(['b', 'c'])
+        expect(graph.getAdjVertices('b').map(e => e.name)).toEqual(['a', 'c'])
+        expect(graph.getAdjVertices('c').map(e => e.name)).toEqual(['a', 'b'])
     })
 })

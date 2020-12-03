@@ -21,6 +21,7 @@ Light weight javascript data structures library
 - Graph
 - Disjoint-set
 - LRU Cache (New!)
+- HashSet
 
 ## Installation and Usage
 
@@ -142,6 +143,22 @@ lru.get(3)   // 3
 lru.get(4)   // 4
 
 ```
+
+### Hash-set
+
+```js
+const { HashSet } = require("data-structures-again");
+
+const set = new HashSet()
+set.add(1)
+set.add(2)
+
+set.has(1) // true
+set.has(2) // true
+set.has(3)) // false
+
+```
+
 
 ## License
 
