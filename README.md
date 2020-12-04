@@ -19,7 +19,7 @@ Light weight javascript data structures library
 - Queue
 - Heap
 - Graph
-- Disjoint-set
+- Disjoint Set
 - HashSet
 
 ## Installation and Usage
@@ -40,7 +40,7 @@ const node = bst.search(1); // { data: 1, left: null, right: null }
 bst.delete(1);
 ```
 
-### Stack:
+### Stack
 
 ```js
 const { Stack } = require("data-structures-again");
@@ -52,7 +52,7 @@ const data = stack.pop(); // 2
 const top = stack.peek(); // 1
 ```
 
-### Queue:
+### Queue
 
 ```js
 const { Queue } = require("data-structures-again");
@@ -64,7 +64,7 @@ const data = queue.dequeue(); // 1
 const top = queue.peek(); // 2
 ```
 
-### Heap:
+### Heap
 
 ```js
 const { Heap } = require("data-structures-again");
@@ -124,7 +124,7 @@ ds.isConnected('a', 'd') // true
 
 ```
 
-### Hash-set
+### HashSet
 
 ```js
 const { HashSet } = require("data-structures-again");
