@@ -83,3 +83,14 @@ test('hash-set example', () => {
     expect(set.has(2)).toBeTruthy()
     expect(set.has(3)).toBeFalsy()
 })
+
+test('hash-set example', () => {
+    const { RedBlackBST } = require('./index')
+
+    const bst = new RedBlackBST()
+    bst.set(1, 'a')
+    bst.set(2, 'b')
+
+    expect(bst.get(1)).toBe('a')
+    expect(bst.get(2)).toBe('b')
+})
