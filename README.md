@@ -20,6 +20,7 @@ Light weight javascript data structures library
 -   Graph
 -   Disjoint Set
 -   HashSet
+-   Red Black Balanced Search Tree
 
 ## Installation and Usage
 
