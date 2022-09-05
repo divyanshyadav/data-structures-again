@@ -379,10 +379,7 @@ it('should insert alphabets correctly', () => {
     const bst = new BST((a, b) => {
         return a.charCodeAt() - b.charCodeAt()
     })
-    bst.insert('B')
-        .insert('A')
-        .insert('C')
-        .insert('D')
+    bst.insert('B').insert('A').insert('C').insert('D')
     /*
             B
         A       C
@@ -398,10 +395,7 @@ it('should run in-order traverse correctly', () => {
     const bst = new BST((a, b) => {
         return a.charCodeAt() - b.charCodeAt()
     })
-    bst.insert('B')
-        .insert('A')
-        .insert('C')
-        .insert('D')
+    bst.insert('B').insert('A').insert('C').insert('D')
     /*
             B
         A       C
@@ -414,10 +408,7 @@ it('should run pre-order traverse correctly', () => {
     const bst = new BST((a, b) => {
         return a.charCodeAt() - b.charCodeAt()
     })
-    bst.insert('B')
-        .insert('A')
-        .insert('C')
-        .insert('D')
+    bst.insert('B').insert('A').insert('C').insert('D')
     /*
             B
         A       C
@@ -430,10 +421,7 @@ it('should run post-order traverse correctly', () => {
     const bst = new BST((a, b) => {
         return a.charCodeAt() - b.charCodeAt()
     })
-    bst.insert('B')
-        .insert('A')
-        .insert('C')
-        .insert('D')
+    bst.insert('B').insert('A').insert('C').insert('D')
     /*
             B
         A       C
@@ -446,14 +434,63 @@ it('should return in-order traverse on toString call', () => {
     const bst = new BST((a, b) => {
         return a.charCodeAt() - b.charCodeAt()
     })
-    bst.insert('B')
-        .insert('A')
-        .insert('C')
-        .insert('D')
+    bst.insert('B').insert('A').insert('C').insert('D')
     /*
             B
         A       C
                     D
     */
     expect(bst.toString()).toBe('A,B,C,D')
+})
+
+it('should give correct size of nodes', () => {
+    const bst = new BST()
+    expect(bst.lca()).toEqual(null)
+
+    bst.insert(10)
+    bst.insert(5)
+    bst.insert(2)
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(30)
+    bst.insert(50)
+
+    /*
+    <- Before ->
+            10
+        5       20
+    2        15      30
+                        50
+    */
+
+    // console.log(JSON.stringify(bst.root, null, 2))
+    expect(bst.size(bst.root)).toBe(7)
+    expect(bst.size(bst.root.left)).toBe(2)
+    expect(bst.size(bst.root.right)).toBe(4)
+})
+
+it('should give correct rank of nodes', () => {
+    const bst = new BST()
+    expect(bst.lca()).toEqual(null)
+
+    bst.insert(10)
+    bst.insert(5)
+    bst.insert(2)
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(30)
+    bst.insert(50)
+
+    /*
+    <- Before ->
+            10
+        5       20
+    2        15      30
+                        50
+    */
+
+    // console.log(JSON.stringify(bst.root, null, 2))
+    expect(bst.rank(21)).toBe(5)
+    expect(bst.rank(3)).toBe(1)
+    expect(bst.rank(51)).toBe(7)
 })
