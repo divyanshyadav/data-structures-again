@@ -11,16 +11,16 @@
         <a href="https://badge.fury.io/js/data-structures-again" target="_blank"><img src="https://badge.fury.io/js/data-structures-again.svg" alt="npm version"></a>
 </p>
 
-
 Light weight javascript data structures library
 
-- Binary Search Tree
-- Stack
-- Queue
-- Heap
-- Graph
-- Disjoint Set
-- HashSet
+-   Binary Search Tree
+-   Stack
+-   Queue
+-   Heap
+-   Graph
+-   Disjoint Set
+-   HashSet
+-   Red Black Balanced Search Tree
 
 ## Installation and Usage
 
@@ -28,64 +28,75 @@ Light weight javascript data structures library
 npm install data-structures-again
 ```
 
+### Red Black Balanced Search Tree:
+
+```js
+const { RedBlackBST } = require('./index')
+
+const tree = new RedBlackBST()
+tree.set(1, 'a')
+tree.set(2, 'b')
+
+tree.get(1) // 'a'
+tree.get(2) // 'b'
+```
+
 ### Binary Search Tree:
 
 ```js
-const { BST } = require("data-structures-again");
+const { BST } = require('data-structures-again')
 
-const bst = new BST();
-bst.insert(2);
-bst.insert(1);
-const node = bst.search(1); // { data: 1, left: null, right: null }
-bst.delete(1);
+const bst = new BST()
+bst.insert(2)
+bst.insert(1)
+const node = bst.search(1) // { data: 1, left: null, right: null }
+bst.delete(1)
 ```
 
 ### Stack
 
 ```js
-const { Stack } = require("data-structures-again");
+const { Stack } = require('data-structures-again')
 
-const stack = new Stack();
-stack.push(1);
-stack.push(2);
-const data = stack.pop(); // 2
-const top = stack.peek(); // 1
+const stack = new Stack()
+stack.push(1)
+stack.push(2)
+const data = stack.pop() // 2
+const top = stack.peek() // 1
 ```
 
 ### Queue
 
 ```js
-const { Queue } = require("data-structures-again");
+const { Queue } = require('data-structures-again')
 
-const queue = new Queue();
-queue.enqueue(1);
-queue.enqueue(2);
-const data = queue.dequeue(); // 1
-const top = queue.peek(); // 2
+const queue = new Queue()
+queue.enqueue(1)
+queue.enqueue(2)
+const data = queue.dequeue() // 1
+const top = queue.peek() // 2
 ```
 
 ### Heap
 
 ```js
-const { Heap } = require("data-structures-again");
+const { Heap } = require('data-structures-again')
 
 const minHeap = new Heap()
 minHeap.push(5)
 minHeap.push(2)
-minHeap.peek()  // 2
-
+minHeap.peek() // 2
 
 const maxHeap = new Heap((a, b) => b - a)
 maxHeap.push(4)
 maxHeap.push(10)
 maxHeap.peek() // 10
-
 ```
 
 ### Graph
 
 ```js
-const { Graph } = require("data-structures-again");
+const { Graph } = require('data-structures-again')
 
 const graph = new Graph()
 
@@ -106,13 +117,12 @@ graph.addEdge('a', 'b')
 
 const output = []
 graph.dfs('a', vertex => output.push(vertex.name)) // ['a', 'c', 'b']
-
 ```
 
 ### Disjoint Set(Union-find)
 
 ```js
-const { DisjointSet } = require("data-structures-again");
+const { DisjointSet } = require('data-structures-again')
 
 const ds = new DisjointSet()
 ds.union('a', 'b')
@@ -121,7 +131,6 @@ ds.union('d', 'c')
 
 ds.find('d') // 'a'
 ds.isConnected('a', 'd') // true
-
 ```
 
 ### HashSet
@@ -138,8 +147,6 @@ set.has(2) // true
 set.has(3)) // false
 
 ```
-
-
 
 ## License
 
