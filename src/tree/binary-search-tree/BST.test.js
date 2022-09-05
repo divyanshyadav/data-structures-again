@@ -445,7 +445,6 @@ it('should return in-order traverse on toString call', () => {
 
 it('should give correct size of nodes', () => {
     const bst = new BST()
-    expect(bst.lca()).toEqual(null)
 
     bst.insert(10)
     bst.insert(5)
@@ -471,7 +470,6 @@ it('should give correct size of nodes', () => {
 
 it('should give correct rank of nodes', () => {
     const bst = new BST()
-    expect(bst.lca()).toEqual(null)
 
     bst.insert(10)
     bst.insert(5)
@@ -493,4 +491,96 @@ it('should give correct rank of nodes', () => {
     expect(bst.rank(21)).toBe(5)
     expect(bst.rank(3)).toBe(1)
     expect(bst.rank(51)).toBe(7)
+})
+
+it('should give correct floor value of nodes', () => {
+    const bst = new BST()
+
+    bst.insert(10)
+    bst.insert(5)
+    bst.insert(2)
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(30)
+    bst.insert(50)
+
+    /*
+    <- Before ->
+            10
+        5       20
+    2        15      30
+                        50
+    */
+
+    expect(bst.floor(21)).toBe(20)
+    expect(bst.floor(6)).toBe(5)
+})
+
+it('should give correct ceil value of nodes', () => {
+    const bst = new BST()
+
+    bst.insert(10)
+    bst.insert(5)
+    bst.insert(2)
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(30)
+    bst.insert(50)
+
+    /*
+    <- Before ->
+            10
+        5       20
+    2        15      30
+                        50
+    */
+
+    expect(bst.ceil(21)).toBe(30)
+    expect(bst.ceil(6)).toBe(10)
+})
+
+it('should give correct range count', () => {
+    const bst = new BST()
+
+    bst.insert(10)
+    bst.insert(5)
+    bst.insert(2)
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(30)
+    bst.insert(50)
+
+    /*
+    <- Before ->
+            10
+        5       20
+    2        15      30
+                        50
+    */
+
+    expect(bst.rangeCount(4, 35)).toBe(5)
+    expect(bst.rangeCount(2, 15)).toBe(4)
+})
+
+it('should give correct range count', () => {
+    const bst = new BST()
+
+    bst.insert(10)
+    bst.insert(5)
+    bst.insert(2)
+    bst.insert(20)
+    bst.insert(15)
+    bst.insert(30)
+    bst.insert(50)
+
+    /*
+    <- Before ->
+            10
+        5       20
+    2        15      30
+                        50
+    */
+
+    expect(bst.rangeSearch(4, 35)).toEqual([5, 10, 15, 20, 30])
+    expect(bst.rangeSearch(2, 15)).toEqual([2, 5, 10, 15])
 })

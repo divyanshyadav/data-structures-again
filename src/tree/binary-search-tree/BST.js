@@ -259,6 +259,76 @@ class BST {
         return rankHelper(this.root, key)
     }
 
+    floor(key) {
+        const floorHelper = (root, key) => {
+            if (!root) return null
+
+            const cmp = this.comparator(key, root.data)
+
+            if (cmp === 0) return root
+            if (cmp < 0) return floorHelper(root.left, key)
+
+            const node = floorHelper(root.right, key)
+            if (node) return node
+            return root
+        }
+
+        const node = floorHelper(this.root, key)
+        if (!node) return null
+        return node.data
+    }
+
+    ceil(key) {
+        const ceilHelper = (root, key) => {
+            if (!root) return null
+
+            const cmp = this.comparator(key, root.data)
+
+            if (cmp === 0) return root
+            if (cmp > 0) return ceilHelper(root.right, key)
+
+            const node = ceilHelper(root.left, key)
+            if (node) return node
+            return root
+        }
+
+        const node = ceilHelper(this.root, key)
+        if (!node) return null
+        return node.data
+    }
+
+    rangeCount(start, end) {
+        if (this.search(end) !== null) {
+            return this.rank(end) - this.rank(start) + 1
+        }
+
+        return this.rank(end) - this.rank(start)
+    }
+
+    rangeSearch(start, end) {
+        const result = []
+
+        function rangeSearchHelper(root, start, end) {
+            if (!root) return null
+
+            if (root.data >= start) {
+                rangeSearchHelper(root.left, start, end)
+            }
+
+            if (root.data >= start && root.data <= end) {
+                result.push(root.data)
+            }
+
+            if (root.data <= end) {
+                rangeSearchHelper(root.right, start, end)
+            }
+        }
+
+        rangeSearchHelper(this.root, start, end)
+
+        return result
+    }
+
     toString() {
         return this.inOrder().join(',')
     }
