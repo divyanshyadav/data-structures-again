@@ -1,45 +1,45 @@
 {
-  "name": "data-structures-again",
-  "version": "2.3.0",
-  "description": "A Javascript library of simple data structures",
-  "homepage": "https://github.com/divyanshyadav/data-structures-again",
-  "main": "index.js",
-  "scripts": {
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:coveralls": "jest --coverage && cat coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js",
-    "build": "webpack",
-    "publish:minor": "npm version minor && git push && git push --tags",
-    "publish:major": "npm version major && git push && git push --tags",
-    "publish:patch": "npm version patch && git push && git push --tags"
-  },
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/jest": "^24.0.19",
-    "coveralls": "^3.0.3",
-    "eslint": "^5.16.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "jest": "^24.5.0",
-    "lint-staged": "^8.1.5",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
-  },
-  "keywords": [
-    "computer-science",
-    "cs",
-    "data-structures",
-    "javascript",
-    "tree",
-    "stack",
-    "queue",
-    "heap"
-  ]
+    "name": "data-structures-again",
+    "version": "2.4.0",
+    "description": "A Javascript library of simple data structures",
+    "homepage": "https://github.com/divyanshyadav/data-structures-again",
+    "main": "index.js",
+    "scripts": {
+        "lint": "eslint src",
+        "lint:fix": "eslint src --fix",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage",
+        "test:coveralls": "jest --coverage && cat coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js",
+        "build": "webpack",
+        "publish:minor": "npm version minor && git push && git push --tags",
+        "publish:major": "npm version major && git push && git push --tags",
+        "publish:patch": "npm version patch && git push && git push --tags"
+    },
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/jest": "^24.0.19",
+        "coveralls": "^3.0.3",
+        "eslint": "^5.16.0",
+        "eslint-config-standard": "^12.0.0",
+        "eslint-plugin-import": "^2.17.2",
+        "eslint-plugin-node": "^8.0.1",
+        "eslint-plugin-promise": "^4.1.1",
+        "eslint-plugin-standard": "^4.0.0",
+        "jest": "^24.5.0",
+        "lint-staged": "^8.1.5",
+        "webpack": "^4.39.3",
+        "webpack-cli": "^3.3.7"
+    },
+    "keywords": [
+        "computer-science",
+        "cs",
+        "data-structures",
+        "javascript",
+        "tree",
+        "stack",
+        "queue",
+        "heap"
+    ]
 }
