@@ -558,6 +558,7 @@ it('should give correct range count', () => {
                         50
     */
 
+    expect(bst.rangeCount(1, 3)).toBe(1)
     expect(bst.rangeCount(4, 35)).toBe(5)
     expect(bst.rangeCount(2, 15)).toBe(4)
 })
