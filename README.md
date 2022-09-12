@@ -21,24 +21,12 @@ Light weight javascript data structures library
 -   Disjoint Set
 -   HashSet
 -   Red Black Balanced Search Tree
+-   2D Tree
 
 ## Installation and Usage
 
 ```bash
 npm install data-structures-again
-```
-
-### Red Black Balanced Search Tree:
-
-```js
-const { RedBlackBST } = require('./index')
-
-const tree = new RedBlackBST()
-tree.set(1, 'a')
-tree.set(2, 'b')
-
-tree.get(1) // 'a'
-tree.get(2) // 'b'
 ```
 
 ### Binary Search Tree:
@@ -146,6 +134,40 @@ set.has(1) // true
 set.has(2) // true
 set.has(3)) // false
 
+```
+
+### Red Black Balanced Search Tree:
+
+```js
+const { RedBlackBST } = require('./index')
+
+const tree = new RedBlackBST()
+tree.set(1, 'a')
+tree.set(2, 'b')
+
+tree.get(1) // 'a'
+tree.get(2) // 'b'
+```
+
+### 2d Tree
+
+```js
+const { TwoDTree } = require('./index')
+
+const tree = new TwoDTree()
+tree.insert(4, 1)
+tree.insert(2.5, 1.5)
+tree.insert(2.7, 1.7)
+tree.insert(4, 3)
+
+tree.rangeSearch(2, 3, 1, 2))
+/*
+[
+    [2.5, 1.5],
+    [2.7, 1.7],
+    [2.6, 1.6]
+]
+*/
 ```
 
 ## License

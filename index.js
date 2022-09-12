@@ -1,4 +1,4 @@
-const { BST, RedBlackBST } = require('./src/tree')
+const { BST, RedBlackBST, TwoDTree } = require('./src/tree')
 const Stack = require('./src/stack')
 const Queue = require('./src/queue')
 const Heap = require('./src/heap')
@@ -9,6 +9,7 @@ const HashSet = require('./src/hash-set')
 module.exports = {
     BST,
     RedBlackBST,
+    TwoDTree,
     Stack,
     Queue,
     Heap,
