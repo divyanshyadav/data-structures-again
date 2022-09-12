@@ -160,6 +160,7 @@ tree.insert(2.5, 1.5)
 tree.insert(2.7, 1.7)
 tree.insert(4, 3)
 
+             // x1, x2, y1, y2
 tree.rangeSearch(2, 3, 1, 2))
 /*
 [
