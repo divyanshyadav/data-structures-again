@@ -52,9 +52,72 @@ describe('2d-tree', () => {
 
         expect(tree.root.left.right.right.key).toBe(3)
         expect(tree.rangeSearch(2, 3, 1, 2)).toEqual([
-            [2.5, 1.5],
-            [2.7, 1.7],
-            [2.6, 1.6]
+            { x: 2.5, y: 1.5 },
+            { x: 2.7, y: 1.7 },
+            { x: 2.6, y: 1.6 }
         ])
+    })
+
+    test('case 4 - nearest neighbor', () => {
+        const tree = new TwoDTree()
+        tree.insert(4, 4)
+        tree.insert(6, 3)
+        tree.insert(2, 5)
+        tree.insert(2, 1)
+        tree.insert(1, 3)
+        tree.insert(3, 7)
+        tree.insert(5, 2)
+        tree.insert(9, 8)
+        tree.insert(8, 7)
+        tree.insert(7, 1)
+
+        const queryPoint = { x: 1, y: 6 }
+
+        expect(tree.getNearestPoint(queryPoint.x, queryPoint.y)).toEqual({
+            x: 2,
+            y: 5
+        })
+    })
+
+    test('case 5 - nearest neighbor', () => {
+        const tree = new TwoDTree()
+        tree.insert(4, 4)
+        tree.insert(6, 3)
+        tree.insert(2, 5)
+        tree.insert(2, 1)
+        tree.insert(1, 3)
+        tree.insert(3, 7)
+        tree.insert(5, 2)
+        tree.insert(9, 8)
+        tree.insert(8, 7)
+        tree.insert(7, 1)
+
+        const queryPoint = { x: 4, y: 2 }
+
+        expect(tree.getNearestPoint(queryPoint.x, queryPoint.y)).toEqual({
+            x: 5,
+            y: 2
+        })
+    })
+
+    test('case 5 - nearest neighbor', () => {
+        const tree = new TwoDTree()
+        tree.insert(4, 4)
+        tree.insert(6, 3)
+        tree.insert(2, 5)
+        tree.insert(2, 1)
+        tree.insert(1, 3)
+        tree.insert(3, 7)
+        tree.insert(5, 2)
+        tree.insert(9, 8)
+        tree.insert(8, 7)
+        tree.insert(7, 1)
+
+        const queryPoint = { x: 10, y: 1 }
+
+        expect(tree.getNearestPoint(queryPoint.x, queryPoint.y)).toEqual({
+            x: 7,
+            y: 1
+        })
     })
 })

@@ -16,10 +16,10 @@ class TwoDTree {
         function insertHelper(root, x, y, level) {
             if (!root) {
                 if (level % 2 === 0) {
-                    return new Node(x, [x, y])
+                    return new Node(x, { x, y })
                 }
 
-                return new Node(y, [x, y])
+                return new Node(y, { x, y })
             }
 
             const key = level % 2 === 0 ? x : y
@@ -40,9 +40,9 @@ class TwoDTree {
         function rangeSearchHelper(root, x1, x2, y1, y2, level) {
             if (!root) return
 
-            const [x, y] = root.value
+            const { x, y } = root.value
             if (inRect(x, y, x1, x2, y1, y2)) {
-                result.push([x, y])
+                result.push(root.value)
             }
 
             // search in the left plane
@@ -59,6 +59,66 @@ class TwoDTree {
         rangeSearchHelper(this.root, x1, x2, y1, y2, 0)
         return result
     }
+
+    getNearestPoint(x, y) {
+        let nearestPoint = null
+        let minDistance = Infinity
+
+        function nearestPointHelper(root, x, y, level) {
+            if (!root) return
+
+            const distance = calculateDistance(root.value.x, root.value.y, x, y)
+            if (minDistance > distance) {
+                minDistance = distance
+                nearestPoint = root.value
+            }
+
+            const minDistanceFromPlane = getMinDistanceFromPlane(
+                root,
+                x,
+                y,
+                level
+            )
+
+            if (isPointLieInLeftOrBottomPlane(root, level, x, y)) {
+                nearestPointHelper(root.left, x, y, level + 1)
+                if (minDistanceFromPlane < minDistance) {
+                    nearestPointHelper(root.right, x, y, level + 1)
+                }
+            } else {
+                nearestPointHelper(root.right, x, y, level + 1)
+                if (minDistanceFromPlane < minDistance) {
+                    nearestPointHelper(root.left, x, y, level + 1)
+                }
+            }
+        }
+
+        nearestPointHelper(this.root, x, y, 0)
+
+        return nearestPoint
+    }
+}
+
+function getMinDistanceFromPlane(root, x, y, level) {
+    if (level % 2 === 0) {
+        return calculateDistance(x, y, root.value.x, y)
+    }
+
+    return calculateDistance(x, y, x, root.value.y)
+}
+
+function isPointLieInLeftOrBottomPlane(root, level, x, y) {
+    if (level % 2 === 0) {
+        return x <= root.value.x
+    } else {
+        return y <= root.value.y
+    }
+}
+
+function calculateDistance(x1, y1, x2, y2) {
+    return Math.sqrt(
+        Math.pow(Math.abs(x2 - x1), 2) + Math.pow(Math.abs(y2 - y1), 2)
+    )
 }
 
 function inRect(x, y, x1, x2, y1, y2) {
@@ -66,7 +126,7 @@ function inRect(x, y, x1, x2, y1, y2) {
 }
 
 function rectInLeft(root, x1, x2, y1, y2, level) {
-    const [x, y] = root.value
+    const { x, y } = root.value
     if (level % 2 === 0) {
         if (x1 <= x) return true
     } else {
@@ -77,7 +137,7 @@ function rectInLeft(root, x1, x2, y1, y2, level) {
 }
 
 function rectInRight(root, x1, x2, y1, y2, level) {
-    const [x, y] = root.value
+    const { x, y } = root.value
     if (level % 2 === 0) {
         if (x2 > x) return true
     } else {
