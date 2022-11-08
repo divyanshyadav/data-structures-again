@@ -1,202 +1,112 @@
-const LinkedList = require('../linked-list')
-const Queue = require('../queue')
-
-const COLORS = {
-    grey: 'grey',
-    white: 'white',
-    black: 'black'
-}
-
-class Vertex {
-    constructor (name, value, adjVertices = new LinkedList([], (a, b) => a.name.localeCompare(b))) {
-        this.name = name
-        this.value = value
-        this.adjVertices = adjVertices
-        this.distance = 0
-        this.predecessor = null
-        this.color = COLORS.white
-    }
-
-    addNeighbor (name, weight) {
-        this.adjVertices.insertAtEnd({
-            name,
-            weight
-        })
-    }
-
-    getAdjVertices () {
-        return this.adjVertices.toArray()
-    }
-
-    hasAdjVertex (name) {
-        return !!this.adjVertices.find(name)
-    }
-
-    setAdjVertexWeight (name, weight) {
-        this.adjVertices.find(name).weight = weight
-    }
-
-    getAdjVertexWeight (name) {
-        return this.adjVertices.find(name).weight
-    }
-
-    removeAdjVertex (name) {
-        this.adjVertices.delete(name)
-    }
-
-    reset () {
-        this.predecessor = null
-        this.distance = 0
-        this.color = COLORS.white
-    }
-}
-
 class Graph {
-    constructor () {
+    constructor() {
         this.adjList = new Map()
     }
 
-    addVertex (name, value = null) {
-        if (this.adjList.has(name)) {
-            return
+    addEdge(a, b) {
+        if (!this.adjList.has(a)) {
+            this.adjList.set(a, [])
         }
 
-        const newVertex = new Vertex(name, value)
-        this.adjList.set(name, newVertex)
-    }
-
-    addEdge (v1, v2, weight = 0) {
-        this.getVertex(v1)
-            .addNeighbor(this.getVertex(v2).name, weight)
-    }
-
-    addUndirectedEdge (v1, v2, weight) {
-        this.addEdge(v1, v2, weight)
-        this.addEdge(v2, v1, weight)
-    }
-
-    getAdjVertices (vertex) {
-        return this.getVertex(vertex).getAdjVertices()
-    }
-
-    isAdjacent (v1, v2) {
-        if (!this.adjList.has(v1) || !this.adjList.has(v1)) {
-            return false
+        if (!this.adjList.has(b)) {
+            this.adjList.set(b, [])
         }
 
-        return this.getVertex(v1).hasAdjVertex(v2)
+        this.adjList.get(a).push(b)
     }
 
-    removeVertex (vertex) {
-        this.adjList.delete(vertex)
-        this.adjList.forEach(v => v.removeAdjVertex(vertex))
+    removeEdge(a, b) {
+        if (!this.adjList.has(a)) return
+        this.adjList.set(
+            a,
+            this.adjList.get(a).filter(v => v !== b)
+        )
     }
 
-    removeEdge (v1, v2) {
-        this.adjList
-            .get(v1)
-            .removeAdjVertex(v2)
-    }
-
-    setVertexValue (vertex, value) {
-        this.getVertex(vertex).value = value
-    }
-
-    getVertexValue (vertex) {
-        return this.getVertex(vertex).value
-    }
-
-    setEdgeValue (v1, v2, value) {
-        this.getVertex(v1).setAdjVertexWeight(v2, value)
-    }
-
-    getEdgeValue (v1, v2) {
-        return this.getVertex(v1).getAdjVertexWeight(v2)
-    }
-
-    getVertex (name) {
-        if (!this.adjList.has(name)) {
-            throw new Error(`Vertex ${name} doesn't exist`)
-        }
-
-        return this.adjList.get(name)
-    }
-
-    bfs (start, fn) {
-        this.adjList.forEach(v => v.reset())
-
-        const queue = new Queue()
-        const startVertex = this.getVertex(start)
-
-        startVertex.distance = 0
-        startVertex.predecessor = null
-        startVertex.color = COLORS.grey
-        queue.enqueue(startVertex)
-
-        while (queue.length !== 0) {
-            const current = queue.dequeue()
-
-            current.getAdjVertices().forEach(v => {
-                const neighbor = this.getVertex(v.name)
-
-                if (neighbor.color === COLORS.white) {
-                    neighbor.color = COLORS.grey
-                    neighbor.predecessor = current
-                    neighbor.distance = current.distance + 1
-                    queue.enqueue(neighbor)
-                }
-            })
-
-            current.color = COLORS.black
-            fn(current)
-        }
-    }
-
-    dfs (start, fn) {
-        this.adjList.forEach(v => v.reset())
-
-        const startVertex = this.getVertex(start)
-
-        const helper = (vertex) => {
-            vertex.color = COLORS.grey
-            fn(vertex)
-
-            vertex.getAdjVertices().forEach(v => {
-                const neighbor = this.getVertex(v.name)
-                if (neighbor.color === COLORS.white) {
-                    helper(neighbor)
-                }
-            })
-
-            vertex.color = COLORS.black
-        }
-
-        helper(startVertex)
-    }
-    /**
-     * @returns {[[String, String, Number]]}
-     */
-    getEdges () {
-        const edges = []
-        for (const [vertex, value] of this.adjList) {
-            const neighbors = value.getAdjVertices()
-            neighbors.forEach(n => {
-                edges.push([vertex, n.name, this.getEdgeValue(vertex, n.name)])
-            })
-        };
-
-        return edges
-    }
-
-    getVertices () {
-        const vertices = []
-        // eslint-disable-next-line no-unused-vars
-        for (const [_, value] of this.adjList) {
-            vertices.push(value)
-        }
-
-        return vertices
+    adjTo(a) {
+        return this.adjList.get(a)
     }
 }
 
-module.exports = Graph
+class DepthFirstPath {
+    constructor(graph, startVertex, useRecursiveApproach = true) {
+        this.visited = new Set()
+        this.edgeTo = new Map()
+
+        if (useRecursiveApproach) {
+            this._dfs(graph, startVertex)
+        } else this._dfsNonRecursive(graph, startVertex)
+    }
+
+    _dfs(graph, vertex) {
+        graph.adjTo(vertex).forEach(v => {
+            if (this.visited.has(v)) return
+            this.visited.add(v)
+            this.edgeTo.set(v, vertex)
+            this._dfs(graph, v)
+        })
+    }
+
+    _dfsNonRecursive(graph, vertex) {
+        const stack = [[vertex]]
+
+        let parentNode = null
+        while (stack.length > 0) {
+            const neighbors = stack[stack.length - 1]
+            if (neighbors.length === 0) {
+                stack.pop()
+                continue
+            }
+
+            const neighbor = neighbors.pop()
+
+            if (this.visited.has(neighbor)) continue
+
+            this.visited.add(neighbor)
+            this.edgeTo.set(neighbor, parentNode)
+            parentNode = neighbor
+            stack.push(
+                graph
+                    .adjTo(neighbor)
+                    .filter(v => !this.visited.has(v))
+                    .reverse()
+            )
+        }
+    }
+
+    hasPathTo(vertex) {
+        return this.visited.has(vertex)
+    }
+
+    pathTo(vertex) {
+        const path = []
+        let cur = vertex
+
+        while (cur) {
+            path.push(cur)
+            cur = this.edgeTo.get(cur)
+        }
+
+        return path.reverse()
+    }
+}
+
+class BreathFirstSearch {
+    constructor(graph, startVertex) {
+        this.edgeTo = new Map()
+        this.distTo = new Map()
+        this._bfs(graph, startVertex)
+    }
+
+    _bfs(graph, startVertex) {}
+
+    hasPathTo(vertex) {}
+
+    pathTo(vertex) {}
+}
+
+module.exports = {
+    Graph,
+    DepthFirstPath,
+    BreathFirstSearch
+}
