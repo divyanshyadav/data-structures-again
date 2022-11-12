@@ -26,6 +26,10 @@ class Graph {
     adjTo(a) {
         return this.adjList.get(a)
     }
+
+    getVertices() {
+        return this.adjList.keys()
+    }
 }
 
 class DepthFirstPath {
