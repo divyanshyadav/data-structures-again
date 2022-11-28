@@ -30,6 +30,18 @@ class Graph {
     getVertices() {
         return this.adjList.keys()
     }
+
+    reverse() {
+        const revGraph = new Graph()
+
+        for (const vertex of this.getVertices()) {
+            this.adjTo(vertex).forEach(v => {
+                revGraph.addEdge(v, vertex)
+            })
+        }
+
+        return revGraph
+    }
 }
 
 class DepthFirstPath {
