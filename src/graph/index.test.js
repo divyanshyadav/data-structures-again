@@ -1,4 +1,4 @@
-const { Graph, DepthFirstPath } = require('.')
+const { Graph, DepthFirstPath, BreathFirstSearch } = require('.')
 
 describe('test graph DS', () => {
     it('should construct an empty graph', () => {
@@ -24,30 +24,29 @@ describe('test graph DS', () => {
         expect(graph.adjTo('c')).toEqual(['a', 'b'])
     })
 
-    // it('should do bfs', () => {
-    //     const graph = new Graph()
+    it('should do bfs', () => {
+        const graph = new Graph()
 
-    //     /*
-    //         a ---> b
-    //         |     ^
-    //         |    /
-    //         >  c
-    //     */
+        /*
+            a ------> b
+            |         ^
+            |        /
+            >c ----> d
+        */
 
-    //     graph.addVertex('a')
-    //     graph.addVertex('b')
-    //     graph.addVertex('c')
+        graph.addEdge('a', 'c')
+        graph.addEdge('c', 'b')
+        graph.addEdge('c', 'd')
+        graph.addEdge('a', 'b')
 
-    //     graph.addEdge('a', 'b')
-    //     graph.addEdge('a', 'c')
-    //     graph.addEdge('c', 'b')
+        const bfsResult = new BreathFirstSearch(graph, 'a')
 
-    //     const output = []
-    //     graph.bfs('a', vertex => output.push(vertex.name))
-    //     const expectOutput = ['a', 'b', 'c']
-
-    //     expect(output).toEqual(expectOutput)
-    // })
+        expect(bfsResult.hasPathTo('d')).toBe(true)
+        expect(bfsResult.pathTo('b')).toEqual(['a', 'b'])
+        expect(bfsResult.pathTo('d')).toEqual(['a', 'c', 'd'])
+        expect(bfsResult.distanceTo('d')).toEqual(2)
+        expect(bfsResult.distanceTo('b')).toEqual(1)
+    })
 
     it('should do dfs', () => {
         const graph = new Graph()
@@ -89,7 +88,7 @@ describe('test graph DS', () => {
         expect(graph.adjTo('a')).toEqual(['c'])
     })
 
-    it.only('should do non-recursive dfs', () => {
+    it('should do non-recursive dfs', () => {
         const graph = new Graph()
 
         /*
